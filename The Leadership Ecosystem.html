@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Leadership Ecosystem</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#F7F5F0;--card:#FFFFFF;--ink:#0E1B26;--mute:#556877;--line:#D9E2E8;--ox:#103B61;--brass:#B5852A;--rose:#C25E3E;--soft:#EAF0F5;--on:#FFFFFF;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1319;--card:#13202B;--ink:#EBF2F7;--mute:#879CAA;--line:#223646;--ox:#63A9E8;--brass:#E2B354;--rose:#E07353;--soft:#1A2C3B;--on:#0B1319}}
+:root[data-theme="dark"]{--bg:#0B1319;--card:#13202B;--ink:#EBF2F7;--mute:#879CAA;--line:#223646;--ox:#63A9E8;--brass:#E2B354;--rose:#E07353;--soft:#1A2C3B;--on:#0B1319}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3,.serif{font-family:Fraunces,Georgia,serif;margin:0;line-height:1.1}
+button,input,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{max-width:1020px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mast{font-family:Fraunces,serif;font-weight:800;font-size:1.18rem;margin-right:auto;background:none;border:0;padding:0;color:var(--ox)}
+.nv{background:none;border:0;padding:6px 12px;color:var(--mute);font-weight:500;border-radius:6px;transition:color .15s}
+.nv:hover{color:var(--ink)}.nv[aria-current="true"]{color:var(--ink);box-shadow:inset 0 -2px var(--brass)}
+.cta{background:var(--ox);color:var(--on);border:0;border-radius:999px;padding:8px 20px;font-weight:600;transition:opacity .15s}
+.cta:hover{opacity:.9}
+.wrap{max-width:1020px;margin:0 auto;padding:32px 20px 96px}
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:12px 26px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s}
+.btn:hover{opacity:.88}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn[disabled]{opacity:.35;cursor:default}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.cover{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:32px 0}
+.cover h1{font-size:clamp(2.6rem,7.5vw,5rem);font-weight:800;letter-spacing:-.02em}
+.cover h1 em{font-weight:400;font-style:italic}
+.issue{color:var(--brass);font-weight:600;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.cover p{color:var(--mute);font-size:1.12rem;max-width:32em;margin:20px 0 0}
+.toc{border-top:3px solid var(--ox);padding-top:10px}
+.toc button{display:flex;gap:14px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:12px 0;align-items:baseline;transition:background-color .15s}
+.toc button:hover{background:var(--soft)}
+.toc b{font-family:Fraunces,serif;font-size:1.5rem;color:var(--brass);width:34px;font-weight:600}
+.toc span{color:var(--mute);font-size:.9rem;display:block}
+.ch .num{font-family:Fraunces,serif;font-size:clamp(5rem,15vw,8.5rem);color:var(--brass);opacity:.4;line-height:.8;font-weight:800}
+.ch h2{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;margin-top:8px}
+.stand{font-family:Fraunces,serif;font-style:italic;font-size:1.32rem;color:var(--ox);margin:14px 0 20px;max-width:32em}
+.lead{max-width:38em;color:var(--mute);font-size:1.05rem}
+.lead::first-letter{font-family:Fraunces,serif;font-size:3.5rem;float:left;line-height:.85;padding:4px 10px 0 0;color:var(--ox);font-weight:800}
+.feat{display:grid;grid-template-columns:220px 1fr;gap:28px;border-top:1px solid var(--line);padding:26px 0}
+.feat h3{font-size:1.45rem;font-weight:600}.feat .fn{color:var(--brass);font-weight:600;font-size:.9rem;margin-top:6px}
+blockquote{margin:0 0 14px;font-family:Fraunces,serif;font-style:italic;font-size:1.25rem;line-height:1.42;padding-left:18px;border-left:3px solid var(--rose);max-width:32em}
+.why{color:var(--mute);max-width:36em;margin:0}.why b{color:var(--ink)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px;flex-wrap:wrap}
+.assessbanner{margin-top:34px;background:var(--soft);border-radius:14px;padding:20px 24px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.assessbanner p{margin:0;max-width:36em}
+.mapgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 4px 20px rgba(0,0,0,0.02)}
+svg text{font-family:"Instrument Sans",sans-serif}
+.nd{cursor:pointer;transition:transform .15s}.nd:hover{transform:scale(1.08)}.nd:focus-visible{outline:none}.nd:focus-visible circle{stroke:var(--ink);stroke-width:3}
+.pnl{border-top:3px solid var(--ox);padding-top:14px;min-height:220px}
+.pnl h3{font-size:1.75rem;margin:6px 0}.tg2{display:inline-block;font-size:.8rem;font-weight:600;border:1.5px solid var(--brass);color:var(--brass);padding:2px 10px;border-radius:99px}
+.leg{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.84rem;color:var(--mute);margin:14px 0 0}.leg i{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}.chip{font-size:.8rem;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:4px 12px;transition:all .15s}.chip:hover{border-color:var(--ox);color:var(--ox)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0}
+.opt{text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;transition:border-color .15s,background-color .15s}.opt b{display:block;font-size:.95rem}.opt span{display:block;color:var(--mute);font-size:.8rem;line-height:1.35;margin-top:3px}
+.opt:hover{border-color:var(--mute)}
+.opt[aria-pressed="true"]{border-color:var(--ox);background:var(--soft);box-shadow:inset 0 0 0 1px var(--ox)}
+label{display:block;font-weight:600;margin:16px 0 6px}label small{font-weight:400;color:var(--mute)}
+input[type=text],textarea{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:11px 14px}
+.ck{display:flex;gap:12px;align-items:flex-start;font-weight:400;margin-top:16px}.ck input{margin-top:5px;accent-color:var(--ox)}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px}
+.dt{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);font-size:.75rem;font-weight:600;color:var(--mute);padding:0;transition:all .15s}
+.dt:hover{border-color:var(--mute)}
+.dt.ok{background:var(--brass);border-color:var(--brass);color:#fff}.dt.cur{outline:2.5px solid var(--ox);outline-offset:2px}.dt.bad{border-color:var(--rose);color:var(--rose)}
+.msg{color:var(--rose);font-size:.88rem;min-height:1.4em;margin-top:8px;font-weight:500}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);margin:16px 0}
+table{border-collapse:collapse;width:100%;min-width:700px;font-size:.88rem}
+th,td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--line);vertical-align:top}
+th:nth-child(-n+2),td:nth-child(-n+2){text-align:left}th{color:var(--mute);font-size:.82rem;font-weight:600;background:var(--soft)}
+td.x{color:var(--ox);font-weight:700}
+.ph{display:grid;grid-template-columns:160px 1fr 38px;gap:12px;align-items:center;margin:10px 0;font-size:.9rem}
+.ph .t{height:10px;background:var(--line);border-radius:5px;overflow:hidden}.ph .t i{display:block;height:100%;background:var(--brass);transition:width .4s ease}
+.res{background:var(--soft);border-radius:14px;padding:24px;margin:22px 0}.res h3{font-size:1.6rem;margin-bottom:8px}ul.n{padding-left:22px;margin:8px 0;line-height:1.7}
+.tgl{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:.8rem;font-weight:500;z-index:11;box-shadow:0 3px 12px rgba(0,0,0,0.08)}
+@media(max-width:760px){.cover,.mapgrid{grid-template-columns:1fr}.feat{grid-template-columns:1fr;gap:12px}.ph{grid-template-columns:120px 1fr 32px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><div class="bar">
+  <button class="mast" data-v="home">The Leadership Ecosystem</button>
+  <button class="nv" data-v="story" id="n-story">Storyboard</button>
+  <button class="nv" data-v="map" id="n-map">Ecosystem map</button>
+  <button class="cta" data-v="assess">Take the assessment</button>
+</div></header>
+<div class="wrap" id="app"></div>
+<button class="tgl" id="tg">Theme: Light / Dark</button>
+
+<script>
+const STORAGE_KEY = "leadership_ecosystem_answers_v1";
+const CH = [
+  {
+    n: "Grounding",
+    sd: "Before you command authority, you must hold your center.",
+    ld: "Every resilient executive life begins with allies who see past the titles, credentials, and stage performance. These people keep your ego grounded and your clarity intact when stakes escalate.",
+    it: [
+      ["Grounding Peer", "Keeps your ego honest and humble", "You step off the stage after a high-stakes keynote. They do not flatter you; they laugh at your pretensions and ask if you called your family.", "When authority expands, unvarnished mirrors vanish. You need people who knew you before you were important."],
+      ["Truth-Teller", "Stress-tests your thinking without fear", "Everyone else in the boardroom is nodding along with your ambitious plan. This ally raises their hand and asks the exact question you hoped nobody would notice.", "Flattery is comfortable; rigorous dissent creates durability. Unchallenged power breeds fatal oversights."],
+      ["Crisis Anchor", "Stays calm, clear-headed, and unflinching", "A market shock hits at 6 PM on Friday. They pick up on the second ring, lower your pulse, and help triage the next 24 hours without panic.", "Leadership is evaluated in calm seas, but it is forged in emergencies. You cannot stabilize a team if your inner circle panics."]
+    ]
+  },
+  {
+    n: "Mastery",
+    sd: "Excellence is preserved when craft challenges scale.",
+    ld: "As leaders ascend, distance from real work increases. Here, relationships protect the rigor of execution, system design, and the discipline of finding exceptional talent.",
+    it: [
+      ["Craft Elder", "Holds your output to world-class standards", "They review your strategic memo, point directly to section two, and quietly say: 'Here is where you took an intellectual shortcut.'", "Executive elevation often dilutes craft. You need masters who hold you to uncompromising excellence."],
+      ["Systems Architect", "Turns high-level vision into operational machinery", "You sketch an audacious multi-year vision. They quietly map the dependencies, headcount requirements, and pipeline bottlenecks needed to make it real.", "Vision without operational systems is hallucination. You need allies who love the mechanics of delivery."],
+      ["Talent Scout", "Spots rising genius and multiplies high performance", "You are struggling to fill a crucial leadership void. They introduce you to an exceptional operator you would never have found via standard recruiters.", "Individual contributors build features; leaders build the team that builds the enterprise."]
+    ]
+  },
+  {
+    n: "Alignment",
+    sd: "Clear navigation across competitive landscapes.",
+    ld: "The challenge shifts from operational capability to organizational governance: reading unspoken power structures, guarding moral courage, and comparing against external benchmarks.",
+    it: [
+      ["Strategic Consigliere", "Decodes hidden incentives and political currents", "Before you enter an executive committee meeting, they brief you on unspoken rivalries and who genuinely holds the veto.", "Good proposals fail daily because leaders ignore organizational dynamics. You need someone who reads the board."],
+      ["Ethical Compass", "Guards principles when shortcuts tempt you", "An aggressive move promises immediate quarterly gain but tests integrity. They look you in the eyes and ask what kind of legacy you intend to leave.", "Reputation takes twenty years to cultivate and five minutes of rationalization to destroy."],
+      ["External Benchmark", "Shatters your industry bubble with ruthless perspective", "You think your team is moving fast until this peer explains how their organization iterates three times faster with half the overhead.", "Internal company culture breeds dangerous echo chambers. Outside benchmarks snap you back into reality."]
+    ]
+  },
+  {
+    n: "Elevation",
+    sd: "High-stakes rooms open when champions speak for you.",
+    ld: "Nobody commands enterprise impact alone. These allies invest their personal credibility and capital on your behalf in rooms where appointments and charters are decided.",
+    it: [
+      ["Executive Sponsor", "Bangs the table for your advancement", "Promotions and board seats are decided in closed executive sessions. This senior leader says: 'They lead this, or we do not do it.'", "Mentors give advice in private; sponsors spend reputation on you in rooms you have not yet entered."],
+      ["Coalition Builder", "Unifies divergent factions behind your charter", "Two divisions have contested jurisdiction for years. This leader convenes the heads over lunch and negotiates shared ownership of your initiative.", "Large-scale change cannot be achieved by top-down mandate alone; it requires voluntary stakeholder coalitions."],
+      ["Public Champion", "Amplifies your leadership impact to the broader market", "At a premier industry forum or in trade press, they cite your operating philosophy as the industry gold standard.", "Competence without external advocacy confines your impact strictly to your immediate department."]
+    ]
+  },
+  {
+    n: "Synergy",
+    sd: "From individual command to institutional force.",
+    ld: "Your scope now demands collective leverage: partners who bring external capital, craft joint ventures, and unlock institutional gatekeepers.",
+    it: [
+      ["Capital Allocator", "Backs your vision with substantial resources", "When internal budgets tighten, this backer funds your division because they trust your compound return on investment.", "Bold visions starve without capital. Trust with resources is the definitive test of strategic credibility."],
+      ["Alliance Partner", "Builds joint ventures that compound leverage", "They structure a collaborative go-to-market agreement that unlocks a massive new client base without adding internal overhead.", "Isolated organizations exhaust their bandwidth; ecosystem partners multiply market reach."],
+      ["Institutional Gatekeeper", "Grants access to sovereign and enterprise circles", "You need to present before regulators, sovereign entities, or global CEOs. A single call from this connector opens the private boardroom.", "Certain doors have no handles on the outside. Only recognized institutional gatekeepers can invite you in."]
+    ]
+  },
+  {
+    n: "Legacy",
+    sd: "True leadership is measured by what thrives in your absence.",
+    ld: "The pinnacle of executive stewardship is not what you command. It is the culture you embed, the successors you prepare, and the institutions that outlast you.",
+    it: [
+      ["Cultural Custodian", "Embeds your operating ethos into the organization's DNA", "In team onboardings and pivotal crises, they recount stories of how the team handled adversity, reinforcing your core values.", "When you depart, memos and org charts get replaced; ethos and shared stories endure."],
+      ["Next-Gen Protégé", "Absorbs your mental models and executes with their own voice", "You watch them navigate a volatile client crisis with poise and discernment, applying your frameworks with their own fresh instinct.", "True leaders do not create followers; their primary metric is how many independent leaders they forge."],
+      ["Designated Successor", "Ready to take the helm and elevate the mission further", "You step back from key operational steering councils, and outcomes improve rather than decline. That is your ultimate proof.", "A leadership tenure with no prepared successor is merely an exercise in personal ego."]
+    ]
+  }
+];
+
+const ST = [
+  ["Active", "Fully active today, with concrete recent evidence"],
+  ["Intermittent", "Occasional ally, not on a consistent cadence"],
+  ["Historical", "Filled this role in the past, inactive today"],
+  ["Potential", "Possesses the capacity, but not yet formalized"],
+  ["Absent", "No identifiable person in this seat"]
+];
+
+const SC = { Active: 4, Intermittent: 3, Historical: 2, Potential: 1, Absent: 0 };
+const COL = { Active: "var(--brass)", Intermittent: "var(--rose)", Historical: "var(--line)", Potential: "var(--card)", Absent: "var(--soft)" };
+const ALL = CH.flatMap((c, ci) => c.it.map(i => ({ ci, name: i[0], fn: i[1], sc: i[2], why: i[3] })));
+const RN = ["I", "II", "III", "IV", "V", "VI"];
+const A = document.getElementById("app");
+let view = "home", ch = 0, qi = 0, sel = 0;
+let ans = {};
+
+// Load persisted answers
+try {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) ans = JSON.parse(saved);
+} catch (e) { ans = {}; }
+
+function saveAnswers() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(ans)); } catch (e) {}
+}
+
+const val = a => {
+  if (!a || !a.s) return false;
+  if (a.s === "Absent") return true;
+  if ((a.name || "").trim().length < 2) return false;
+  if ((a.s === "Active" || a.s === "Intermittent") && !a.ok) return false;
+  return true;
+};
+
+const done = () => ALL.filter((_, j) => val(ans[j])).length;
+
+function nav(v) {
+  view = v;
+  ["story", "map"].forEach(k => {
+    const el = document.getElementById("n-" + k);
+    if (el) el.setAttribute("aria-current", k === v);
+  });
+  window.scrollTo(0, 0);
+}
+
+const banner = t => `
+  <div class="assessbanner">
+    <p>
+      <b class="serif" style="font-size:1.25rem">${t || "Ready to audit your own executive circle?"}</b><br>
+      Take the verified assessment from any page. High-impact leadership requires real, verifiable names—not placeholders.
+    </p>
+    <button class="btn" data-v="assess">Take the assessment</button>
+  </div>
+`;
+
+function home() {
+  nav("home");
+  A.innerHTML = `
+    <div class="cover">
+      <div>
+        <div class="issue">Executive & Leadership Capital Audit</div>
+        <h1>Who anchors your <em>leadership?</em></h1>
+        <p>Eighteen executive archetypes across six evolutionary levels. Explore the architecture of enduring leadership, then test your personal ecosystem by naming the real allies who empower your impact.</p>
+        <div class="row">
+          <button class="btn" data-v="story">Begin the storyboard</button>
+          <button class="btn alt" data-v="map">Inspect the ecosystem map</button>
+        </div>
+      </div>
+      <div class="toc" role="list">
+        ${CH.map((c, i) => `
+          <button data-ch="${i}">
+            <b>${RN[i]}</b>
+            <div class="serif" style="font-size:1.2rem">${c.n}
+              <span class="serif" style="font-style:italic">${c.sd}</span>
+            </div>
+          </button>
+        `).join("")}
+      </div>
+    </div>
+    ${banner("Already familiar with the model? Jump straight into the assessment.")}
+  `;
+}
+
+function story() {
+  nav("story");
+  const c = CH[ch];
+  A.innerHTML = `
+    <section class="ch">
+      <div class="num">${RN[ch]}</div>
+      <h2>${c.n}</h2>
+      <p class="stand">${c.sd}</p>
+      <p class="lead">${c.ld}</p>
+      ${c.it.map(it => `
+        <div class="feat">
+          <div>
+            <h3>${it[0]}</h3>
+            <div class="fn">${it[1]}</div>
+          </div>
+          <div>
+            <blockquote>${it[2]}</blockquote>
+            <p class="why"><b>Why it matters.</b> ${it[3]}</p>
+          </div>
+        </div>
+      `).join("")}
+      <div class="nav">
+        <button class="btn alt" data-a="prev">${ch ? "← " + CH[ch - 1].n : "← Cover"}</button>
+        <button class="btn" data-a="next">${ch < 5 ? CH[ch + 1].n + " →" : "See the ecosystem map →"}</button>
+      </div>
+    </section>
+    ${banner()}
+  `;
+}
+
+function mapSvg() {
+  let s = '<svg viewBox="0 0 600 600" role="img" aria-label="Leadership ecosystem map: six rings of leadership capital around you">';
+  CH.forEach((c, i) => {
+    s += `<circle cx="300" cy="300" r="${72 + i * 44}" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="${i % 2 ? "" : "3 5"}"/><text x="300" y="${300 - (72 + i * 44) - 6}" text-anchor="middle" font-size="10" fill="var(--mute)" font-weight="600">${RN[i]} ${c.n.toUpperCase()}</text>`;
+  });
+  s += `<circle cx="300" cy="300" r="42" fill="var(--ox)"/><text x="300" y="306" text-anchor="middle" fill="var(--on)" font-family="Fraunces,serif" font-weight="800" font-size="16">Leader</text>`;
+  ALL.forEach((a, j) => {
+    const k = j % 3,
+      r = 72 + a.ci * 44,
+      ang = (k * 120 + a.ci * 28 - 60) * Math.PI / 180,
+      x = 300 + r * Math.cos(ang),
+      y = 300 + r * Math.sin(ang),
+      st = ans[j] && ans[j].s;
+    s += `
+      <g class="nd" tabindex="0" role="button" data-n="${j}" aria-label="${a.name}${st ? ": " + st : ""}">
+        <circle cx="${x}" cy="${y}" r="${j === sel ? 18 : 14}" fill="${st ? COL[st] : "var(--card)"}" stroke="${j === sel ? "var(--ink)" : st === "Potential" || st === "Historical" ? "var(--mute)" : "var(--ox)"}" stroke-width="${j === sel ? 3.5 : 1.5}" ${st === "Historical" ? 'stroke-dasharray="3 3"' : ""}/>
+        <text x="${x}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="600" fill="${st === "Active" ? "#fff" : "var(--ink)"}">${j + 1}</text>
+      </g>
+    `;
+  });
+  return s + "</svg>";
+}
+
+function panel() {
+  const a = ALL[sel], r = ans[sel];
+  return `
+    <div class="pnl">
+      <span class="tg2">Level ${RN[a.ci]}: ${CH[a.ci].n}</span>
+      <h3>${sel + 1}. ${a.name}</h3>
+      <div class="fn" style="color:var(--brass);font-weight:600">${a.fn}</div>
+      ${r && r.s ? `
+        <p style="margin-top:14px"><b>Status: ${r.s}</b>${r.name ? " · " + esc(r.name) : ""}</p>
+        ${r.ev ? `<p class="why">${esc(r.ev)}</p>` : ""}
+      ` : `
+        <blockquote style="margin-top:14px;font-size:1.15rem">${a.sc}</blockquote>
+        <p class="why">${a.why}</p>
+      `}
+    </div>
+  `;
+}
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function map() {
+  nav("map");
+  A.innerHTML = `
+    <h2 class="serif" style="font-size:clamp(2rem,5vw,3.2rem);font-weight:800">The leadership ecosystem map</h2>
+    <p class="lead" style="margin:8px 0 24px">Level I (Grounding) sits at your immediate core, expanding outward to Level VI (Legacy). Click any archetype to view its role. As you verify your network, the map colorizes your true executive support.</p>
+    <div class="mapgrid">
+      <div>
+        <div class="mapbox" id="mp">${mapSvg()}</div>
+        <div class="leg">
+          ${ST.map(s => `<span><i style="background:${COL[s[0]]};border:1.5px solid var(--mute)"></i>${s[0]}</span>`).join("")}
+        </div>
+      </div>
+      <div>
+        <div id="pn">${panel()}</div>
+        <div class="chips">
+          ${ALL.map((a, j) => `<button class="chip" data-n="${j}">${j + 1} ${a.name}</button>`).join("")}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn" data-v="assess">Take the assessment</button>
+      ${done() ? `<button class="btn alt" data-v="results">View my results (${done()}/18)</button>` : ""}
+    </div>
+  `;
+}
+
+function selNode(j) {
+  sel = j;
+  document.getElementById("mp").innerHTML = mapSvg();
+  document.getElementById("pn").innerHTML = panel();
+}
+
+function assess() {
+  nav("assess");
+  const a = ALL[qi], r = ans[qi] || {}, s = r.s;
+  A.innerHTML = `
+    <h2 class="serif" style="font-size:clamp(1.8rem,5vw,2.7rem);font-weight:800">Verified Leadership Assessment</h2>
+    <p class="lead" style="margin:6px 0 20px">For each archetype, name a real person. 'I know people who could' is unverified. If nobody currently fills this seat, select Absent—identifying a clean gap is the first step of strategy.</p>
+    <div class="dots">
+      ${ALL.map((x, j) => `
+        <button class="dt ${val(ans[j]) ? "ok" : ans[j] && ans[j].s ? "bad" : ""} ${j === qi ? "cur" : ""}" data-q="${j}" aria-label="${x.name}">
+          ${j + 1}
+        </button>
+      `).join("")}
+    </div>
+    <div class="tg2">Level ${RN[a.ci]}: ${CH[a.ci].n} · Archetype ${qi + 1} of 18</div>
+    <h3 class="serif" style="font-size:2.1rem;margin:10px 0 6px;font-weight:800">${a.name}</h3>
+    <p class="why" id="nt">${note()}</p>
+    <div class="opts">
+      ${ST.map(x => `
+        <button class="opt" aria-pressed="${s === x[0]}" data-st="${x[0]}">
+          <b>${x[0]}</b><span>${x[1]}</span>
+        </button>
+      `).join("")}
+    </div>
+    ${s && s !== "Absent" ? `
+      <label for="nm">${s === "Potential" ? "Who has the credibility to step into this seat?" : "Name of the verified ally"} <small>(first & last name, or known moniker)</small></label>
+      <input type="text" id="nm" data-f="name" value="${esc(r.name || "")}" autocomplete="off" placeholder="e.g. Sarah Jenkins">
+      ${s === "Active" || s === "Intermittent" ? `
+        <label class="ck">
+          <input type="checkbox" data-f="ok" ${r.ok ? "checked" : ""}>
+          <span>I verify this: this ally has visibly demonstrated this role within the past 90 days, and would mutually acknowledge this dynamic.</span>
+        </label>
+      ` : ""}
+    ` : ""}
+    ${s === "Absent" ? `<p class="why" style="margin-top:14px;color:var(--rose)">Recorded as an unstaffed executive seat. It will be surfaced in your strategic growth edge plan.</p>` : ""}
+    <div class="msg" id="ms"></div>
+    <div class="nav">
+      <button class="btn alt" data-a="aprev">${qi ? "← Previous role" : "← Home"}</button>
+      <button class="btn" id="nx" data-a="anext" ${val(r) ? "" : "disabled"}>${qi < 17 ? "Next role →" : "Review my ecosystem →"}</button>
+    </div>
+    <p class="why" style="margin-top:18px;font-size:.9rem">
+      ${done()} of 18 leadership archetypes verified.
+      <button class="nv" data-v="results" style="padding:0;text-decoration:underline;color:var(--ox)">View results so far</button>
+    </p>
+  `;
+}
+
+function note() {
+  const a = ALL[qi], r = ans[qi] || {}, s = r.s, nm = (r.name || "").trim(), w = nm.length > 1 ? esc(nm) : null, fn = a.fn.charAt(0).toLowerCase() + a.fn.slice(1);
+  let t;
+  if (!s) t = `<i>“${a.sc}”</i> Do you have an active confidant who ${fn}? Select the reality today, not your aspiration.`;
+  else if (s === "Active") t = w ? `You have named <b>${w}</b> as your ${a.name.toLowerCase()}. Have they performed this within the past 90 days, and would they confirm this dynamic?` : `Name the specific ally who actively executes this role today.`;
+  else if (s === "Intermittent") t = w ? `<b>${w}</b> shows up periodically, but not systematically. What structure (standing bi-weekly check-in, quarterly summit) would make this dependable?` : `Occasional help lacks compound momentum. Who acts here intermittently?`;
+  else if (s === "Historical") t = w ? `<b>${w}</b> once anchored this seat. What altered the dynamic, and is this alliance worth deliberately re-igniting?` : `Who previously held this role for you?`;
+  else if (s === "Potential") t = w ? `<b>${w}</b> has the caliber, but you haven't formalized the alliance. What low-friction, high-value ask would initiate this dynamic?` : `Who in your network possesses the authority to fill this seat if invited?`;
+  else t = `An honest gap is actionable intelligence. Who in your industry already performs this for other leaders?`;
+  if (a.ci > 0) {
+    const p = ALL.map((x, j) => val(ans[j]) && x.ci === a.ci - 1 ? SC[ans[j].s] : null).filter(v => v !== null);
+    if (p.length >= 2 && p.reduce((x, y) => x + y, 0) / p.length < 2) {
+      t += ` <b>Strategic note:</b> Your ${CH[a.ci - 1].n} foundation is currently fragile; strengthening lower levels makes higher-order alliances significantly easier to sustain.`;
+    }
+  }
+  return t;
+}
+
+function hint() {
+  const r = ans[qi] || {};
+  let m = "";
+  if (r.s && r.s !== "Absent") {
+    if ((r.name || "").trim().length < 2) m = "Please provide the ally's name.";
+    else if ((r.s === "Active" || r.s === "Intermittent") && !r.ok) m = "Confirm the 90-day verification checkbox to proceed.";
+  }
+  document.getElementById("ms").textContent = m;
+  document.getElementById("nt").innerHTML = note();
+  document.getElementById("nx").disabled = !val(r);
+  const d = document.querySelectorAll(".dt")[qi];
+  if (d) d.className = "dt cur " + (val(r) ? "ok" : r.s ? "bad" : "");
+}
+
+function results() {
+  nav("results");
+  const n = done(), V = ALL.map((a, j) => val(ans[j]) ? { ...a, ...ans[j], role: a.name, person: ans[j].name } : null);
+  const sc = CH.map((c, i) => {
+    const v = V.filter(x => x && x.ci === i);
+    return v.length ? v.reduce((t, x) => t + SC[x.s], 0) / v.length : null;
+  });
+  let edge = sc.findIndex(v => v === null || v < 2.5), phase = edge === -1 ? 5 : edge - 1;
+  const g = f => V.filter(x => x && f(x)),
+    pot = g(x => x.s === "Potential"),
+    hist = g(x => x.s === "Historical"),
+    abs = g(x => x.s === "Absent"),
+    inter = g(x => x.s === "Intermittent"),
+    un = ALL.filter((_, j) => !V[j]);
+  const cnt = s => V.filter(x => x && x.s === s).length;
+
+  A.innerHTML = `
+    <h2 class="serif" style="font-size:clamp(2rem,5vw,3.2rem);font-weight:800">Your Leadership Capital Ecosystem</h2>
+    ${n ? `
+      <div class="res">
+        <h3>${phase < 0 ? "You are constructing your foundational core." : `You are operating primarily at Level ${RN[phase]}: ${CH[phase].n}.`}</h3>
+        <p style="margin:0">${edge === -1 ? "Every tier has verified executive backing. Cultivate Legacy and elevate intermittent allies into systematic rhythms." : `Your current strategic growth edge is <b>Level ${RN[edge]}: ${CH[edge].n}</b>. ${CH[edge].sd}`}${n < 18 ? ` <em>(Computed from ${n} of 18 verified roles)</em>` : ""}</p>
+      </div>
+    ` : `
+      <div class="res">
+        <h3>No verified data yet.</h3>
+        <p style="margin:0">Complete archetypes in the assessment to populate your leadership audit.</p>
+      </div>
+    `}
+    <div class="mapgrid">
+      <div>
+        <div class="mapbox" id="mp">${mapSvg()}</div>
+        <div class="leg">
+          ${ST.map(s => `<span><i style="background:${COL[s[0]]};border:1.5px solid var(--mute)"></i>${s[0]}</span>`).join("")}
+        </div>
+      </div>
+      <div>
+        <div id="pn">${panel()}</div>
+        <h3 class="serif" style="margin:24px 0 8px;font-size:1.25rem">Capital Strength by Level</h3>
+        ${CH.map((c, i) => `
+          <div class="ph">
+            <span>${RN[i]} ${c.n}</span>
+            <div class="t"><i style="width:${sc[i] === null ? 0 : sc[i] / 4 * 100}%"></i></div>
+            <span>${sc[i] === null ? "–" : sc[i].toFixed(1)}</span>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <h3 class="serif" style="margin:36px 0 12px;font-size:1.6rem">Executive Seat Roster</h3>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Archetype</th>
+            <th>Verified Ally</th>
+            ${ST.map(s => `<th>${s[0]}</th>`).join("")}
+          </tr>
+        </thead>
+        <tbody>
+          ${ALL.map((a, j) => `
+            <tr>
+              <td>${j + 1}. <b>${a.name}</b></td>
+              <td>${V[j] && V[j].person ? esc(V[j].person) : "–"}</td>
+              ${ST.map(s => `<td class="x">${V[j] && V[j].s === s[0] ? "✓" : ""}</td>`).join("")}
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="res">
+      <h3>Strategic Action Agenda</h3>
+      <ul class="n">
+        ${edge > -1 && edge < 6 ? `<li><b>Priority Growth Edge:</b> ${ALL.filter(a => a.ci === edge).map(a => a.name).join(", ")}. Prioritize solidifying these roles this quarter.</li>` : ""}
+        ${abs.length ? `<li><b>Vulnerable Vacancies (Absent):</b> ${abs.map(x => x.role).join(", ")}. Seek trusted introductions to candidates with this profile.</li>` : ""}
+        ${pot.length ? `<li><b>High-Yield Activations (Potential):</b> ${pot.map(x => `${x.role} (${esc(x.person)})`).join("; ")}. Formalize one specific conversation this month.</li>` : ""}
+        ${inter.length ? `<li><b>Systematize Rhythms (Intermittent):</b> ${inter.map(x => x.role).join(", ")}. Establish predictable cadence instead of ad-hoc contact.</li>` : ""}
+        ${hist.length ? `<li><b>Dormant Alliances (Historical):</b> ${hist.map(x => x.role).join(", ")}. Assess if shifts in mandate warrant reconnecting.</li>` : ""}
+        ${un.length ? `<li><b>Pending Verification:</b> ${un.length} roles remain unassessed. <button class="nv" data-v="assess" style="padding:0;text-decoration:underline;color:var(--ox)">Complete your audit</button></li>` : ""}
+        <li><b>Portfolio Tally:</b> ${cnt("Active")} Active · ${cnt("Intermittent")} Intermittent · ${cnt("Historical")} Historical · ${cnt("Potential")} Potential · ${cnt("Absent")} Absent.</li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <button class="btn alt" data-v="story">Revisit Storyboard</button>
+      <button class="btn" data-v="assess">Edit My Answers</button>
+      <button class="btn alt" id="rst" style="border-color:var(--rose);color:var(--rose)">Reset All Data</button>
+    </div>
+  `;
+
+  const rst = document.getElementById("rst");
+  if (rst) {
+    rst.onclick = () => {
+      if (confirm("Are you sure you want to clear all your assessment answers?")) {
+        ans = {};
+        saveAnswers();
+        results();
+      }
+    };
+  }
+}
+
+// Event Delegation
+A.addEventListener("click", e => {
+  const t = e.target.closest("button,.nd");
+  if (!t) return;
+  const d = t.dataset;
+  if (d.v) {
+    if (d.v === "story") ch = 0;
+    ({ home, story, map, assess, results })[d.v]();
+    return;
+  }
+  if (d.ch !== undefined) {
+    ch = +d.ch;
+    story();
+    return;
+  }
+  if (d.n !== undefined) {
+    selNode(+d.n);
+    return;
+  }
+  if (d.q !== undefined) {
+    qi = +d.q;
+    assess();
+    return;
+  }
+  if (d.st) {
+    ans[qi] = Object.assign(ans[qi] || {}, { s: d.st });
+    saveAnswers();
+    assess();
+    return;
+  }
+  const a = d.a;
+  if (a === "prev") {
+    ch ? (ch--, story()) : home();
+  } else if (a === "next") {
+    ch < 5 ? (ch++, story()) : map();
+  } else if (a === "aprev") {
+    qi ? (qi--, assess()) : home();
+  } else if (a === "anext") {
+    qi < 17 ? (qi++, assess()) : results();
+  }
+});
+
+document.querySelector("header").addEventListener("click", e => {
+  const t = e.target.closest("button");
+  if (!t || !t.dataset.v) return;
+  if (t.dataset.v === "story") ch = 0;
+  ({ home, story, map, assess, results })[t.dataset.v]();
+});
+
+A.addEventListener("keydown", e => {
+  if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("nd")) {
+    e.preventDefault();
+    selNode(+e.target.dataset.n);
+  }
+});
+
+A.addEventListener("input", e => {
+  const f = e.target.dataset.f;
+  if (!f) return;
+  const r = ans[qi] = ans[qi] || {};
+  r[f] = f === "ok" ? e.target.checked : e.target.value;
+  saveAnswers();
+  hint();
+});
+
+document.getElementById("tg").onclick = () => {
+  const r = document.documentElement;
+  const dk = getComputedStyle(r).getPropertyValue("--bg").trim() === "#0B1319";
+  r.dataset.theme = dk ? "light" : "dark";
+};
+
+home();
+</script>
+</body></html>
