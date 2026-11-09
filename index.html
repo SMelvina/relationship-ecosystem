@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Relationship Ecosystem</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#F8F0EA;--card:#FFFAF6;--ink:#2B1031;--mute:#6B5670;--line:#E2D1CF;--ox:#7A1F3D;--brass:#A87A2C;--rose:#C9708A;--soft:#F0E1DD;--on:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1D0F21;--card:#2A1530;--ink:#F6EBE4;--mute:#BDA6BF;--line:#472A4E;--ox:#E8A5B8;--brass:#DDB56B;--rose:#C9708A;--soft:#331A3A;--on:#1D0F21}}
+:root[data-theme="dark"]{--bg:#1D0F21;--card:#2A1530;--ink:#F6EBE4;--mute:#BDA6BF;--line:#472A4E;--ox:#E8A5B8;--brass:#DDB56B;--rose:#C9708A;--soft:#331A3A;--on:#1D0F21}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3,.serif{font-family:Fraunces,Georgia,serif;margin:0;line-height:1.1}
+button,input,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.bar{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.mast{font-family:Fraunces,serif;font-weight:800;font-size:1.15rem;margin-right:auto;background:none;border:0;padding:0;color:var(--ox)}
+.nv{background:none;border:0;padding:6px 10px;color:var(--mute);font-weight:500;border-radius:6px}.nv[aria-current="true"]{color:var(--ink);box-shadow:inset 0 -2px var(--brass)}
+.cta{background:var(--ox);color:var(--on);border:0;border-radius:999px;padding:8px 18px;font-weight:600}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 20px 90px}
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:12px 24px;font-weight:600}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}.btn[disabled]{opacity:.35;cursor:default}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.cover{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;padding:30px 0}
+.cover h1{font-size:clamp(2.6rem,8vw,5.2rem);font-weight:800;letter-spacing:-.02em}
+.cover h1 em{font-weight:400}
+.issue{color:var(--brass);font-weight:600;font-size:.85rem;margin-bottom:14px}
+.cover p{color:var(--mute);font-size:1.12rem;max-width:30em;margin:20px 0 0}
+.toc{border-top:3px solid var(--ox);padding-top:8px}
+.toc button{display:flex;gap:14px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:10px 0;align-items:baseline}
+.toc b{font-family:Fraunces,serif;font-size:1.5rem;color:var(--brass);width:30px;font-weight:600}.toc span{color:var(--mute);font-size:.9rem;display:block}
+.ch .num{font-family:Fraunces,serif;font-size:clamp(5rem,16vw,9rem);color:var(--brass);opacity:.45;line-height:.8;font-weight:800}
+.ch h2{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;margin-top:8px}
+.stand{font-family:Fraunces,serif;font-style:italic;font-size:1.3rem;color:var(--ox);margin:12px 0 18px;max-width:30em}
+.lead{max-width:38em;color:var(--mute)}.lead::first-letter{font-family:Fraunces,serif;font-size:3.4rem;float:left;line-height:.85;padding:4px 8px 0 0;color:var(--ox);font-weight:800}
+.feat{display:grid;grid-template-columns:200px 1fr;gap:26px;border-top:1px solid var(--line);padding:26px 0}
+.feat h3{font-size:1.5rem;font-weight:600}.feat .fn{color:var(--brass);font-weight:600;font-size:.9rem;margin-top:6px}
+blockquote{margin:0 0 12px;font-family:Fraunces,serif;font-style:italic;font-size:1.3rem;line-height:1.4;padding-left:18px;border-left:3px solid var(--rose);max-width:30em}
+.why{color:var(--mute);max-width:36em;margin:0}.why b{color:var(--ink)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap}
+.assessbanner{margin-top:30px;background:var(--soft);border-radius:12px;padding:18px 20px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.assessbanner p{margin:0;max-width:34em}
+.mapgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px}
+svg text{font-family:"Instrument Sans",sans-serif}
+.nd{cursor:pointer}.nd:focus-visible{outline:none}.nd:focus-visible circle{stroke:var(--ink);stroke-width:3}
+.pnl{border-top:3px solid var(--ox);padding-top:12px;min-height:220px}
+.pnl h3{font-size:1.7rem;margin:4px 0}.tg2{display:inline-block;font-size:.8rem;font-weight:600;border:1.5px solid var(--brass);color:var(--brass);padding:1px 10px;border-radius:99px}
+.leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--mute);margin:12px 0 0}.leg i{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.chip{font-size:.8rem;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:3px 10px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:14px 0}
+.opt{text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}.opt b{display:block}.opt span{display:block;color:var(--mute);font-size:.8rem;line-height:1.35}
+.opt[aria-pressed="true"]{border-color:var(--ox);background:var(--soft);box-shadow:inset 0 0 0 1px var(--ox)}
+label{display:block;font-weight:600;margin:14px 0 4px}label small{font-weight:400;color:var(--mute)}
+input[type=text],textarea{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}textarea{min-height:90px;resize:vertical}
+.ck{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin-top:14px}.ck input{margin-top:5px}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px}.dt{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);font-size:.72rem;font-weight:600;color:var(--mute);padding:0}.dt.ok{background:var(--brass);border-color:var(--brass);color:#fff}.dt.cur{outline:2px solid var(--ox);outline-offset:2px}.dt.bad{border-color:var(--rose);color:var(--rose)}
+.msg{color:var(--ox);font-size:.88rem;min-height:1.3em;margin-top:8px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:.88rem}th,td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--line);vertical-align:top}th:nth-child(-n+2),td:nth-child(-n+2){text-align:left}th{color:var(--mute);font-size:.8rem}td.x{color:var(--ox);font-weight:700}
+.ph{display:grid;grid-template-columns:150px 1fr 36px;gap:10px;align-items:center;margin:9px 0;font-size:.9rem}.ph .t{height:10px;background:var(--line);border-radius:5px;overflow:hidden}.ph .t i{display:block;height:100%;background:var(--brass)}
+.res{background:var(--soft);border-radius:14px;padding:22px;margin:22px 0}.res h3{font-size:1.6rem;margin-bottom:8px}ul.n{padding-left:20px;margin:8px 0}
+.tgl{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--card);border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:.78rem;z-index:11}
+@media(max-width:720px){.cover,.mapgrid{grid-template-columns:1fr}.feat{grid-template-columns:1fr;gap:10px}.ph{grid-template-columns:105px 1fr 32px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><div class="bar"><button class="mast" data-v="home">The Relationship Ecosystem</button>
+<button class="nv" data-v="story" id="n-story">Storyboard</button><button class="nv" data-v="map" id="n-map">Ecosystem map</button><button class="cta" data-v="assess">Take the assessment</button></div></header>
+<div class="wrap" id="app"></div>
+<button class="tgl" id="tg">Light / dark</button>
+<script>
+const CH=[
+{n:"Foundation",sd:"Before you build outward, you are held.",ld:"Every visionary life begins with people who see you without a performance. These relationships carry you when nothing else does.",it:[
+["Trusted confidant","Hears the unfiltered truth","It is late. The plan is failing and you say so out loud. They do not fix it or flinch. They stay.","Your decisions improve when you stop editing yourself for others."],
+["Spiritual development partner","Grows your inner life with you","You compare what you are learning about purpose, faith and values. They ask the question that slows you down.","Strategy without meaning drifts. This person keeps your why alive."],
+["Personal support partner","Shows up for ordinary life","They notice when you have not been eating or sleeping properly, and they bring food or take the call you cannot.","The capacity for big work is built on small, reliable care."]]},
+{n:"Growth",sd:"Someone further along turns around.",ld:"Here relationships are about becoming. You borrow experience, get stretched, and receive specific help.",it:[
+["Mentor","Guides your path","Over coffee, they tell you the mistake they made at your stage and what they would do now.","A mentor shortens the road by naming the turns."],
+["Coach","Builds your performance","You bring a goal. They name your pattern and give you a practice for the week.","Coaching turns insight into habit."],
+["Consultant","Brings specialised expertise","A problem is bigger than your skill set, so you hire someone who has solved it ten times.","Know when to buy expertise instead of learning it slowly."]]},
+{n:"Direction",sd:"Clear thinking, kept honest.",ld:"The question shifts from “How do I grow?” to “Where am I going, and am I actually going?”",it:[
+["Strategic adviser","Helps you choose where to play","You lay out three options. They tell you which one you are avoiding, and why it matters.","Advisers see the whole board while you are inside one move."],
+["Intellectual peer","Sharpens your ideas as an equal","You disagree for an hour and both leave with a better argument.","Peers keep your thinking from hardening."],
+["Accountability partner","Checks you did what you said","Friday arrives. They ask for the thing you promised on Monday, without drama.","A vision is only a mood until someone expects delivery."]]},
+{n:"Influence",sd:"Doors open when someone speaks for you.",ld:"No one rises alone. These people spend their reputation on your behalf, in rooms you are not yet in.",it:[
+["Sponsor","Puts your name forward","A role opens. Someone senior says “You should talk to her” before you apply.","Sponsors create opportunity; mentors give advice."],
+["Advocate","Defends your value in public","In a meeting where you are absent, your work is credited correctly.","Advocacy protects your story when you cannot."],
+["Connector","Links you to the right people","One introduction replaces six months of cold outreach.","Your network is the set of doors someone will open for you."]]},
+{n:"Expansion",sd:"From being helped to building together.",ld:"Your work now needs shared ownership: people who build, fund and carry it with you.",it:[
+["Strategic partner","Shares long-term direction","Two organisations discover overlapping goals and pursue them as one effort.","Partnership multiplies reach without multiplying overhead."],
+["Professional collaborator","Does the work with you","You ship something neither of you could make alone, and you both know your roles.","Good collaboration is quiet trust about who does what."],
+["Investor/resource partner","Backs you with capital or access","A funder, customer or patron commits resources because they believe in the mission.","Resources follow credibility, and credibility follows the relationships above."]]},
+{n:"Legacy",sd:"What you build must outlast you.",ld:"The highest level is not about what you receive. It is about what you recognise in others and pass on.",it:[
+["Industry expert","Sets the standard in your field","You cite their work, ask for their critique and measure your own against it.","Standing in your field requires knowing who defines it."],
+["Mentee/protégé","Is being developed by you","You hear your younger self in their question and answer it better than anyone answered you.","Teaching is how you find out what you really know."],
+["Successor","Is prepared to carry the work","You step back from a task and nothing falls apart. That is the proof.","A vision with no successor is a personal project."]]}];
+const ST=[["Active","Doing this now, with recent evidence"],["Intermittent","Occasional, not consistent"],["Historical","Did this in the past, not now"],["Potential","Could, but not yet established"],["Absent","No identifiable person"]];
+const SC={Active:4,Intermittent:3,Historical:2,Potential:1,Absent:0};
+const COL={Active:"var(--brass)",Intermittent:"var(--rose)",Historical:"var(--line)",Potential:"var(--card)",Absent:"var(--soft)"};
+const ALL=CH.flatMap((c,ci)=>c.it.map(i=>({ci,name:i[0],fn:i[1],sc:i[2],why:i[3]})));
+const RN=["I","II","III","IV","V","VI"];
+const A=document.getElementById("app");let view="home",ch=0,qi=0,sel=0;const ans={};
+const val=a=>{if(!a||!a.s)return false;if(a.s==="Absent")return true;if((a.name||"").trim().length<2)return false;if((a.s==="Active"||a.s==="Intermittent")&&!a.ok)return false;return true};
+const done=()=>ALL.filter((_,j)=>val(ans[j])).length;
+function nav(v){view=v;["story","map"].forEach(k=>document.getElementById("n-"+k).setAttribute("aria-current",k===v));window.scrollTo(0,0)}
+const banner=t=>`<div class="assessbanner"><p><b class="serif" style="font-size:1.2rem">${t||"Ready to look at your own circle?"}</b><br>You can take the assessment from any page, and it needs real names, not categories.</p><button class="btn" data-v="assess">Take the assessment</button></div>`;
+function home(){nav("home");A.innerHTML=`<div class="cover"><div><div class="issue">A visionary’s guide to the people around you</div><h1>Who is in your <em>corner?</em></h1><p>Eighteen relationship roles, six levels, one ecosystem. Walk through what a fully supported visionary life looks like, then test your own circle by naming the real people who fill each role.</p><div class="row"><button class="btn" data-v="story">Begin the storyboard</button><button class="btn alt" data-v="map">See the ecosystem map</button></div></div>
+<div class="toc" role="list">${CH.map((c,i)=>`<button data-ch="${i}"><b>${RN[i]}</b><div class="serif" style="font-size:1.2rem">${c.n}<span class="serif" style="font-style:italic">${c.sd}</span></div></button>`).join("")}</div></div>${banner("Already know your story? Skip ahead.")}`}
+function story(){nav("story");const c=CH[ch];
+A.innerHTML=`<section class="ch"><div class="num">${RN[ch]}</div><h2>${c.n}</h2><p class="stand">${c.sd}</p><p class="lead">${c.ld}</p>
+${c.it.map(it=>`<div class="feat"><div><h3>${it[0]}</h3><div class="fn">${it[1]}</div></div><div><blockquote>${it[2]}</blockquote><p class="why"><b>Why it matters.</b> ${it[3]}</p></div></div>`).join("")}
+<div class="nav"><button class="btn alt" data-a="prev">${ch?"← "+CH[ch-1].n:"← Cover"}</button><button class="btn" data-a="next">${ch<5?CH[ch+1].n+" →":"See the ecosystem map →"}</button></div></section>${banner()}`}
+function mapSvg(){let s='<svg viewBox="0 0 600 600" role="img" aria-label="Ecosystem map: six rings of relationship levels around you">';
+CH.forEach((c,i)=>{s+=`<circle cx="300" cy="300" r="${72+i*44}" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="${i%2?'':'3 5'}"/><text x="300" y="${300-(72+i*44)-5}" text-anchor="middle" font-size="10" fill="var(--mute)">${RN[i]} ${c.n}</text>`});
+s+=`<circle cx="300" cy="300" r="40" fill="var(--ox)"/><text x="300" y="305" text-anchor="middle" fill="var(--on)" font-family="Fraunces,serif" font-weight="800" font-size="16">You</text>`;
+ALL.forEach((a,j)=>{const k=j%3,r=72+a.ci*44,ang=(k*120+a.ci*28-60)*Math.PI/180,x=300+r*Math.cos(ang),y=300+r*Math.sin(ang),st=ans[j]&&ans[j].s,v=val(ans[j]);
+s+=`<g class="nd" tabindex="0" role="button" data-n="${j}" aria-label="${a.name}${st?": "+st:""}"><circle cx="${x}" cy="${y}" r="${j===sel?17:14}" fill="${st?COL[st]:"var(--card)"}" stroke="${j===sel?"var(--ink)":st==="Potential"||st==="Historical"?"var(--mute)":"var(--ox)"}" stroke-width="${j===sel?3:1.5}" ${st==="Historical"?'stroke-dasharray="3 3"':""}/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="600" fill="${st==="Active"?"#fff":"var(--ink)"}">${j+1}</text></g>`});
+return s+"</svg>"}
+function panel(){const a=ALL[sel],r=ans[sel];return `<div class="pnl"><span class="tg2">Level ${RN[a.ci]}: ${CH[a.ci].n}</span><h3>${sel+1}. ${a.name}</h3><div class="fn" style="color:var(--brass);font-weight:600">${a.fn}</div>
+${r&&r.s?`<p><b>${r.s}</b>${r.name?" · "+esc(r.name):""}</p>${r.ev?`<p class="why">${esc(r.ev)}</p>`:""}`:`<blockquote style="margin-top:12px;font-size:1.1rem">${a.sc}</blockquote><p class="why">${a.why}</p>`}</div>`}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function map(){nav("map");A.innerHTML=`<h2 class="serif" style="font-size:clamp(2rem,5vw,3.2rem);font-weight:800">The ecosystem map</h2><p class="lead" style="margin:8px 0 22px">Foundation sits closest to you, Legacy furthest out. Select any role to read its story. Once you take the assessment, the same map shows your own circle.</p>
+<div class="mapgrid"><div><div class="mapbox" id="mp">${mapSvg()}</div><div class="leg">${ST.map(s=>`<span><i style="background:${COL[s[0]]};border:1.5px solid var(--mute)"></i>${s[0]}</span>`).join("")}</div></div><div><div id="pn">${panel()}</div><div class="chips">${ALL.map((a,j)=>`<button class="chip" data-n="${j}">${j+1} ${a.name}</button>`).join("")}</div></div></div><div class="row"><button class="btn" data-v="assess">Take the assessment</button>${done()?`<button class="btn alt" data-v="results">View my results</button>`:""}</div>`}
+function selNode(j){sel=j;document.getElementById("mp").innerHTML=mapSvg();document.getElementById("pn").innerHTML=panel()}
+function assess(){nav("assess");const a=ALL[qi],r=ans[qi]||{},s=r.s;
+const lab={Active:["Who is it, and what did they do for you in the last 3 months?","Be specific: a conversation, introduction or decision, and roughly when."],Intermittent:["When did they last perform this role, and what happened?","Name what makes it occasional rather than consistent."],Historical:["When did this stop, and what did they do while it lasted?","Keep it short and factual."],Potential:["Why could this person fill the role, and what is your first step?","The relationship exists but not in this capacity yet."]};
+A.innerHTML=`<h2 class="serif" style="font-size:clamp(1.8rem,5vw,2.6rem);font-weight:800">Verified relationship assessment</h2><p class="lead" style="margin:6px 0 18px">For every role, name a real person. “I know someone like that” is not enough. If you cannot name anyone, that is a valid and useful answer: choose Absent.</p>
+<div class="dots">${ALL.map((x,j)=>`<button class="dt ${val(ans[j])?"ok":ans[j]&&ans[j].s?"bad":""} ${j===qi?"cur":""}" data-q="${j}" aria-label="${x.name}">${j+1}</button>`).join("")}</div>
+<div class="tg2">Level ${RN[a.ci]}: ${CH[a.ci].n} · ${qi+1} of 18</div><h3 class="serif" style="font-size:2rem;margin:8px 0 4px;font-weight:800">${a.name}</h3><p class="why" id="nt">${note()}</p>
+<div class="opts">${ST.map(x=>`<button class="opt" aria-pressed="${s===x[0]}" data-st="${x[0]}"><b>${x[0]}</b><span>${x[1]}</span></button>`).join("")}</div>
+${s&&s!=="Absent"?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Name of the person"} <small>(a real person, first name is fine)</small></label><input type="text" id="nm" data-f="name" value="${esc(r.name||"")}" autocomplete="off">
+
+${s==="Active"||s==="Intermittent"?`<label class="ck"><input type="checkbox" data-f="ok" ${r.ok?"checked":""}><span>I have checked this. This person would recognise this role in my life, and the support is recent.</span></label>`:""}`:""}
+${s==="Absent"?`<p class="why" style="margin-top:12px">Recorded as a gap. It will appear in your action list.</p>`:""}
+<div class="msg" id="ms"></div>
+<div class="nav"><button class="btn alt" data-a="aprev">${qi?"← Previous role":"← Back"}</button><button class="btn" id="nx" data-a="anext" ${val(r)?"":"disabled"}>${qi<17?"Next role →":"See my results →"}</button></div>
+<p class="why" style="margin-top:14px;font-size:.88rem">${done()} of 18 roles verified. <button class="nv" data-v="results" style="padding:0;text-decoration:underline;color:var(--ox)">View results so far</button></p>`}
+function note(){const a=ALL[qi],r=ans[qi]||{},s=r.s,nm=(r.name||"").trim(),w=nm.length>1?esc(nm):null,fn=a.fn.charAt(0).toLowerCase()+a.fn.slice(1);let t;
+if(!s)t=`<i>${a.sc}</i> Is there a real person in your life who ${fn}? Choose the status that is true today, not the one you hope for.`;
+else if(s==="Active")t=w?`You are saying ${w} fills the ${a.name.toLowerCase()} role right now. Can you point to something from the last three months that proves it, and would ${w} describe the relationship the same way?`:`This should be someone you can name today. Who is the first person who comes to mind, and what did they do for you recently?`;
+else if(s==="Intermittent")t=w?`${w} helps when it happens, but not on a rhythm. What would make it dependable: a standing call, a monthly check-in, a clear ask from you?`:`Think of who helps now and then. The gap is usually rhythm, not goodwill.`;
+else if(s==="Historical")t=w?`${w} once filled this role. Ask yourself what changed, whether it ended well, and whether it is worth reopening the door.`:`Someone filled this role before. Who was it, and what changed?`;
+else if(s==="Potential")t=w?`${w} has the capacity but has not been asked. What is the smallest, kindest ask that would test whether they can be your ${a.name.toLowerCase()}?`:`Who in your circle has the capacity to be your ${a.name.toLowerCase()} but has never been invited to?`;
+else t=`An honest gap, and a useful one. Who do you see doing this for other people, and who could introduce you?`;
+if(a.ci>0){const p=ALL.map((x,j)=>val(ans[j])&&x.ci===a.ci-1?SC[ans[j].s]:null).filter(v=>v!==null);if(p.length>=2&&p.reduce((x,y)=>x+y,0)/p.length<2)t+=` <b>Note:</b> your ${CH[a.ci-1].n} level is still thin, so this role may be easier to build once that is stronger.`}
+return t}
+function hint(){const r=ans[qi]||{};let m="";if(r.s&&r.s!=="Absent"){if((r.name||"").trim().length<2)m="Add a name.";else if((r.s==="Active"||r.s==="Intermittent")&&!r.ok)m="Confirm the checkbox to verify."}
+document.getElementById("ms").textContent=m;document.getElementById("nt").innerHTML=note();document.getElementById("nx").disabled=!val(r);const d=document.querySelectorAll(".dt")[qi];d.className="dt cur "+(val(r)?"ok":r.s?"bad":"")}
+function results(){nav("results");const n=done(),V=ALL.map((a,j)=>val(ans[j])?{...a,...ans[j],role:a.name,person:ans[j].name}:null);
+const sc=CH.map((c,i)=>{const v=V.filter(x=>x&&x.ci===i);return v.length?v.reduce((t,x)=>t+SC[x.s],0)/v.length:null});
+let edge=sc.findIndex(v=>v===null||v<2.5),phase=edge===-1?5:edge-1;
+const g=f=>V.filter(x=>x&&f(x)),pot=g(x=>x.s==="Potential"),hist=g(x=>x.s==="Historical"),abs=g(x=>x.s==="Absent"),inter=g(x=>x.s==="Intermittent"),un=ALL.filter((_,j)=>!V[j]);
+const cnt=s=>V.filter(x=>x&&x.s===s).length;
+A.innerHTML=`<h2 class="serif" style="font-size:clamp(2rem,5vw,3.2rem);font-weight:800">Your ecosystem</h2>
+${n?`<div class="res"><h3>${phase<0?"You are laying your foundation.":`You are working at Level ${RN[phase]}: ${CH[phase].n}.`}</h3><p style="margin:0">${edge===-1?"Every level has solid, verified support. Deepen Legacy and renew anything that has become intermittent.":`Your growth edge is Level ${RN[edge]}: ${CH[edge].n}. ${CH[edge].sd}`}${n<18?` This is based on ${n} of 18 verified roles.`:""}</p></div>`:`<div class="res"><h3>Nothing verified yet.</h3><p style="margin:0">Complete roles in the assessment to see your map.</p></div>`}
+<div class="mapgrid"><div><div class="mapbox" id="mp">${mapSvg()}</div><div class="leg">${ST.map(s=>`<span><i style="background:${COL[s[0]]};border:1.5px solid var(--mute)"></i>${s[0]}</span>`).join("")}</div></div><div><div id="pn">${panel()}</div>
+<h3 class="serif" style="margin:20px 0 6px;font-size:1.2rem">Strength by level</h3>${CH.map((c,i)=>`<div class="ph"><span>${RN[i]} ${c.n}</span><div class="t"><i style="width:${sc[i]===null?0:sc[i]/4*100}%"></i></div><span>${sc[i]===null?"–":sc[i].toFixed(1)}</span></div>`).join("")}</div></div>
+<h3 class="serif" style="margin:30px 0 10px;font-size:1.5rem">Ecosystem summary</h3><div class="scroll"><table><thead><tr><th>Relationship</th><th>Person</th>${ST.map(s=>`<th>${s[0]}</th>`).join("")}</tr></thead><tbody>${ALL.map((a,j)=>`<tr><td>${j+1}. ${a.name}</td><td>${V[j]&&V[j].person?esc(V[j].person):"–"}</td>${ST.map(s=>`<td class="x">${V[j]&&V[j].s===s[0]?"✓":""}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+<div class="res"><h3>Where to act next</h3><ul class="n">
+${edge>-1&&edge<6?`<li><b>Your edge:</b> ${ALL.filter(a=>a.ci===edge).map(a=>a.name).join(", ")}.</li>`:""}
+${abs.length?`<li><b>Gaps to fill:</b> ${abs.map(x=>x.role).join(", ")}. Start by asking who you admire who already does this for others.</li>`:""}
+${pot.length?`<li><b>Activate potential:</b> ${pot.map(x=>`${x.role} (${esc(x.person)})`).join("; ")}. Make one specific ask this month.</li>`:""}
+${inter.length?`<li><b>Make consistent:</b> ${inter.map(x=>x.role).join(", ")}. Agree a rhythm.</li>`:""}
+${hist.length?`<li><b>Revisit:</b> ${hist.map(x=>x.role).join(", ")}.</li>`:""}
+${un.length?`<li><b>Still unverified:</b> ${un.length} roles. <button class="nv" data-v="assess" style="padding:0;text-decoration:underline;color:var(--ox)">Continue the assessment</button></li>`:""}
+<li><b>Tally:</b> ${cnt("Active")} active, ${cnt("Intermittent")} intermittent, ${cnt("Historical")} historical, ${cnt("Potential")} potential, ${cnt("Absent")} absent.</li></ul></div>
+<div class="row"><button class="btn alt" data-v="story">Replay the storyboard</button><button class="btn" data-v="assess">Edit my answers</button></div>`}
+A.addEventListener("click",e=>{const t=e.target.closest("button,.nd");if(!t)return;const d=t.dataset;
+if(d.v){if(d.v==="story")ch=0;({home,story,map,assess,results})[d.v]();return}
+if(d.ch!==undefined){ch=+d.ch;story();return}
+if(d.n!==undefined){selNode(+d.n);return}
+if(d.q!==undefined){qi=+d.q;assess();return}
+if(d.st){ans[qi]=Object.assign(ans[qi]||{},{s:d.st});assess();return}
+const a=d.a;
+if(a==="prev"){ch?(ch--,story()):home()}else if(a==="next"){ch<5?(ch++,story()):map()}
+else if(a==="aprev"){qi?(qi--,assess()):home()}else if(a==="anext"){qi<17?(qi++,assess()):results()}});
+document.querySelector("header").addEventListener("click",e=>{const t=e.target.closest("button");if(!t||!t.dataset.v)return;if(t.dataset.v==="story")ch=0;({home,story,map,assess,results})[t.dataset.v]()});
+A.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("nd")){e.preventDefault();selNode(+e.target.dataset.n)}});
+A.addEventListener("input",e=>{const f=e.target.dataset.f;if(!f)return;const r=ans[qi]=ans[qi]||{};r[f]=f==="ok"?e.target.checked:e.target.value;hint()});
+document.getElementById("tg").onclick=()=>{const r=document.documentElement;const dk=getComputedStyle(r).getPropertyValue("--bg").trim()==="#1D0F21";r.dataset.theme=dk?"light":"dark"};
+home();
+</script></body></html>
