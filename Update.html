@@ -98,19 +98,6 @@ body{overflow-x:hidden}.band{background:#FAF7F3;margin:120px calc(50% - 50vw) -1
 .mtab:hover{color:var(--ink)}
 .mtab.on{background:var(--pu);color:#fff}
 .map-hint{font-size:.84rem;color:var(--mu)}
-.gaps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px;margin-top:20px}
-.gap-c{background:#FAF7F3;border:1.5px solid var(--ln);border-radius:20px;padding:22px;position:relative;display:flex;flex-direction:column;justify-content:space-between;transition:.2s}
-.gap-c:hover{border-color:var(--pk2);transform:translateY(-2px);box-shadow:0 12px 24px -10px rgba(30,18,54,.1)}
-.gap-c.abs{border-left:5px solid var(--pu)}
-.gap-c.int{border-left:5px solid var(--pk2)}
-.gap-c.pot{border-left:5px solid #E69D67}
-.gap-c.risk{border-left:5px solid #D07A38;background:#FFFBF8}
-.gap-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
-.gap-title{font-size:1.1rem;font-weight:700}
-.gap-fn{color:var(--pu);font-size:.86rem;font-weight:600;margin-bottom:8px}
-.gap-desc{font-size:.9rem;color:var(--mu);line-height:1.5;margin-bottom:14px}
-.gap-act{background:#fff;border-radius:12px;padding:10px 14px;border:1px dashed var(--ln);font-size:.85rem;color:var(--ink);line-height:1.4}
-.gap-act b{color:var(--pu)}
 .lv-mat{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin-top:20px}
 .lv-row{background:#E8DAD2;border-radius:18px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
 .lv-top{display:flex;justify-content:space-between;align-items:center}
@@ -140,8 +127,6 @@ body{overflow-x:hidden}.band{background:#FAF7F3;margin:120px calc(50% - 50vw) -1
   table{min-width:100%!important;font-size:9pt!important}
   th{background:#E8DAD2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   tr{page-break-inside:avoid}
-  .gaps-grid{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
-  .gap-c{background:#FAF7F3!important;border:1px solid #E2D7CE!important;page-break-inside:avoid}
   .lv-mat{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;page-break-inside:avoid}
   .lv-row{background:#F6F0EA!important;border:1px solid #E2D7CE!important;padding:12px!important}
 }
@@ -374,10 +359,7 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
             const V = ALL.map((a, j) => val(ans[j]) ? { ...a, ...ans[j], role: a.name, person: ans[j].name } : null), n = done();
             const sc = CH.map((c, i) => { const v = V.filter(x => x && x.ci === i); return v.length ? v.reduce((t, x) => t + SC[x.s], 0) / v.length : null });
             const edge = sc.findIndex(v => v === null || v < 2.5), phase = edge === -1 ? 5 : edge - 1;
-            const g = s => V.filter(x => x && x.s === s), cnt = s => g(s).length, un = ALL.filter((_, j) => !V[j]);
-            const gaps = ALL.map((a, j) => ({ a, j, r: ans[j] })).filter(x => !x.r || x.r.s === "Absent");
-            const intermittents = ALL.map((a, j) => ({ a, j, r: ans[j] })).filter(x => x.r && x.r.s === "Intermittent");
-            const potentials = ALL.map((a, j) => ({ a, j, r: ans[j] })).filter(x => x.r && x.r.s === "Potential");
+            const g = s => V.filter(x => x && x.s === s), cnt = s => g(s).length;
             const topPerson = P.slice().sort((a, b) => b.roles.length - a.roles.length)[0];
             A.innerHTML = `<div class="print-head"><h1>Relationship Ecosystem Diagnostic Report</h1><p>Executive Dashboard &amp; Network Map · Generated on ${new Date().toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}</p></div>
 <div class="dash-hdr"><div><h2>Ecosystem Dashboard</h2><p class="sub">${P.length} ${P.length === 1 ? "person" : "people"} mapped across ${n} of 18 roles. Immediate overview of your active anchors and critical gaps.</p></div>
@@ -393,13 +375,6 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
 <div class="map-hint">Click any role or person on the constellation to view details and actions</div>
 </div>
 <div class="grid"><div><div class="mapc" id="mp">${ecoMapSvg(P, null, mapMode)}</div><div class="leg"><span><i style="background:var(--pu);border-color:#fff"></i>Active tie</span><span><i style="background:var(--pk2);border-color:#fff"></i>Intermittent</span><span><i style="background:#E89D78;border-color:#fff"></i>Potential</span><span><i style="background:#FFFDFB;border:1.5px dashed var(--pu)"></i><b>Unfilled gap</b></span><span>Levels: 1 (inner) → 6 (outer)</span></div></div><div class="card" id="pb">${dossier(P, selRole, psel)}</div></div>
-<div class="sec"><h3>Ecosystem Gaps &amp; Risk Intelligence</h3><p class="sub" style="margin:0 0 24px">Direct diagnostics on missing roles, fragile cadences, and over-reliance vulnerabilities.</p>
-<div class="gaps-grid">
-${topPerson && topPerson.roles.length >= 3 ? `<div class="gap-c risk"><div class="gap-head"><div class="gap-title">⚠️ Network Over-reliance: ${esc(topPerson.name)}</div><span class="tag" style="background:#FFE3D6;color:#A83A07">Concentration Risk</span></div><div class="gap-fn">Carrying ${topPerson.roles.length} roles across your life</div><div class="gap-desc">${esc(topPerson.name)} fills: <b>${topPerson.roles.map(r => r.role).join(", ")}</b>. If their life circumstances shift, multiple critical pillars of your support could be affected simultaneously.</div><div class="gap-act"><b>Prescription:</b> Intentionally recruit secondary peers or mentors for 1–2 of these roles to distribute weight across your ecosystem.</div></div>` : ''}
-${gaps.map(x => `<div class="gap-c abs"><div class="gap-head"><div class="gap-title">${x.j + 1}. ${x.a.name}</div><span class="tag" style="background:#FFE6EE;color:#C4136B">Level ${x.a.ci + 1}: ${CH[x.a.ci].n}</span></div><div class="gap-fn">${x.a.fn}</div><div class="gap-desc">${x.a.sc}</div><div class="gap-act"><b>Why you need this:</b> ${x.a.why}</div><div style="margin-top:14px;text-align:right"><button class="btn out" style="padding:8px 18px;font-size:.85rem" data-q="${x.j}">Assign someone →</button></div></div>`).join("")}
-${intermittents.map(x => `<div class="gap-c int"><div class="gap-head"><div class="gap-title">${x.a.name} · ${esc(x.r.name)}</div><span class="tag" style="background:#FFF3E8;color:#9E4A06">Fragile Cadence</span></div><div class="gap-fn">Level ${x.a.ci + 1}: ${CH[x.a.ci].n}</div><div class="gap-desc">Support occurs occasionally, but not on a dependable rhythm. Goodwill is high, but the connection risks drifting without a structured cadence.</div><div class="gap-act"><b>Prescription:</b> Lock in a standing monthly breakfast or bi-monthly video check-in.</div></div>`).join("")}
-${potentials.map(x => `<div class="gap-c pot"><div class="gap-head"><div class="gap-title">${x.a.name} · ${esc(x.r.name)}</div><span class="tag" style="background:#FFF8E8;color:#855B00">Untapped Ally</span></div><div class="gap-fn">Level ${x.a.ci + 1}: ${CH[x.a.ci].n}</div><div class="gap-desc">${esc(x.r.name)} has the capacity and stature to assist, but an explicit invitation has not yet been extended.</div><div class="gap-act"><b>Prescription:</b> Make one low-friction, specific ask of ${esc(x.r.name.split(" ")[0])} this month.</div></div>`).join("")}
-</div></div>
 <div class="sec"><h3>Six Levels Diagnostic Roadmap</h3><div class="lv-mat">
 ${CH.map((c, i) => {
                 const v = V.filter(x => x && x.ci === i), score = sc[i];
