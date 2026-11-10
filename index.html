@@ -31,6 +31,11 @@ header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px s
 .stp button i{display:block;height:6px;border-radius:3px;background:var(--ln);margin-bottom:10px;transition:.2s}.stp button[aria-current="true"]{color:var(--ink);font-weight:700}.stp button:hover i{filter:brightness(.92)}
 .k{color:var(--pu);font-weight:700;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px}
 .ch h2{font-size:clamp(2.5rem,5.5vw,4.2rem);font-weight:800}.stand{font-size:1.5rem;color:var(--mu);margin:16px 0 0;max-width:32em;line-height:1.45}.lead{max-width:42em;font-size:1.18rem;margin:26px 0 68px}
+.ch-hero{display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center;margin-bottom:48px}
+.ch-intro .stand{margin:14px 0 0;max-width:32em}
+.ch-intro .lead{margin:20px 0 0;max-width:36em}
+.ch-hero .ill{margin:0;width:100%;max-width:480px;height:clamp(180px,22vw,240px);border-radius:24px;justify-self:end}
+@media(max-width:860px){.ch-hero{grid-template-columns:1fr;gap:28px}.ch-hero .ill{order:-1;justify-self:start;max-width:440px}}
 .feat{display:grid;grid-template-columns:260px 1fr;gap:48px;padding:44px 0;border-top:1.5px solid var(--ln)}
 .feat h3{font-size:1.6rem;font-weight:700}.fn{color:var(--pu);font-weight:600;margin-top:6px;font-size:1.02rem}
 .q1{font-size:1.45rem;line-height:1.48;margin:0 0 16px;max-width:34em;font-weight:500}.why{color:var(--mu);margin:0;max-width:40em;font-size:1.05rem}.why b{color:var(--ink);font-weight:600}
@@ -222,8 +227,12 @@ return `<svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg" xmlns:xlin
 function home(){nav("home");A.innerHTML=`<div class="hero"><div><h1>Who is in<br>your <span>corner?</span></h1><p class="sub">Eighteen relationship roles across six levels. Walk through what a fully supported life looks like, then name the real people who fill each role.</p><div class="row"><button class="btn out" data-v="story">Walkthrough storyboard</button><button class="btn" data-v="assess">Take the assessment</button></div>
 </div><div class="ill">${hero()}</div></div><section class="band"><div class="band-in"><h2 class="fan-t">Walk the six levels, <em>one by one:</em></h2><div class="fan">${CH.map(card).join("")}</div></div></section>`}
 function story(){nav("story");setLv(ch);const c=CH[ch];
-A.innerHTML=`<div class="stp">${CH.map((x,i)=>{const isCur=(i===ch),isDone=(i<ch),col=PAL[i][0],tint=PAL[i][3];return `<button data-ch="${i}" class="${isDone?'dn':''}" aria-current="${isCur}"><i style="background:${(isDone||isCur)?col:tint};${isCur?`box-shadow:0 0 0 1.5px ${col}`:''}"></i><span style="${isCur?`color:${col};font-weight:700`:(isDone?'color:var(--ink)':'')}">${x.n}</span></button>`}).join("")}</div><div class="ill">${ill(ch)}</div>
-<section class="ch"><div class="k">Level ${ch+1} of 6</div><h2>${c.n}</h2><p class="stand">${c.sd}</p><p class="lead">${c.ld}</p>
+A.innerHTML=`<div class="stp">${CH.map((x,i)=>{const isCur=(i===ch),isDone=(i<ch),col=PAL[i][0],tint=PAL[i][3];return `<button data-ch="${i}" class="${isDone?'dn':''}" aria-current="${isCur}"><i style="background:${(isDone||isCur)?col:tint};${isCur?`box-shadow:0 0 0 1.5px ${col}`:''}"></i><span style="${isCur?`color:${col};font-weight:700`:(isDone?'color:var(--ink)':'')}">${x.n}</span></button>`}).join("")}</div>
+<section class="ch">
+<div class="ch-hero">
+<div class="ch-intro"><div class="k">Level ${ch+1} of 6</div><h2>${c.n}</h2><p class="stand">${c.sd}</p><p class="lead">${c.ld}</p></div>
+<div class="ill">${ill(ch)}</div>
+</div>
 ${c.it.map(it=>`<div class="feat"><div><h3>${it[0]}</h3><div class="fn">${it[1]}</div></div><div><p class="q1">${it[2]}</p><p class="why"><b>Why it matters.</b> ${it[3]}</p></div></div>`).join("")}
 <div class="nav"><button class="btn alt" data-a="prev">${ch?"Back":"Cover"}</button><button class="btn" data-a="next">${ch<5?"Next level":"See the map"}</button></div></section>`}
 const C=350,R=i=>78+i*48,POS=ALL.map((a,j)=>{const ang=((j%3)*120+a.ci*40+15-90)*Math.PI/180;return[+(C+R(a.ci)*Math.cos(ang)).toFixed(1),+(C+R(a.ci)*Math.sin(ang)).toFixed(1)]});
@@ -274,138 +283,158 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
 <label>Last contact <small>Optional</small></label><div class="chips" style="margin:0">${LAST.map(c=>`<button class="sel" aria-pressed="${r.last===c}" data-la="${c}">${c}</button>`).join("")}</div>
 <label>How do you primarily reach them? <small>Optional</small></label><div class="chips" style="margin:0">${["Phone","Email","In person"].map(c=>`<button class="sel" aria-pressed="${r.contact===c}" data-co="${c}">${c}</button>`).join("")}</div>`:""}
 <div class="msg" id="ms"></div>
-<div class="nav"><button class="btn alt" data-a="aprev">${qi?"Previous":"Back"}</button><button class="btn" id="nx" data-a="anext" ${val(r)?"":"disabled"}>${qi<17?"Next role":"See my network"}</button></div>
-<p class="why" style="margin-top:28px">${done()} of 18 complete. <button class="link" data-v="results">View results so far</button></p>`}
-function hint(){const r=ans[qi]||{};document.getElementById("ms").textContent=r.s&&r.s!=="Absent"&&(r.name||"").trim().length<2?"Add a name to continue.":"";document.getElementById("nx").disabled=!val(r);document.getElementById("nt").innerHTML=note();document.querySelectorAll(".dt")[qi].className="dt cur "+(val(r)?"ok":"")}
-let mapMode="orbit",selRole=0;
-const ECO_CX=380,ECO_CY=380;
-const ECO_R=[96,146,196,246,296,346];
-const ECO_ANGS=ALL.map((a,j)=>(((j%3)*120)+(a.ci*25)-80)*Math.PI/180);
-const ECO_POS=ALL.map((a,j)=>[+(ECO_CX+ECO_R[a.ci]*Math.cos(ECO_ANGS[j])).toFixed(1),+(ECO_CY+ECO_R[a.ci]*Math.sin(ECO_ANGS[j])).toFixed(1)]);
-function people(){const m={};ALL.forEach((a,j)=>{const r=ans[j];if(!val(r)||r.s==="Absent")return;const k=r.name.trim().toLowerCase(),p=m[k]=m[k]||{k,name:r.name.trim(),roles:[],best:r.s,circle:"",last:"",contact:""};p.roles.push({role:a.name,s:r.s,ci:a.ci,qi:j});if(SC[r.s]>SC[p.best])p.best=r.s;if(!p.circle&&r.circle)p.circle=r.circle;if(r.last&&(!p.last||LAST.indexOf(r.last)<LAST.indexOf(p.last)))p.last=r.last;if(!p.contact&&r.contact)p.contact=r.contact});return Object.values(m)}
-function ecoMapSvg(P,_,mode){
-const m=mode||mapMode;let s='<svg viewBox="0 0 760 760" role="img" aria-label="Ecosystem Constellation Map" id="ecosvg" style="width:100%;height:auto;display:block">';
-if(m==="people"){
-if(!P.length)return s+'<text x="380" y="380" text-anchor="middle" font-size="14" fill="var(--mu)">No people added yet. Complete roles in the assessment to build your network.</text></svg>';
-const n=P.length,pos=P.map((p,i)=>{const ang=(i/n*2*Math.PI)-Math.PI/2;return[+(ECO_CX+230*Math.cos(ang)).toFixed(1),+(ECO_CY+230*Math.sin(ang)).toFixed(1)]});
-s+=`<circle cx="${ECO_CX}" cy="${ECO_CY}" r="230" fill="none" stroke="var(--ln)" stroke-width="1.5" stroke-dasharray="4 6"/>`;
-P.forEach((p,i)=>{const isCur=(p.k===psel),isAct=(p.best==="Active");s+=`<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${pos[i][0]}" y2="${pos[i][1]}" stroke="${isCur?'var(--pu)':(isAct?'var(--pu)':'var(--pk2)')}" stroke-width="${isCur?2.5:1.5}" stroke-dasharray="${isAct?'none':'4 4'}" opacity="${isCur?1:0.6}"/>`});
-s+=`<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(224,32,127,.3))"/><text x="${ECO_CX}" y="${ECO_CY+5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
-P.forEach((p,i)=>{const[x,y]=pos[i],isCur=(p.k===psel),nr=Math.min(24+p.roles.length*3,38);
-s+=`<g class="nd ${isCur?'on':''}" tabindex="0" role="button" data-p="${esc(p.k)}" aria-label="${esc(p.name)}">`;
-if(isCur)s+=`<circle cx="${x}" cy="${y}" r="${nr+7}" fill="none" stroke="var(--pu)" stroke-width="2.5" opacity=".8"/>`;
-s+=`<circle cx="${x}" cy="${y}" r="${nr}" fill="${CIR[p.circle]||'#FFD9EA'}" stroke="${isCur?'var(--pu)':'#fff'}" stroke-width="${isCur?3:2}" filter="drop-shadow(0 2px 6px rgba(30,18,54,.12))"/>`;
-s+=`<text x="${x}" y="${y+5}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">${esc(ini(p.name))}</text>`;
-s+=`<text x="${x}" y="${y+nr+18}" text-anchor="middle" font-size="12" font-weight="${isCur?700:600}" fill="var(--ink)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round">${esc(p.name)}</text>`;
-s+=`<text x="${x}" y="${y+nr+32}" text-anchor="middle" font-size="10.5" fill="var(--mu)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round">${p.roles.length} ${p.roles.length===1?'role':'roles'}</text></g>`});
-return s+'</svg>'}
-for(let i=5;i>=0;i--)s+=`<circle cx="${ECO_CX}" cy="${ECO_CY}" r="${ECO_R[i]+24}" fill="${PAL[i][3]}" opacity=".5"/>`;
-for(let i=0;i<6;i++)s+=`<circle cx="${ECO_CX}" cy="${ECO_CY}" r="${ECO_R[i]}" fill="none" stroke="${PAL[i][1]}" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>`;
-const selPt=ECO_POS[selRole];
-if(selPt){
-s+=`<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${selPt[0]}" y2="${selPt[1]}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4" opacity=".5"/>`;
-s+=`<circle cx="${selPt[0]}" cy="${selPt[1]}" r="28" fill="none" stroke="var(--ink)" stroke-width="2" opacity=".4"/>`;
-}
-ALL.forEach((a,j)=>{const[x,y]=ECO_POS[j],r=ans[j],st=r?r.s:"Absent";
-if(st==="Active")s+=`<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${x}" y2="${y}" stroke="var(--pu)" stroke-width="1.5" opacity=".4"/>`;
-else if(st==="Intermittent")s+=`<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${x}" y2="${y}" stroke="var(--pk2)" stroke-width="1.2" stroke-dasharray="3 4" opacity=".35"/>`;
-});
-s+=`<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(224,32,127,.3))"/><text x="${ECO_CX}" y="${ECO_CY+5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
-ALL.forEach((a,j)=>{
-const[x,y]=ECO_POS[j],ang=ECO_ANGS[j],r=ans[j],st=r?r.s:"Absent",pName=r&&r.name?r.name.trim():"",isSel=(j===selRole);
-const isFilled=(st&&st!=="Absent"&&pName.length>0);
-const isCurP=(isFilled&&psel&&pName.toLowerCase()===psel.toLowerCase());
-let op=1;if(m==="gaps"&&!isFilled)op=1;else if(m==="gaps")op=0.22;
-const labelDist=(isSel?20:17)+16;
-const lx=+(x+Math.cos(ang)*labelDist).toFixed(1);
-const ly=+(y+Math.sin(ang)*labelDist+4).toFixed(1);
-s+=`<g class="nd ${isSel?'on':''}" data-rn="${j}" opacity="${op}" tabindex="0" role="button" aria-label="${a.name}: ${st}">`;
-if(isSel||isCurP)s+=`<circle cx="${x}" cy="${y}" r="${isSel?26:23}" fill="none" stroke="${isSel?'var(--ink)':'var(--pu)'}" stroke-width="2.5" opacity=".85"/>`;
-if(isFilled){
-let fillCol="var(--pu)",dash="";
-if(st==="Intermittent"){fillCol="var(--pk2)";dash='stroke-dasharray="3 2"'}
-else if(st==="Potential"){fillCol="#E89D78"}
-else if(st==="Historical"){fillCol="#C0809A";dash='stroke-dasharray="3 3"'}
-s+=`<circle cx="${x}" cy="${y}" r="${isSel?20:17}" fill="${fillCol}" stroke="#fff" stroke-width="2" filter="drop-shadow(0 2px 5px rgba(30,18,54,.15))" ${dash}/>`;
-s+=`<text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">${esc(ini(pName))}</text>`;
-s+=`<text x="${lx}" y="${ly}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round">${esc(pName.split(" ")[0])}</text>`;
-}else{
-if(m==="gaps")s+=`<circle cx="${x}" cy="${y}" r="23" fill="rgba(224,32,127,.12)" stroke="var(--pu)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
-s+=`<circle cx="${x}" cy="${y}" r="${isSel?18:15}" fill="#FFFDFB" stroke="var(--pu)" stroke-width="${isSel?2.5:1.6}" stroke-dasharray="3 3"/>`;
-s+=`<text x="${x}" y="${y+3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="var(--pu)">${j+1}</text>`;
-s+=`<text x="${lx}" y="${ly}" text-anchor="middle" font-size="10" font-weight="600" fill="var(--mu)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:3.5px;stroke-linejoin:round">${esc(a.name.split("/")[0].split(" ")[0])}</text>`;
-}
-s+=`</g>`});
-return s+'</svg>'}
-function dossier(P,sR,pKey){
-if(sR>=0&&sR<ALL.length){const a=ALL[sR],r=ans[sR],st=r?r.s:"Absent";
-if(st==="Absent"||!st){return `<div class="pb"><div class="tag" style="background:#FFE6EE;color:#C4136B">🚨 CRITICAL ECOSYSTEM GAP</div><div class="k" style="margin-top:14px">Level ${a.ci+1}: ${CH[a.ci].n} · Role ${sR+1} of 18</div><h3 style="font-size:1.85rem">${a.name}</h3><div class="fn" style="margin-bottom:16px">${a.fn}</div><p class="q1" style="font-size:1.02rem;line-height:1.5;margin:16px 0">${a.sc}</p><dl style="margin-top:20px"><div><dt>Why this relationship matters</dt><dd>${a.why}</dd></div><div><dt>Immediate action to fill this gap</dt><dd>Identify 1–2 people in your extended circle who embody this strength. Ask for a brief conversation or ask a trusted peer for an introduction.</dd></div></dl><div style="margin-top:26px"><button class="btn" style="width:100%" data-q="${sR}">Name someone for this role →</button></div></div>`}
-else{const p=P.find(x=>x.k===r.name.trim().toLowerCase())||{name:r.name,roles:[{role:a.name,s:st}],circle:r.circle,last:r.last,contact:r.contact};
-return `<div class="pb"><div class="av" style="background:${CIR[r.circle]||'#FFD9EA'}">${esc(ini(r.name))}</div><h3>${esc(r.name)}</h3><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0 16px"><span class="tag" style="margin-top:0">${st}</span>${r.circle?`<span class="rc" style="margin:0">${r.circle}</span>`:''}</div><div style="padding:14px;background:#fff;border-radius:16px;border:1.5px solid var(--ln);margin-bottom:18px"><div class="k" style="margin:0 0 4px;font-size:.8rem">Role ${sR+1} · Level ${a.ci+1}: ${CH[a.ci].n}</div><div style="font-weight:700;font-size:1.1rem">${a.name}</div><div class="fn" style="font-size:.86rem;color:var(--pu);margin:2px 0 6px">${a.fn}</div><p class="why" style="font-size:.88rem;margin:0">${a.why}</p></div><dl><div><dt>All roles held in your ecosystem</dt><dd>${p.roles.map(x=>`<span class="rc" style="cursor:pointer" data-rn="${ALL.findIndex(y=>y.name===x.role)}">${x.role} · ${x.s}</span>`).join("")}</dd></div><div><dt>Last contact</dt><dd>${r.last||"Not recorded"}</dd></div><div><dt>Primary communication</dt><dd>${r.contact||"Not recorded"}</dd></div></dl><div style="margin-top:22px"><button class="btn out" style="width:100%;padding:10px" data-q="${sR}">Edit this role →</button></div></div>`}}
-const p=P.find(x=>x.k===pKey);
-if(p){return `<div class="pb"><div class="av" style="background:${CIR[p.circle]||'#FFD9EA'}">${esc(ini(p.name))}</div><h3>${esc(p.name)}</h3>${p.circle?`<span class="tag">${p.circle}</span>`:''}<dl><div><dt>Roles in your life</dt><dd>${p.roles.map(r=>`<span class="rc">${r.role} · ${r.s}</span>`).join("")}</dd></div><div><dt>Last contact</dt><dd>${p.last||"Not added"}</dd></div><div><dt>Primarily reached by</dt><dd>${p.contact?esc(p.contact):"Not added"}</dd></div></dl></div>`}
-return `<p class="why">Select any role or person on the constellation map to view their dossier.</p>`}
-function selResRole(j){selRole=j;const r=ans[j];if(r&&r.s&&r.s!=="Absent"&&r.name){psel=r.name.trim().toLowerCase()}const mp=document.getElementById("mp"),pb=document.getElementById("pb");if(mp)mp.innerHTML=ecoMapSvg(people(),null,mapMode);if(pb)pb.innerHTML=dossier(people(),selRole,psel);document.querySelectorAll("tr[data-p]").forEach(row=>row.classList.toggle("on",row.dataset.p===psel))}
-function selP(k){psel=k;const P=people(),rIdx=ALL.findIndex((a,j)=>ans[j]&&ans[j].s&&ans[j].s!=="Absent"&&ans[j].name&&ans[j].name.trim().toLowerCase()===k);if(rIdx!==-1)selRole=rIdx;const mp=document.getElementById("mp"),pb=document.getElementById("pb");if(mp)mp.innerHTML=ecoMapSvg(P,null,mapMode);if(pb)pb.innerHTML=dossier(P,selRole,psel);document.querySelectorAll("tr[data-p]").forEach(r=>r.classList.toggle("on",r.dataset.p===k))}
-function setMapMode(m){mapMode=m;document.querySelectorAll(".mtab").forEach(b=>b.classList.toggle("on",b.dataset.mt===m));const mp=document.getElementById("mp");if(mp)mp.innerHTML=ecoMapSvg(people(),null,mapMode)}
-function results(){nav("results");const P=people();if(!P.find(p=>p.k===psel))psel=P.length?P[0].k:"";
-const V=ALL.map((a,j)=>val(ans[j])?{...a,...ans[j],role:a.name,person:ans[j].name}:null),n=done();
-const sc=CH.map((c,i)=>{const v=V.filter(x=>x&&x.ci===i);return v.length?v.reduce((t,x)=>t+SC[x.s],0)/v.length:null});
-const edge=sc.findIndex(v=>v===null||v<2.5),phase=edge===-1?5:edge-1;
-const g=s=>V.filter(x=>x&&x.s===s),cnt=s=>g(s).length,un=ALL.filter((_,j)=>!V[j]);
-const gaps=ALL.map((a,j)=>({a,j,r:ans[j]})).filter(x=>!x.r||x.r.s==="Absent");
-const intermittents=ALL.map((a,j)=>({a,j,r:ans[j]})).filter(x=>x.r&&x.r.s==="Intermittent");
-const potentials=ALL.map((a,j)=>({a,j,r:ans[j]})).filter(x=>x.r&&x.r.s==="Potential");
-const topPerson=P.slice().sort((a,b)=>b.roles.length-a.roles.length)[0];
-A.innerHTML=`<div class="print-head"><h1>Relationship Ecosystem Diagnostic Report</h1><p>Executive Dashboard &amp; Network Map · Generated on ${new Date().toLocaleDateString(undefined,{month:'long',day:'numeric',year:'numeric'})}</p></div>
-<div class="dash-hdr"><div><h2>Ecosystem Dashboard</h2><p class="sub">${P.length} ${P.length===1?"person":"people"} mapped across ${n} of 18 roles. Immediate overview of your active anchors and critical gaps.</p></div>
+<div class="nav"><button class="btn alt" data-a="aprev">${qi ? "Previous" : "Back"}</button><button class="btn" id="nx" data-a="anext" ${val(r) ? "" : "disabled"}>${qi < 17 ? "Next role" : "See my network"}</button></div>
+<p class="why" style="margin-top:28px">${done()} of 18 complete. <button class="link" data-v="results">View results so far</button></p>`
+        }
+        function hint() { const r = ans[qi] || {}; document.getElementById("ms").textContent = r.s && r.s !== "Absent" && (r.name || "").trim().length < 2 ? "Add a name to continue." : ""; document.getElementById("nx").disabled = !val(r); document.getElementById("nt").innerHTML = note(); document.querySelectorAll(".dt")[qi].className = "dt cur " + (val(r) ? "ok" : "") }
+        let mapMode = "orbit", selRole = 0;
+        const ECO_CX = 380, ECO_CY = 380;
+        const ECO_R = [96, 146, 196, 246, 296, 346];
+        const ECO_ANGS = ALL.map((a, j) => (((j % 3) * 120) + (a.ci * 25) - 80) * Math.PI / 180);
+        const ECO_POS = ALL.map((a, j) => [+(ECO_CX + ECO_R[a.ci] * Math.cos(ECO_ANGS[j])).toFixed(1), +(ECO_CY + ECO_R[a.ci] * Math.sin(ECO_ANGS[j])).toFixed(1)]);
+        function people() { const m = {}; ALL.forEach((a, j) => { const r = ans[j]; if (!val(r) || r.s === "Absent") return; const k = r.name.trim().toLowerCase(), p = m[k] = m[k] || { k, name: r.name.trim(), roles: [], best: r.s, circle: "", last: "", contact: "" }; p.roles.push({ role: a.name, s: r.s, ci: a.ci, qi: j }); if (SC[r.s] > SC[p.best]) p.best = r.s; if (!p.circle && r.circle) p.circle = r.circle; if (r.last && (!p.last || LAST.indexOf(r.last) < LAST.indexOf(p.last))) p.last = r.last; if (!p.contact && r.contact) p.contact = r.contact }); return Object.values(m) }
+        function ecoMapSvg(P, _, mode) {
+            const m = mode || mapMode; let s = '<svg viewBox="0 0 760 760" role="img" aria-label="Ecosystem Constellation Map" id="ecosvg" style="width:100%;height:auto;display:block">';
+            if (m === "people") {
+                if (!P.length) return s + '<text x="380" y="380" text-anchor="middle" font-size="14" fill="var(--mu)">No people added yet. Complete roles in the assessment to build your network.</text></svg>';
+                const n = P.length, pos = P.map((p, i) => { const ang = (i / n * 2 * Math.PI) - Math.PI / 2; return [+(ECO_CX + 230 * Math.cos(ang)).toFixed(1), +(ECO_CY + 230 * Math.sin(ang)).toFixed(1)] });
+                s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="230" fill="none" stroke="var(--ln)" stroke-width="1.5" stroke-dasharray="4 6"/>`;
+                P.forEach((p, i) => { const isCur = (p.k === psel), isAct = (p.best === "Active"); s += `<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${pos[i][0]}" y2="${pos[i][1]}" stroke="${isCur ? 'var(--pu)' : (isAct ? 'var(--pu)' : 'var(--pk2)')}" stroke-width="${isCur ? 2.5 : 1.5}" stroke-dasharray="${isAct ? 'none' : '4 4'}" opacity="${isCur ? 1 : 0.6}"/>` });
+                s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(224,32,127,.3))"/><text x="${ECO_CX}" y="${ECO_CY + 5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
+                P.forEach((p, i) => {
+                    const [x, y] = pos[i], isCur = (p.k === psel), nr = Math.min(24 + p.roles.length * 3, 38);
+                    s += `<g class="nd ${isCur ? 'on' : ''}" tabindex="0" role="button" data-p="${esc(p.k)}" aria-label="${esc(p.name)}">`;
+                    if (isCur) s += `<circle cx="${x}" cy="${y}" r="${nr + 7}" fill="none" stroke="var(--pu)" stroke-width="2.5" opacity=".8"/>`;
+                    s += `<circle cx="${x}" cy="${y}" r="${nr}" fill="${CIR[p.circle] || '#FFD9EA'}" stroke="${isCur ? 'var(--pu)' : '#fff'}" stroke-width="${isCur ? 3 : 2}" filter="drop-shadow(0 2px 6px rgba(30,18,54,.12))"/>`;
+                    s += `<text x="${x}" y="${y + 5}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">${esc(ini(p.name))}</text>`;
+                    s += `<text x="${x}" y="${y + nr + 18}" text-anchor="middle" font-size="12" font-weight="${isCur ? 700 : 600}" fill="var(--ink)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round">${esc(p.name)}</text>`;
+                    s += `<text x="${x}" y="${y + nr + 32}" text-anchor="middle" font-size="10.5" fill="var(--mu)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round">${p.roles.length} ${p.roles.length === 1 ? 'role' : 'roles'}</text></g>`
+                });
+                return s + '</svg>'
+            }
+            for (let i = 5; i >= 0; i--)s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="${ECO_R[i] + 24}" fill="${PAL[i][3]}" opacity=".5"/>`;
+            for (let i = 0; i < 6; i++)s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="${ECO_R[i]}" fill="none" stroke="${PAL[i][1]}" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>`;
+            const selPt = ECO_POS[selRole];
+            if (selPt) {
+                s += `<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${selPt[0]}" y2="${selPt[1]}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4" opacity=".5"/>`;
+                s += `<circle cx="${selPt[0]}" cy="${selPt[1]}" r="28" fill="none" stroke="var(--ink)" stroke-width="2" opacity=".4"/>`;
+            }
+            ALL.forEach((a, j) => {
+                const [x, y] = ECO_POS[j], r = ans[j], st = r ? r.s : "Absent";
+                if (st === "Active") s += `<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${x}" y2="${y}" stroke="var(--pu)" stroke-width="1.5" opacity=".4"/>`;
+                else if (st === "Intermittent") s += `<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${x}" y2="${y}" stroke="var(--pk2)" stroke-width="1.2" stroke-dasharray="3 4" opacity=".35"/>`;
+            });
+            s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(224,32,127,.3))"/><text x="${ECO_CX}" y="${ECO_CY + 5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
+            ALL.forEach((a, j) => {
+                const [x, y] = ECO_POS[j], ang = ECO_ANGS[j], r = ans[j], st = r ? r.s : "Absent", pName = r && r.name ? r.name.trim() : "", isSel = (j === selRole);
+                const isFilled = (st && st !== "Absent" && pName.length > 0);
+                const isCurP = (isFilled && psel && pName.toLowerCase() === psel.toLowerCase());
+                let op = 1; if (m === "gaps" && !isFilled) op = 1; else if (m === "gaps") op = 0.22;
+                const labelDist = (isSel ? 20 : 17) + 16;
+                const lx = +(x + Math.cos(ang) * labelDist).toFixed(1);
+                const ly = +(y + Math.sin(ang) * labelDist + 4).toFixed(1);
+                s += `<g class="nd ${isSel ? 'on' : ''}" data-rn="${j}" opacity="${op}" tabindex="0" role="button" aria-label="${a.name}: ${st}">`;
+                if (isSel || isCurP) s += `<circle cx="${x}" cy="${y}" r="${isSel ? 26 : 23}" fill="none" stroke="${isSel ? 'var(--ink)' : 'var(--pu)'}" stroke-width="2.5" opacity=".85"/>`;
+                if (isFilled) {
+                    let fillCol = "var(--pu)", dash = "";
+                    if (st === "Intermittent") { fillCol = "var(--pk2)"; dash = 'stroke-dasharray="3 2"' }
+                    else if (st === "Potential") { fillCol = "#E89D78" }
+                    else if (st === "Historical") { fillCol = "#C0809A"; dash = 'stroke-dasharray="3 3"' }
+                    s += `<circle cx="${x}" cy="${y}" r="${isSel ? 20 : 17}" fill="${fillCol}" stroke="#fff" stroke-width="2" filter="drop-shadow(0 2px 5px rgba(30,18,54,.15))" ${dash}/>`;
+                    s += `<text x="${x}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">${esc(ini(pName))}</text>`;
+                    s += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round">${esc(pName.split(" ")[0])}</text>`;
+                } else {
+                    if (m === "gaps") s += `<circle cx="${x}" cy="${y}" r="23" fill="rgba(224,32,127,.12)" stroke="var(--pu)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+                    s += `<circle cx="${x}" cy="${y}" r="${isSel ? 18 : 15}" fill="#FFFDFB" stroke="var(--pu)" stroke-width="${isSel ? 2.5 : 1.6}" stroke-dasharray="3 3"/>`;
+                    s += `<text x="${x}" y="${y + 3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="var(--pu)">${j + 1}</text>`;
+                    s += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="10" font-weight="600" fill="var(--mu)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:3.5px;stroke-linejoin:round">${esc(a.name.split("/")[0].split(" ")[0])}</text>`;
+                }
+                s += `</g>`
+            });
+            return s + '</svg>'
+        }
+        function dossier(P, sR, pKey) {
+            if (sR >= 0 && sR < ALL.length) {
+                const a = ALL[sR], r = ans[sR], st = r ? r.s : "Absent";
+                if (st === "Absent" || !st) { return `<div class="pb"><div class="tag" style="background:#FFE6EE;color:#C4136B">🚨 CRITICAL ECOSYSTEM GAP</div><div class="k" style="margin-top:14px">Level ${a.ci + 1}: ${CH[a.ci].n} · Role ${sR + 1} of 18</div><h3 style="font-size:1.85rem">${a.name}</h3><div class="fn" style="margin-bottom:16px">${a.fn}</div><p class="q1" style="font-size:1.02rem;line-height:1.5;margin:16px 0">${a.sc}</p><dl style="margin-top:20px"><div><dt>Why this relationship matters</dt><dd>${a.why}</dd></div><div><dt>Immediate action to fill this gap</dt><dd>Identify 1–2 people in your extended circle who embody this strength. Ask for a brief conversation or ask a trusted peer for an introduction.</dd></div></dl><div style="margin-top:26px"><button class="btn" style="width:100%" data-q="${sR}">Name someone for this role →</button></div></div>` }
+                else {
+                    const p = P.find(x => x.k === r.name.trim().toLowerCase()) || { name: r.name, roles: [{ role: a.name, s: st }], circle: r.circle, last: r.last, contact: r.contact };
+                    return `<div class="pb"><div class="av" style="background:${CIR[r.circle] || '#FFD9EA'}">${esc(ini(r.name))}</div><h3>${esc(r.name)}</h3><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0 16px"><span class="tag" style="margin-top:0">${st}</span>${r.circle ? `<span class="rc" style="margin:0">${r.circle}</span>` : ''}</div><div style="padding:14px;background:#fff;border-radius:16px;border:1.5px solid var(--ln);margin-bottom:18px"><div class="k" style="margin:0 0 4px;font-size:.8rem">Role ${sR + 1} · Level ${a.ci + 1}: ${CH[a.ci].n}</div><div style="font-weight:700;font-size:1.1rem">${a.name}</div><div class="fn" style="font-size:.86rem;color:var(--pu);margin:2px 0 6px">${a.fn}</div><p class="why" style="font-size:.88rem;margin:0">${a.why}</p></div><dl><div><dt>All roles held in your ecosystem</dt><dd>${p.roles.map(x => `<span class="rc" style="cursor:pointer" data-rn="${ALL.findIndex(y => y.name === x.role)}">${x.role} · ${x.s}</span>`).join("")}</dd></div><div><dt>Last contact</dt><dd>${r.last || "Not recorded"}</dd></div><div><dt>Primary communication</dt><dd>${r.contact || "Not recorded"}</dd></div></dl><div style="margin-top:22px"><button class="btn out" style="width:100%;padding:10px" data-q="${sR}">Edit this role →</button></div></div>`
+                }
+            }
+            const p = P.find(x => x.k === pKey);
+            if (p) { return `<div class="pb"><div class="av" style="background:${CIR[p.circle] || '#FFD9EA'}">${esc(ini(p.name))}</div><h3>${esc(p.name)}</h3>${p.circle ? `<span class="tag">${p.circle}</span>` : ''}<dl><div><dt>Roles in your life</dt><dd>${p.roles.map(r => `<span class="rc">${r.role} · ${r.s}</span>`).join("")}</dd></div><div><dt>Last contact</dt><dd>${p.last || "Not added"}</dd></div><div><dt>Primarily reached by</dt><dd>${p.contact ? esc(p.contact) : "Not added"}</dd></div></dl></div>` }
+            return `<p class="why">Select any role or person on the constellation map to view their dossier.</p>`
+        }
+        function selResRole(j) { selRole = j; const r = ans[j]; if (r && r.s && r.s !== "Absent" && r.name) { psel = r.name.trim().toLowerCase() } const mp = document.getElementById("mp"), pb = document.getElementById("pb"); if (mp) mp.innerHTML = ecoMapSvg(people(), null, mapMode); if (pb) pb.innerHTML = dossier(people(), selRole, psel); document.querySelectorAll("tr[data-p]").forEach(row => row.classList.toggle("on", row.dataset.p === psel)) }
+        function selP(k) { psel = k; const P = people(), rIdx = ALL.findIndex((a, j) => ans[j] && ans[j].s && ans[j].s !== "Absent" && ans[j].name && ans[j].name.trim().toLowerCase() === k); if (rIdx !== -1) selRole = rIdx; const mp = document.getElementById("mp"), pb = document.getElementById("pb"); if (mp) mp.innerHTML = ecoMapSvg(P, null, mapMode); if (pb) pb.innerHTML = dossier(P, selRole, psel); document.querySelectorAll("tr[data-p]").forEach(r => r.classList.toggle("on", r.dataset.p === k)) }
+        function setMapMode(m) { mapMode = m; document.querySelectorAll(".mtab").forEach(b => b.classList.toggle("on", b.dataset.mt === m)); const mp = document.getElementById("mp"); if (mp) mp.innerHTML = ecoMapSvg(people(), null, mapMode) }
+        function results() {
+            nav("results"); const P = people(); if (!P.find(p => p.k === psel)) psel = P.length ? P[0].k : "";
+            const V = ALL.map((a, j) => val(ans[j]) ? { ...a, ...ans[j], role: a.name, person: ans[j].name } : null), n = done();
+            const sc = CH.map((c, i) => { const v = V.filter(x => x && x.ci === i); return v.length ? v.reduce((t, x) => t + SC[x.s], 0) / v.length : null });
+            const edge = sc.findIndex(v => v === null || v < 2.5), phase = edge === -1 ? 5 : edge - 1;
+            const g = s => V.filter(x => x && x.s === s), cnt = s => g(s).length, un = ALL.filter((_, j) => !V[j]);
+            const gaps = ALL.map((a, j) => ({ a, j, r: ans[j] })).filter(x => !x.r || x.r.s === "Absent");
+            const intermittents = ALL.map((a, j) => ({ a, j, r: ans[j] })).filter(x => x.r && x.r.s === "Intermittent");
+            const potentials = ALL.map((a, j) => ({ a, j, r: ans[j] })).filter(x => x.r && x.r.s === "Potential");
+            const topPerson = P.slice().sort((a, b) => b.roles.length - a.roles.length)[0];
+            A.innerHTML = `<div class="print-head"><h1>Relationship Ecosystem Diagnostic Report</h1><p>Executive Dashboard &amp; Network Map · Generated on ${new Date().toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}</p></div>
+<div class="dash-hdr"><div><h2>Ecosystem Dashboard</h2><p class="sub">${P.length} ${P.length === 1 ? "person" : "people"} mapped across ${n} of 18 roles. Immediate overview of your active anchors and critical gaps.</p></div>
 <div class="dash-acts"><button class="btn-pdf" data-act="pdf" title="Print or save as PDF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</button><button class="btn alt" data-v="assess">Edit answers</button></div></div>
 <div class="kpis">
-<div class="kpi"><div class="lbl">Current Grounding</div><div class="val">${phase<0?"Laying Foundation":`Level ${phase+1}: ${CH[phase].n}`}</div><div class="subt">${phase<0?"Initial network setup":CH[phase].sd}</div>${phase>=0?'<span class="badge ok">✓ Active Grounding</span>':'<span class="badge warn">In Progress</span>'}</div>
-<div class="kpi"><div class="lbl">Growth Edge</div><div class="val">${edge===-1?"Fully Anchored":`Level ${edge+1}: ${CH[edge].n}`}</div><div class="subt">${edge===-1?"All 6 levels supported":CH[edge].sd}</div>${edge===-1?'<span class="badge ok">Ecosystem Mastery</span>':'<span class="badge info">Next Priority</span>'}</div>
-<div class="kpi"><div class="lbl">Network Vitality</div><div class="val">${n} / 18 <span style="font-size:1.1rem;font-weight:600;color:var(--mu)">(${Math.round(n/18*100)}%)</span></div><div class="subt">${cnt("Active")} Active · ${cnt("Intermittent")} Intermittent · ${cnt("Potential")} Potential</div><div style="height:6px;background:var(--ln);border-radius:3px;overflow:hidden;margin-top:12px"><div style="height:100%;width:${Math.round(n/18*100)}%;background:var(--pu);border-radius:3px"></div></div></div>
-<div class="kpi"><div class="lbl">Ecosystem Gaps &amp; Risks</div><div class="val">${cnt("Absent")} Missing</div><div class="subt">${cnt("Absent")?`${cnt("Absent")} roles have no identifiable ally`:"All roles have people mapped"}</div>${topPerson&&topPerson.roles.length>=3?`<span class="badge warn">⚠️ Concentration: ${esc(topPerson.name)} (${topPerson.roles.length} roles)</span>`:(cnt("Absent")?'<span class="badge warn">Action Needed</span>':'<span class="badge ok">Resilient Network</span>')}</div>
+<div class="kpi"><div class="lbl">Current Grounding</div><div class="val">${phase < 0 ? "Laying Foundation" : `Level ${phase + 1}: ${CH[phase].n}`}</div><div class="subt">${phase < 0 ? "Initial network setup" : CH[phase].sd}</div>${phase >= 0 ? '<span class="badge ok">✓ Active Grounding</span>' : '<span class="badge warn">In Progress</span>'}</div>
+<div class="kpi"><div class="lbl">Growth Edge</div><div class="val">${edge === -1 ? "Fully Anchored" : `Level ${edge + 1}: ${CH[edge].n}`}</div><div class="subt">${edge === -1 ? "All 6 levels supported" : CH[edge].sd}</div>${edge === -1 ? '<span class="badge ok">Ecosystem Mastery</span>' : '<span class="badge info">Next Priority</span>'}</div>
+<div class="kpi"><div class="lbl">Network Vitality</div><div class="val">${n} / 18 <span style="font-size:1.1rem;font-weight:600;color:var(--mu)">(${Math.round(n / 18 * 100)}%)</span></div><div class="subt">${cnt("Active")} Active · ${cnt("Intermittent")} Intermittent · ${cnt("Potential")} Potential</div><div style="height:6px;background:var(--ln);border-radius:3px;overflow:hidden;margin-top:12px"><div style="height:100%;width:${Math.round(n / 18 * 100)}%;background:var(--pu);border-radius:3px"></div></div></div>
+<div class="kpi"><div class="lbl">Ecosystem Gaps &amp; Risks</div><div class="val">${cnt("Absent")} Missing</div><div class="subt">${cnt("Absent") ? `${cnt("Absent")} roles have no identifiable ally` : "All roles have people mapped"}</div>${topPerson && topPerson.roles.length >= 3 ? `<span class="badge warn">⚠️ Concentration: ${esc(topPerson.name)} (${topPerson.roles.length} roles)</span>` : (cnt("Absent") ? '<span class="badge warn">Action Needed</span>' : '<span class="badge ok">Resilient Network</span>')}</div>
 </div>
 <div class="map-ctrls">
-<div class="mtabs"><button class="mtab ${mapMode==='orbit'?'on':''}" data-mt="orbit">Ecosystem Orbit</button><button class="mtab ${mapMode==='people'?'on':''}" data-mt="people">People Network</button><button class="mtab ${mapMode==='gaps'?'on':''}" data-mt="gaps">Focus on Gaps</button></div>
+<div class="mtabs"><button class="mtab ${mapMode === 'orbit' ? 'on' : ''}" data-mt="orbit">Ecosystem Orbit</button><button class="mtab ${mapMode === 'people' ? 'on' : ''}" data-mt="people">People Network</button><button class="mtab ${mapMode === 'gaps' ? 'on' : ''}" data-mt="gaps">Focus on Gaps</button></div>
 <div class="map-hint">Click any role or person on the constellation to view details and actions</div>
 </div>
-<div class="grid"><div><div class="mapc" id="mp">${ecoMapSvg(P,null,mapMode)}</div><div class="leg"><span><i style="background:var(--pu);border-color:#fff"></i>Active tie</span><span><i style="background:var(--pk2);border-color:#fff"></i>Intermittent</span><span><i style="background:#E89D78;border-color:#fff"></i>Potential</span><span><i style="background:#FFFDFB;border:1.5px dashed var(--pu)"></i><b>Unfilled gap</b></span><span>Levels: 1 (inner) → 6 (outer)</span></div></div><div class="card" id="pb">${dossier(P,selRole,psel)}</div></div>
+<div class="grid"><div><div class="mapc" id="mp">${ecoMapSvg(P, null, mapMode)}</div><div class="leg"><span><i style="background:var(--pu);border-color:#fff"></i>Active tie</span><span><i style="background:var(--pk2);border-color:#fff"></i>Intermittent</span><span><i style="background:#E89D78;border-color:#fff"></i>Potential</span><span><i style="background:#FFFDFB;border:1.5px dashed var(--pu)"></i><b>Unfilled gap</b></span><span>Levels: 1 (inner) → 6 (outer)</span></div></div><div class="card" id="pb">${dossier(P, selRole, psel)}</div></div>
 <div class="sec"><h3>Ecosystem Gaps &amp; Risk Intelligence</h3><p class="sub" style="margin:0 0 24px">Direct diagnostics on missing roles, fragile cadences, and over-reliance vulnerabilities.</p>
 <div class="gaps-grid">
-${topPerson&&topPerson.roles.length>=3?`<div class="gap-c risk"><div class="gap-head"><div class="gap-title">⚠️ Network Over-reliance: ${esc(topPerson.name)}</div><span class="tag" style="background:#FFE3D6;color:#A83A07">Concentration Risk</span></div><div class="gap-fn">Carrying ${topPerson.roles.length} roles across your life</div><div class="gap-desc">${esc(topPerson.name)} fills: <b>${topPerson.roles.map(r=>r.role).join(", ")}</b>. If their life circumstances shift, multiple critical pillars of your support could be affected simultaneously.</div><div class="gap-act"><b>Prescription:</b> Intentionally recruit secondary peers or mentors for 1–2 of these roles to distribute weight across your ecosystem.</div></div>`:''}
-${gaps.map(x=>`<div class="gap-c abs"><div class="gap-head"><div class="gap-title">${x.j+1}. ${x.a.name}</div><span class="tag" style="background:#FFE6EE;color:#C4136B">Level ${x.a.ci+1}: ${CH[x.a.ci].n}</span></div><div class="gap-fn">${x.a.fn}</div><div class="gap-desc">${x.a.sc}</div><div class="gap-act"><b>Why you need this:</b> ${x.a.why}</div><div style="margin-top:14px;text-align:right"><button class="btn out" style="padding:8px 18px;font-size:.85rem" data-q="${x.j}">Assign someone →</button></div></div>`).join("")}
-${intermittents.map(x=>`<div class="gap-c int"><div class="gap-head"><div class="gap-title">${x.a.name} · ${esc(x.r.name)}</div><span class="tag" style="background:#FFF3E8;color:#9E4A06">Fragile Cadence</span></div><div class="gap-fn">Level ${x.a.ci+1}: ${CH[x.a.ci].n}</div><div class="gap-desc">Support occurs occasionally, but not on a dependable rhythm. Goodwill is high, but the connection risks drifting without a structured cadence.</div><div class="gap-act"><b>Prescription:</b> Lock in a standing monthly breakfast or bi-monthly video check-in.</div></div>`).join("")}
-${potentials.map(x=>`<div class="gap-c pot"><div class="gap-head"><div class="gap-title">${x.a.name} · ${esc(x.r.name)}</div><span class="tag" style="background:#FFF8E8;color:#855B00">Untapped Ally</span></div><div class="gap-fn">Level ${x.a.ci+1}: ${CH[x.a.ci].n}</div><div class="gap-desc">${esc(x.r.name)} has the capacity and stature to assist, but an explicit invitation has not yet been extended.</div><div class="gap-act"><b>Prescription:</b> Make one low-friction, specific ask of ${esc(x.r.name.split(" ")[0])} this month.</div></div>`).join("")}
+${topPerson && topPerson.roles.length >= 3 ? `<div class="gap-c risk"><div class="gap-head"><div class="gap-title">⚠️ Network Over-reliance: ${esc(topPerson.name)}</div><span class="tag" style="background:#FFE3D6;color:#A83A07">Concentration Risk</span></div><div class="gap-fn">Carrying ${topPerson.roles.length} roles across your life</div><div class="gap-desc">${esc(topPerson.name)} fills: <b>${topPerson.roles.map(r => r.role).join(", ")}</b>. If their life circumstances shift, multiple critical pillars of your support could be affected simultaneously.</div><div class="gap-act"><b>Prescription:</b> Intentionally recruit secondary peers or mentors for 1–2 of these roles to distribute weight across your ecosystem.</div></div>` : ''}
+${gaps.map(x => `<div class="gap-c abs"><div class="gap-head"><div class="gap-title">${x.j + 1}. ${x.a.name}</div><span class="tag" style="background:#FFE6EE;color:#C4136B">Level ${x.a.ci + 1}: ${CH[x.a.ci].n}</span></div><div class="gap-fn">${x.a.fn}</div><div class="gap-desc">${x.a.sc}</div><div class="gap-act"><b>Why you need this:</b> ${x.a.why}</div><div style="margin-top:14px;text-align:right"><button class="btn out" style="padding:8px 18px;font-size:.85rem" data-q="${x.j}">Assign someone →</button></div></div>`).join("")}
+${intermittents.map(x => `<div class="gap-c int"><div class="gap-head"><div class="gap-title">${x.a.name} · ${esc(x.r.name)}</div><span class="tag" style="background:#FFF3E8;color:#9E4A06">Fragile Cadence</span></div><div class="gap-fn">Level ${x.a.ci + 1}: ${CH[x.a.ci].n}</div><div class="gap-desc">Support occurs occasionally, but not on a dependable rhythm. Goodwill is high, but the connection risks drifting without a structured cadence.</div><div class="gap-act"><b>Prescription:</b> Lock in a standing monthly breakfast or bi-monthly video check-in.</div></div>`).join("")}
+${potentials.map(x => `<div class="gap-c pot"><div class="gap-head"><div class="gap-title">${x.a.name} · ${esc(x.r.name)}</div><span class="tag" style="background:#FFF8E8;color:#855B00">Untapped Ally</span></div><div class="gap-fn">Level ${x.a.ci + 1}: ${CH[x.a.ci].n}</div><div class="gap-desc">${esc(x.r.name)} has the capacity and stature to assist, but an explicit invitation has not yet been extended.</div><div class="gap-act"><b>Prescription:</b> Make one low-friction, specific ask of ${esc(x.r.name.split(" ")[0])} this month.</div></div>`).join("")}
 </div></div>
 <div class="sec"><h3>Six Levels Diagnostic Roadmap</h3><div class="lv-mat">
-${CH.map((c,i)=>{const v=V.filter(x=>x&&x.ci===i),score=sc[i];
-const items=c.it.map((it,k)=>{const qIdx=i*3+k,r=ans[qIdx],isFilled=r&&r.s&&r.s!=="Absent",isInt=r&&r.s==="Intermittent";if(isFilled){return `<span class="r-dot ${isInt?'int':'ok'}" style="cursor:pointer" data-rn="${qIdx}">${isInt?'~':'✓'} ${it[0]} (${esc(r.name.split(" ")[0])})</span>`}return `<span class="r-dot gap" style="cursor:pointer" data-rn="${qIdx}">! ${it[0]} (GAP)</span>`}).join("");
-return `<div class="lv-row"><div class="lv-top"><div class="lv-name">Level ${i+1}: ${c.n}</div><span class="badge ${score>=2.5?'ok':(score>0?'info':'warn')}">${score===null?'0.0':score.toFixed(1)} / 4.0</span></div><p style="font-size:.88rem;color:var(--mu);margin:0">${c.sd}</p><div class="lv-roles">${items}</div><div class="ph" style="margin:4px 0 0;grid-template-columns:1fr"><div class="t"><i style="width:${score===null?0:score/4*100}%;background:${PAL[i][0]}"></i></div></div></div>`}).join("")}
+${CH.map((c, i) => {
+                const v = V.filter(x => x && x.ci === i), score = sc[i];
+                const items = c.it.map((it, k) => { const qIdx = i * 3 + k, r = ans[qIdx], isFilled = r && r.s && r.s !== "Absent", isInt = r && r.s === "Intermittent"; if (isFilled) { return `<span class="r-dot ${isInt ? 'int' : 'ok'}" style="cursor:pointer" data-rn="${qIdx}">${isInt ? '~' : '✓'} ${it[0]} (${esc(r.name.split(" ")[0])})</span>` } return `<span class="r-dot gap" style="cursor:pointer" data-rn="${qIdx}">! ${it[0]} (GAP)</span>` }).join("");
+                return `<div class="lv-row"><div class="lv-top"><div class="lv-name">Level ${i + 1}: ${c.n}</div><span class="badge ${score >= 2.5 ? 'ok' : (score > 0 ? 'info' : 'warn')}">${score === null ? '0.0' : score.toFixed(1)} / 4.0</span></div><p style="font-size:.88rem;color:var(--mu);margin:0">${c.sd}</p><div class="lv-roles">${items}</div><div class="ph" style="margin:4px 0 0;grid-template-columns:1fr"><div class="t"><i style="width:${score === null ? 0 : score / 4 * 100}%;background:${PAL[i][0]}"></i></div></div></div>`
+            }).join("")}
 </div></div>
-<div class="sec"><h3>People Directory</h3><div class="scroll"><table><thead><tr><th>Person</th><th>Roles</th><th>Circle</th><th>Last contact</th></tr></thead><tbody>${P.map(p=>`<tr data-p="${esc(p.k)}" class="${p.k===psel?"on":""}"><td><b>${esc(p.name)}</b></td><td>${p.roles.map(r=>r.role).join(", ")}</td><td>${p.circle||"–"}</td><td>${p.last||"–"}</td></tr>`).join("")||'<tr><td colspan="4">No people yet.</td></tr>'}</tbody></table></div></div>
-<div class="sec"><h3>Ecosystem Summary</h3><div class="scroll"><table><thead><tr><th>Relationship</th><th>Person</th>${ST.map(s=>`<th class="c">${s[0]}</th>`).join("")}</tr></thead><tbody>${ALL.map((a,j)=>`<tr data-rn="${j}" style="cursor:pointer" class="${j===selRole?'on':''}"><td>${a.name}</td><td>${V[j]&&V[j].person?esc(V[j].person):"–"}</td>${ST.map(s=>`<td class="x">${V[j]&&V[j].s===s[0]?"✓":""}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>
+<div class="sec"><h3>People Directory</h3><div class="scroll"><table><thead><tr><th>Person</th><th>Roles</th><th>Circle</th><th>Last contact</th></tr></thead><tbody>${P.map(p => `<tr data-p="${esc(p.k)}" class="${p.k === psel ? "on" : ""}"><td><b>${esc(p.name)}</b></td><td>${p.roles.map(r => r.role).join(", ")}</td><td>${p.circle || "–"}</td><td>${p.last || "–"}</td></tr>`).join("") || '<tr><td colspan="4">No people yet.</td></tr>'}</tbody></table></div></div>
+<div class="sec"><h3>Ecosystem Summary</h3><div class="scroll"><table><thead><tr><th>Relationship</th><th>Person</th>${ST.map(s => `<th class="c">${s[0]}</th>`).join("")}</tr></thead><tbody>${ALL.map((a, j) => `<tr data-rn="${j}" style="cursor:pointer" class="${j === selRole ? 'on' : ''}"><td>${a.name}</td><td>${V[j] && V[j].person ? esc(V[j].person) : "–"}</td>${ST.map(s => `<td class="x">${V[j] && V[j].s === s[0] ? "✓" : ""}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>
 <div class="row" style="margin-top:48px"><button class="btn-pdf" data-act="pdf"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download as PDF</button><button class="btn alt" data-v="story">Replay the storyboard</button><button class="btn" data-v="assess">Edit my answers</button></div>`}
-const VW={home,story,map,assess,results};
-document.addEventListener("click",e=>{const t=e.target.closest("button,.nd,tr[data-p],tr[data-rn],.r-dot[data-rn],.rc[data-rn]");if(!t)return;const d=t.dataset;
-if(d.act==="pdf"){window.print();return}
-if(d.mt){setMapMode(d.mt);return}
-if(d.rn!==undefined){selResRole(+d.rn);return}
-if(d.p!==undefined){selP(d.p);return}
-if(d.v){if(d.v==="story")ch=0;VW[d.v]();return}
-if(d.ch!==undefined){ch=+d.ch;story();return}
-if(d.dd!==undefined){const m=document.querySelector(".dm");m.hidden=!m.hidden;t.setAttribute("aria-expanded",!m.hidden);return}
-if(d.n!==undefined){selNode(+d.n);return}
-if(d.q!==undefined){qi=+d.q;assess();return}
-if(d.st){ans[qi]=Object.assign(ans[qi]||{},{s:d.st});assess();return}
-if(d.ci){ans[qi].circle=d.ci;assess();return}
-if(d.la){ans[qi].last=d.la;assess();return}
-if(d.co){ans[qi].contact=d.co;assess();return}
-const a=d.a;if(a==="prev"){ch?(ch--,story()):home()}else if(a==="next"){ch<5?(ch++,story()):map()}else if(a==="aprev"){qi?(qi--,assess()):home()}else if(a==="anext"){qi<17?(qi++,assess()):results()}});
-const cl=()=>{const m=document.querySelector(".dm");if(m){m.hidden=true;const b=document.querySelector("[data-dd]");b&&b.setAttribute("aria-expanded","false")}};
-document.addEventListener("click",e=>{if(!e.target.closest(".dd"))cl()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")cl()});
-document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("nd")){e.preventDefault();if(e.target.dataset.rn!==undefined)selResRole(+e.target.dataset.rn);else if(e.target.dataset.n!==undefined)selNode(+e.target.dataset.n);else if(e.target.dataset.p!==undefined)selP(e.target.dataset.p)}});
-document.addEventListener("input",e=>{const f=e.target.dataset.f;if(!f)return;(ans[qi]=ans[qi]||{})[f]=e.target.value;hint()});
-home();
-</script></body></html>
+        const VW = { home, story, map, assess, results };
+        document.addEventListener("click", e => {
+            const t = e.target.closest("button,.nd,tr[data-p],tr[data-rn],.r-dot[data-rn],.rc[data-rn]"); if (!t) return; const d = t.dataset;
+            if (d.act === "pdf") { window.print(); return }
+            if (d.mt) { setMapMode(d.mt); return }
+            if (d.rn !== undefined) { selResRole(+d.rn); return }
+            if (d.p !== undefined) { selP(d.p); return }
+            if (d.v) { if (d.v === "story") ch = 0; VW[d.v](); return }
+            if (d.ch !== undefined) { ch = +d.ch; story(); return }
+            if (d.dd !== undefined) { const m = document.querySelector(".dm"); m.hidden = !m.hidden; t.setAttribute("aria-expanded", !m.hidden); return }
+            if (d.n !== undefined) { selNode(+d.n); return }
+            if (d.q !== undefined) { qi = +d.q; assess(); return }
+            if (d.st) { ans[qi] = Object.assign(ans[qi] || {}, { s: d.st }); assess(); return }
+            if (d.ci) { ans[qi].circle = d.ci; assess(); return }
+            if (d.la) { ans[qi].last = d.la; assess(); return }
+            if (d.co) { ans[qi].contact = d.co; assess(); return }
+            const a = d.a; if (a === "prev") { ch ? (ch--, story()) : home() } else if (a === "next") { ch < 5 ? (ch++, story()) : map() } else if (a === "aprev") { qi ? (qi--, assess()) : home() } else if (a === "anext") { qi < 17 ? (qi++, assess()) : results() }
+        });
+        const cl = () => { const m = document.querySelector(".dm"); if (m) { m.hidden = true; const b = document.querySelector("[data-dd]"); b && b.setAttribute("aria-expanded", "false") } };
+        document.addEventListener("click", e => { if (!e.target.closest(".dd")) cl() });
+        document.addEventListener("keydown", e => { if (e.key === "Escape") cl() });
+        document.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("nd")) { e.preventDefault(); if (e.target.dataset.rn !== undefined) selResRole(+e.target.dataset.rn); else if (e.target.dataset.n !== undefined) selNode(+e.target.dataset.n); else if (e.target.dataset.p !== undefined) selP(e.target.dataset.p) } });
+        document.addEventListener("input", e => { const f = e.target.dataset.f; if (!f) return; (ans[qi] = ans[qi] || {})[f] = e.target.value; hint() });
+        home();
+    </script>
+</body>
+
+</html>
