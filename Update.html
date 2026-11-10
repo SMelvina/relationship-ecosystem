@@ -107,28 +107,36 @@ body{overflow-x:hidden}.band{background:#FAF7F3;margin:120px calc(50% - 50vw) -1
 .r-dot.ok{background:#EBF7F0;border-color:#A3D9B5;color:#1B5E3C}
 .r-dot.gap{background:#FFF0F5;border-color:#F5B7CE;color:#C4136B}
 .r-dot.int{background:#FFF7EC;border-color:#FCD8A8;color:#A85507}
-.print-head{display:none}
+.print-head,.print-map-hdr{display:none}
 @media print{
   @page{margin:10mm 12mm;size:A4 portrait}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   body{background:#fff!important;color:#1E1236!important;font-size:10pt!important;line-height:1.4!important}
   header,footer,.dash-acts,.nav,.row,button,.mtabs,.dd,.link,.map-ctrls{display:none!important}
   .wrap{max-width:100%!important;width:100%!important;padding:0!important;margin:0!important}
   .print-head{display:block!important;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #E8DAD2}
   .print-head h1{font-size:22pt;font-weight:800;margin:0 0 4px;color:#1E1236}
   .print-head p{font-size:9.5pt;color:#5A4E75;margin:0}
-  .kpis{grid-template-columns:repeat(4,1fr)!important;gap:10px!important;margin-bottom:20px!important}
+  .kpis{grid-template-columns:repeat(4,1fr)!important;gap:10px!important;margin-bottom:20px!important;page-break-inside:avoid!important;break-inside:avoid!important}
   .kpi{background:#F6F0EA!important;border:1px solid #E2D7CE!important;padding:14px!important;box-shadow:none!important}
   .kpi .val{font-size:14pt!important}
-  .grid{grid-template-columns:1.2fr .8fr!important;gap:18px!important;page-break-inside:avoid}
-  .mapc{background:#FAF7F3!important;border:1px solid #E2D7CE!important;padding:10px!important}
-  .card{background:#F6F0EA!important;border:1px solid #E2D7CE!important;padding:16px!important;box-shadow:none!important}
-  .sec{margin-top:28px!important;page-break-inside:avoid}
+  .map-page-sec{page-break-before:always!important;break-before:page!important;page-break-after:always!important;break-after:page!important;page-break-inside:avoid!important;break-inside:avoid!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;width:100%!important;margin:0 auto!important;padding:10mm 0!important;box-sizing:border-box!important}
+  .print-map-hdr{display:block!important;text-align:center!important;margin-bottom:14px!important}
+  .print-map-hdr h2{font-size:17pt!important;font-weight:800!important;margin:0 0 4px!important;color:#1E1236!important}
+  .print-map-hdr p{font-size:9.5pt!important;color:#5A4E75!important;margin:0!important}
+  .map-page-sec .grid{display:flex!important;flex-direction:column!important;align-items:center!important;width:100%!important;margin:0 auto!important;gap:0!important}
+  .map-page-sec .card,.card#pb,#pb{display:none!important}
+  .map-stage{width:100%!important;max-width:170mm!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;align-items:center!important}
+  .mapc{background:transparent!important;border:none!important;padding:0!important;width:100%!important;max-width:165mm!important;margin:0 auto!important}
+  #ecosvg{width:100%!important;height:auto!important;max-height:165mm!important;display:block!important;margin:0 auto!important}
+  .leg{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:8px 18px!important;margin:14px auto 0!important;font-size:8.5pt!important}
+  .sec{margin-top:24px!important;page-break-inside:avoid!important;break-inside:avoid!important}
   .scroll{overflow:visible!important;border:1px solid #E2D7CE!important}
   table{min-width:100%!important;font-size:9pt!important}
-  th{background:#E8DAD2!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  tr{page-break-inside:avoid}
-  .lv-mat{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;page-break-inside:avoid}
-  .lv-row{background:#F6F0EA!important;border:1px solid #E2D7CE!important;padding:12px!important}
+  th{background:#E8DAD2!important}
+  tr{page-break-inside:avoid!important;break-inside:avoid!important}
+  .lv-mat{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .lv-row{background:#F6F0EA!important;border:1px solid #E2D7CE!important;padding:12px!important;page-break-inside:avoid!important;break-inside:avoid!important}
 }
 </style></head><body>
 <header><div class="bar"><button class="mast" data-v="home">Relationship Ecosystem</button>
@@ -279,7 +287,7 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
         const ECO_POS = ALL.map((a, j) => [+(ECO_CX + ECO_R[a.ci] * Math.cos(ECO_ANGS[j])).toFixed(1), +(ECO_CY + ECO_R[a.ci] * Math.sin(ECO_ANGS[j])).toFixed(1)]);
         function people() { const m = {}; ALL.forEach((a, j) => { const r = ans[j]; if (!val(r) || r.s === "Absent") return; const k = r.name.trim().toLowerCase(), p = m[k] = m[k] || { k, name: r.name.trim(), roles: [], best: r.s, circle: "", last: "", contact: "" }; p.roles.push({ role: a.name, s: r.s, ci: a.ci, qi: j }); if (SC[r.s] > SC[p.best]) p.best = r.s; if (!p.circle && r.circle) p.circle = r.circle; if (r.last && (!p.last || LAST.indexOf(r.last) < LAST.indexOf(p.last))) p.last = r.last; if (!p.contact && r.contact) p.contact = r.contact }); return Object.values(m) }
         function ecoMapSvg(P, _, mode) {
-            const m = mode || mapMode; let s = '<svg viewBox="0 0 760 760" role="img" aria-label="Ecosystem Constellation Map" id="ecosvg" style="width:100%;height:auto;display:block">';
+            const m = mode || mapMode; let s = '<svg viewBox="-60 -60 880 880" role="img" aria-label="Ecosystem Constellation Map" id="ecosvg" style="width:100%;height:auto;display:block">';
             if (m === "people") {
                 if (!P.length) return s + '<text x="380" y="380" text-anchor="middle" font-size="14" fill="var(--mu)">No people added yet. Complete roles in the assessment to build your network.</text></svg>';
                 const n = P.length, pos = P.map((p, i) => { const ang = (i / n * 2 * Math.PI) - Math.PI / 2; return [+(ECO_CX + 230 * Math.cos(ang)).toFixed(1), +(ECO_CY + 230 * Math.sin(ang)).toFixed(1)] });
@@ -370,11 +378,14 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
 <div class="kpi"><div class="lbl">Network Vitality</div><div class="val">${n} / 18 <span style="font-size:1.1rem;font-weight:600;color:var(--mu)">(${Math.round(n / 18 * 100)}%)</span></div><div class="subt">${cnt("Active")} Active · ${cnt("Intermittent")} Intermittent · ${cnt("Potential")} Potential</div><div style="height:6px;background:var(--ln);border-radius:3px;overflow:hidden;margin-top:12px"><div style="height:100%;width:${Math.round(n / 18 * 100)}%;background:var(--pu);border-radius:3px"></div></div></div>
 <div class="kpi"><div class="lbl">Ecosystem Gaps &amp; Risks</div><div class="val">${cnt("Absent")} Missing</div><div class="subt">${cnt("Absent") ? `${cnt("Absent")} roles have no identifiable ally` : "All roles have people mapped"}</div>${topPerson && topPerson.roles.length >= 3 ? `<span class="badge warn">⚠️ Concentration: ${esc(topPerson.name)} (${topPerson.roles.length} roles)</span>` : (cnt("Absent") ? '<span class="badge warn">Action Needed</span>' : '<span class="badge ok">Resilient Network</span>')}</div>
 </div>
+<div class="map-page-sec">
+<div class="print-map-hdr"><h2>Relationship Ecosystem Constellation</h2><p>Visual map of your 18 relational roles across all 6 levels of expansion</p></div>
 <div class="map-ctrls">
 <div class="mtabs"><button class="mtab ${mapMode === 'orbit' ? 'on' : ''}" data-mt="orbit">Ecosystem Orbit</button><button class="mtab ${mapMode === 'people' ? 'on' : ''}" data-mt="people">People Network</button><button class="mtab ${mapMode === 'gaps' ? 'on' : ''}" data-mt="gaps">Focus on Gaps</button></div>
 <div class="map-hint">Click any role or person on the constellation to view details and actions</div>
 </div>
-<div class="grid"><div><div class="mapc" id="mp">${ecoMapSvg(P, null, mapMode)}</div><div class="leg"><span><i style="background:var(--pu);border-color:#fff"></i>Active tie</span><span><i style="background:var(--pk2);border-color:#fff"></i>Intermittent</span><span><i style="background:#E89D78;border-color:#fff"></i>Potential</span><span><i style="background:#FFFDFB;border:1.5px dashed var(--pu)"></i><b>Unfilled gap</b></span><span>Levels: 1 (inner) → 6 (outer)</span></div></div><div class="card" id="pb">${dossier(P, selRole, psel)}</div></div>
+<div class="grid"><div class="map-stage"><div class="mapc" id="mp">${ecoMapSvg(P, null, mapMode)}</div><div class="leg"><span><i style="background:var(--pu);border-color:#fff"></i>Active tie</span><span><i style="background:var(--pk2);border-color:#fff"></i>Intermittent</span><span><i style="background:#E89D78;border-color:#fff"></i>Potential</span><span><i style="background:#FFFDFB;border:1.5px dashed var(--pu)"></i><b>Unfilled gap</b></span><span>Levels: 1 (inner) → 6 (outer)</span></div></div><div class="card" id="pb">${dossier(P, selRole, psel)}</div></div>
+</div>
 <div class="sec"><h3>Six Levels Diagnostic Roadmap</h3><div class="lv-mat">
 ${CH.map((c, i) => {
                 const v = V.filter(x => x && x.ci === i), score = sc[i];
