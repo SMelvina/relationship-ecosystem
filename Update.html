@@ -28,7 +28,7 @@ header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px s
 .lv{display:flex;flex-wrap:wrap;gap:12px;margin-top:72px}
 .lv button{background:var(--s);border:0;border-radius:999px;padding:12px 22px;font-size:.98rem;font-weight:600;color:var(--ink);transition:.2s}.lv button:hover{background:var(--pk);transform:translateY(-1px)}
 .stp{display:flex;gap:8px;margin-bottom:24px}.stp button{flex:1;border:0;background:none;padding:0;text-align:left;color:var(--mu);font-size:.9rem}
-.stp button i{display:block;height:5px;border-radius:3px;background:var(--ln);margin-bottom:10px;transition:.2s}.stp button[aria-current="true"]{color:var(--ink);font-weight:700}.stp button[aria-current="true"] i,.stp button.dn i{background:var(--pu)}
+.stp button i{display:block;height:6px;border-radius:3px;background:var(--ln);margin-bottom:10px;transition:.2s}.stp button[aria-current="true"]{color:var(--ink);font-weight:700}.stp button:hover i{filter:brightness(.92)}
 .k{color:var(--pu);font-weight:700;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px}
 .ch h2{font-size:clamp(2.5rem,5.5vw,4.2rem);font-weight:800}.stand{font-size:1.5rem;color:var(--mu);margin:16px 0 0;max-width:32em;line-height:1.45}.lead{max-width:42em;font-size:1.18rem;margin:26px 0 68px}
 .feat{display:grid;grid-template-columns:260px 1fr;gap:48px;padding:44px 0;border-top:1.5px solid var(--ln)}
@@ -222,7 +222,7 @@ return `<svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg" xmlns:xlin
 function home(){nav("home");A.innerHTML=`<div class="hero"><div><h1>Who is in<br>your <span>corner?</span></h1><p class="sub">Eighteen relationship roles across six levels. Walk through what a fully supported life looks like, then name the real people who fill each role.</p><div class="row"><button class="btn out" data-v="story">Walkthrough storyboard</button><button class="btn" data-v="assess">Take the assessment</button></div>
 </div><div class="ill">${hero()}</div></div><section class="band"><div class="band-in"><h2 class="fan-t">Walk the six levels, <em>one by one:</em></h2><div class="fan">${CH.map(card).join("")}</div></div></section>`}
 function story(){nav("story");setLv(ch);const c=CH[ch];
-A.innerHTML=`<div class="stp">${CH.map((x,i)=>`<button data-ch="${i}" class="${i<ch?"dn":""}" aria-current="${i===ch}"><i></i><span>${x.n}</span></button>`).join("")}</div><div class="ill">${ill(ch)}</div>
+A.innerHTML=`<div class="stp">${CH.map((x,i)=>{const isCur=(i===ch),isDone=(i<ch),col=PAL[i][0],tint=PAL[i][3];return `<button data-ch="${i}" class="${isDone?'dn':''}" aria-current="${isCur}"><i style="background:${(isDone||isCur)?col:tint};${isCur?`box-shadow:0 0 0 1.5px ${col}`:''}"></i><span style="${isCur?`color:${col};font-weight:700`:(isDone?'color:var(--ink)':'')}">${x.n}</span></button>`}).join("")}</div><div class="ill">${ill(ch)}</div>
 <section class="ch"><div class="k">Level ${ch+1} of 6</div><h2>${c.n}</h2><p class="stand">${c.sd}</p><p class="lead">${c.ld}</p>
 ${c.it.map(it=>`<div class="feat"><div><h3>${it[0]}</h3><div class="fn">${it[1]}</div></div><div><p class="q1">${it[2]}</p><p class="why"><b>Why it matters.</b> ${it[3]}</p></div></div>`).join("")}
 <div class="nav"><button class="btn alt" data-a="prev">${ch?"Back":"Cover"}</button><button class="btn" data-a="next">${ch<5?"Next level":"See the map"}</button></div></section>`}
@@ -267,7 +267,7 @@ else if(s==="Potential")t=w?`${w} has the capacity but has not been asked. What 
 else t=`An honest gap, and a useful one. Who do you see doing this for others, and who could introduce you?`;
 if(a.ci>0){const p=ALL.map((x,j)=>val(ans[j])&&x.ci===a.ci-1?SC[ans[j].s]:null).filter(v=>v!==null);if(p.length>1&&p.reduce((x,y)=>x+y,0)/p.length<2)t+=` Your ${CH[a.ci-1].n} level is still thin, so this role may be easier once that is stronger.`}return t}
 function assess(){nav("assess");const a=ALL[qi],r=ans[qi]||{},s=r.s,on=s&&s!=="Absent";
-A.innerHTML=`<div class="dots">${ALL.map((x,j)=>`<button class="dt ${val(ans[j])?"ok":""} ${j===qi?"cur":""}" data-q="${j}" aria-label="${x.name}">${j+1}</button>`).join("")}</div>
+A.innerHTML=`<div class="dots">${ALL.map((x,j)=>{const ci=x.ci,isAns=val(ans[j]),isCur=(j===qi),col=PAL[ci][0];return `<button class="dt ${isAns?"ok":""} ${isCur?"cur":""}" data-q="${j}" aria-label="${x.name}" style="${isAns?`background:${col};border-color:${col};color:#fff`:''}${isCur?`border-color:${col};box-shadow:0 0 0 3px ${PAL[ci][3]};color:${col}`:''}">${j+1}</button>`}).join("")}</div>
 <div class="k">${CH[a.ci].n} · ${qi+1} of 18</div><h2 style="font-size:clamp(2rem,5vw,3.2rem)">${a.name}</h2><p class="sub" id="nt">${note()}</p>
 <div class="opts">${ST.map(x=>`<button class="opt" aria-pressed="${s===x[0]}" data-st="${x[0]}"><b>${x[0]}</b><span>${x[1]}</span></button>`).join("")}</div>
 ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"} <small>A real person; first name is fine</small></label><input type="text" id="nm" data-f="name" value="${esc(r.name||"")}" autocomplete="off">
