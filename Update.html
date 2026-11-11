@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap">
 <style>
-:root{--bg:#F1EBE5;--s:#FFE6F1;--pk:#FFB8D6;--pk2:#FF5CA5;--pu:#E0207F;--pu2:#FFD9EA;--ink:#1E1236;--mu:#5A4E75;--ln:#F5CFE2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#EEF4F0;--card:#DEEAE2;--s:#E5F0E9;--pk:#A3D1B2;--pk2:#248A4E;--pu:#005224;--pu2:#D8EADE;--ink:#122419;--mu:#4D6355;--ln:#CFDFD6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:clamp(16px, 0.95vw + 4px, 19px)/1.65 "DM Sans",system-ui,sans-serif}
 h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em;line-height:1.12}
@@ -15,10 +15,10 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}
 :focus-visible{outline:3px solid var(--pk2);outline-offset:2px}
 header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--ln);padding-top:env(safe-area-inset-top,0px);backdrop-filter:blur(8px)}
 .bar{max-width:1440px;width:92%;margin:0 auto;padding:18px 0;display:flex;align-items:center;gap:12px}
-.mast{margin-right:auto;background:none;border:0;padding:0;font-weight:700;font-size:1.25rem;letter-spacing:-.01em}
+.mast{margin-right:auto;background:none;border:0;padding:0;font-weight:700;font-size:1.25rem;letter-spacing:-.01em;white-space:nowrap}
 .nv{background:none;border:0;padding:10px 18px;color:var(--mu);font-weight:600;font-size:.95rem;border-radius:999px;transition:.2s}.nv:hover{color:var(--pu)}.nv[aria-current="true"]{color:var(--pu);background:none}
-.btn{background:#E0207F;color:#fff;border:0;border-radius:999px;padding:14px 30px;font-size:1.02rem;font-weight:600;transition:.2s}.btn:hover{filter:brightness(.92);transform:translateY(-1px)}.btn:active{transform:translateY(0)}
-.btn.alt{background:#FFB8D6;color:var(--ink)}.btn.alt:hover{background:#FF5CA5}.btn.out{background:none;color:#E0207F;box-shadow:inset 0 0 0 2px #E0207F}.btn.out:hover{background:none;filter:none;color:#C4136B;box-shadow:inset 0 0 0 2px #C4136B}
+.btn{background:#005224;color:#fff;border:0;border-radius:999px;padding:14px 30px;font-size:1.02rem;font-weight:600;transition:.2s}.btn:hover{background:#0A6A33;transform:translateY(-1px)}.btn:active{transform:translateY(0)}
+.btn.alt{background:#B7D8C3;color:var(--ink)}.btn.alt:hover{background:#98C9A8}.btn.out{background:none;color:#005224;box-shadow:inset 0 0 0 2px #005224}.btn.out:hover{background:none;filter:none;color:#003D1A;box-shadow:inset 0 0 0 2px #003D1A}
 .btn[disabled]{opacity:.35;cursor:default;transform:none}
 .wrap{max-width:1440px;width:92%;margin:0 auto;padding:64px 0 140px}
 .row{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
@@ -40,7 +40,7 @@ header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px s
 .feat h3{font-size:1.6rem;font-weight:700}.fn{color:var(--pu);font-weight:600;margin-top:6px;font-size:1.02rem}
 .q1{font-size:1.45rem;line-height:1.48;margin:0 0 16px;max-width:34em;font-weight:500}.why{color:var(--mu);margin:0;max-width:40em;font-size:1.05rem}.why b{color:var(--ink);font-weight:600}
 .nav{display:flex;justify-content:space-between;gap:14px;margin-top:54px;flex-wrap:wrap}
-.card{background:#E8DAD2;border-radius:24px;padding:40px}
+.card{background:var(--card);border-radius:24px;padding:40px}
 .grid{display:grid;grid-template-columns:1.35fr .85fr;gap:36px;align-items:start}
 .mapc{background:var(--bg);border:1.5px solid var(--ln);border-radius:24px;padding:18px}
 svg text{font-family:"DM Sans",sans-serif}.nd{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:transform .24s cubic-bezier(.25,1,.5,1)}.nd:hover{transform:scale(1.12)}.nd:active{transform:scale(.96)}.nd:focus-visible{outline:none}.nd:focus-visible circle{stroke:var(--ink);stroke-width:3}.nd circle{transition:r .24s cubic-bezier(.25,1,.5,1),stroke-width .24s ease,stroke .24s ease}#pn{transition:opacity .14s ease,transform .14s ease}
@@ -49,49 +49,105 @@ svg text{font-family:"DM Sans",sans-serif}.nd{cursor:pointer;transform-box:fill-
 .tag{display:inline-block;background:var(--pu2);color:var(--pu);font-size:.88rem;font-weight:700;padding:4px 14px;border-radius:999px;margin-top:12px}
 .pb h3{font-size:2rem;font-weight:800}.pb dl{margin:28px 0 0;display:grid;gap:18px}.pb dt{color:var(--mu);font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}.pb dd{margin:4px 0 0;font-weight:500;font-size:1.02rem}
 .rc{display:inline-block;background:#fff;border:1.5px solid var(--ln);border-radius:999px;padding:4px 14px;font-size:.9rem;margin:0 8px 8px 0}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.chip{border:1.5px solid var(--ln);background:#fff;border-radius:999px;padding:6px 16px;font-size:.9rem;font-weight:500;transition:.2s}.chip:hover{border-color:var(--pk2);color:var(--pu)}
-.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:34px 0}
-.opt{text-align:left;background:#fff;border:1.5px solid var(--ln);border-radius:16px;padding:16px 18px;transition:.2s}.opt:hover{border-color:var(--pk2)}.opt b{display:block;font-size:1.02rem}.opt span{display:block;color:var(--mu);font-size:.84rem;line-height:1.42;margin-top:4px}
-.opt[aria-pressed="true"],.sel[aria-pressed="true"]{border-color:var(--pu);background:var(--pu2)}
-label{display:block;font-weight:700;font-size:1.08rem;margin:34px 0 12px}label small{font-weight:400;color:var(--mu);font-size:.9rem}
-input[type=text]{width:100%;background:#fff;border:1.5px solid var(--ln);border-radius:16px;padding:16px 18px;font-size:1.05rem;transition:.2s}input[type=text]:focus{border-color:var(--pu);outline:none;box-shadow:0 0 0 3px var(--pu2)}
-.sel{border:1.5px solid var(--ln);background:#fff;border-radius:999px;padding:8px 18px;font-size:.94rem;font-weight:500;transition:.2s}.sel:hover{border-color:var(--pk2)}
-.dots{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 44px}.dt{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--ln);background:#fff;font-size:.82rem;font-weight:700;color:var(--mu);padding:0;transition:.15s}.dt:hover{border-color:var(--pu)}.dt.ok{background:var(--pu);border-color:var(--pu);color:#fff}.dt.cur{box-shadow:0 0 0 4px var(--pk)}
-.msg{color:var(--pu);font-size:.92rem;min-height:1.4em;margin-top:14px;font-weight:600}
+.nav .sp{flex:1}
+.btn:disabled,.btn[disabled]{opacity:.35;cursor:default;filter:none}
+.prog{display:flex;gap:6px;margin-bottom:14px}
+.prog i{flex:1;height:6px;border-radius:3px;background:var(--ln);overflow:hidden;position:relative}
+.prog i b{position:absolute;inset:0 auto 0 0;border-radius:3px;transition:width .3s ease}
+.meta{display:flex;justify-content:space-between;color:var(--mu);font-size:.86rem;margin-bottom:44px}
+.tag{display:inline-block;background:var(--pu2);color:var(--pu);font-weight:700;font-size:.82rem;padding:3px 12px;border-radius:999px}
+.q{font-size:clamp(1.9rem,6vw,2.7rem);margin:14px 0 36px;line-height:1.15;font-weight:700;letter-spacing:-.02em}
+.st{display:flex;gap:12px;align-items:center;font-weight:600;margin:0 0 14px}
+.sn{flex:none;width:34px;height:34px;border-radius:50%;background:var(--pu);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.opts{display:grid;gap:10px;margin-bottom:36px}
+.opt{display:flex;gap:14px;align-items:center;text-align:left;background:#fff;border:1.5px solid var(--ln);border-radius:16px;padding:14px 18px;width:100%;transition:.2s;cursor:pointer}
+.opt:hover{border-color:var(--pk2)}
+.opt .rd{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--ln);background:#fff;transition:.2s}
+.opt b{display:block;font-size:1rem;color:var(--ink)}
+.opt span{display:block;color:var(--mu);font-size:.88rem;line-height:1.35}
+.opt em{margin-left:auto;font-style:normal;font-size:.76rem;font-weight:600;color:var(--mu);white-space:nowrap}
+.opt[aria-checked="true"]{border-color:var(--pu);background:var(--pu2)}
+.opt[aria-checked="true"] .rd{border:6px solid var(--pu);background:#fff}
+.chg{margin:0 0 24px;color:var(--mu)}
+.chg b{color:var(--ink)}
+.lnk{background:none;border:0;padding:8px 4px;color:var(--mu);text-decoration:underline;cursor:pointer;font:inherit}
+.lnk:hover{color:var(--pu)}
+label.dl{display:block;font-weight:600;margin:0 0 8px;font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.chip,.sel{border:1.5px solid var(--ln);background:#fff;border-radius:999px;padding:6px 16px;font-size:.92rem;transition:.2s;cursor:pointer;color:var(--ink);font:inherit}
+.chip:hover,.sel:hover{border-color:var(--pk2)}
+.chip[aria-pressed="true"],.sel[aria-pressed="true"]{border-color:var(--pu);background:var(--pu2);color:var(--pu);font-weight:600}
+.note{background:#fff;border:1.5px solid var(--ln);border-radius:14px;padding:14px 18px;color:var(--mu);margin-bottom:36px;line-height:1.5}
+.msg{color:var(--pu);font-size:.92rem;min-height:1.5em;margin-top:16px;font-weight:600}
+.rv h3{font-size:1.15rem;margin:32px 0 8px}
+.rv .rw{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--ln)}
+.rv .rw>div{flex:1}
+.rv .rw small{display:block;color:var(--mu);margin-top:2px}
+.miss{color:var(--pu);font-weight:600}
+input[type=text]{width:100%;background:#fff;border:1.5px solid var(--ln);border-radius:16px;padding:16px 18px;font-size:1.05rem;transition:.2s}
+input[type=text]:focus{border-color:var(--pu);outline:none;box-shadow:0 0 0 3px var(--pu2)}
+@keyframes fall{to{opacity:0;transform:translateY(-10px)}}
+.q-out{animation:fall .22s ease forwards}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.rise{animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
+@media(prefers-reduced-motion:reduce){.rise,.q-out{animation:none}}
 .scroll{overflow-x:auto;border:1.5px solid var(--ln);border-radius:20px;margin:24px 0}
-table{border-collapse:collapse;width:100%;min-width:680px;font-size:1rem}th,td{padding:16px 20px;text-align:left;border-bottom:1.5px solid var(--ln)}tr:last-child td{border:0}th{color:var(--mu);font-weight:600;font-size:.88rem;background:#E8DAD2}
-tbody tr[data-p]{cursor:pointer;transition:.2s}tbody tr[data-p]:hover{background:#E8DAD2}tr.on td{background:var(--pu2)}td.x{text-align:center;color:var(--pu);font-weight:700;font-size:1.15rem}th.c{text-align:center}
-.dd{position:relative;margin-top:0}.dd>.sel{display:flex;width:100%;justify-content:space-between;gap:12px;padding:14px 20px;border-radius:16px;font-weight:600;font-size:1rem}.dm{position:absolute;left:0;right:0;top:calc(100% + 8px);max-height:360px;overflow:auto;background:#fff;border:1.5px solid var(--ln);border-radius:18px;padding:10px;box-shadow:0 22px 38px -18px rgba(30,18,54,.3);z-index:6}.dm[hidden]{display:none}.dm h4{margin:12px 12px 6px;font-size:.78rem;color:#E0207F;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.mi{display:block;width:100%;text-align:left;background:none;border:0;padding:10px 12px;margin-bottom:3px;border-radius:12px;font-size:.95rem;transition:.15s}.mi:hover,.mi[aria-current="true"]{background:var(--pu2)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:1rem}th,td{padding:16px 20px;text-align:left;border-bottom:1.5px solid var(--ln)}tr:last-child td{border:0}th{color:var(--mu);font-weight:600;font-size:.88rem;background:var(--card)}
+tbody tr[data-p]{cursor:pointer;transition:.2s}tbody tr[data-p]:hover{background:var(--card)}tr.on td{background:var(--pu2)}td.x{text-align:center;color:var(--pu);font-weight:700;font-size:1.15rem}th.c{text-align:center}
+.dd{position:relative;margin-top:0}.dd>.sel{display:flex;width:100%;justify-content:space-between;gap:12px;padding:14px 20px;border-radius:16px;font-weight:600;font-size:1rem}.dm{position:absolute;left:0;right:0;top:calc(100% + 8px);max-height:360px;overflow:auto;background:#fff;border:1.5px solid var(--ln);border-radius:18px;padding:10px;box-shadow:0 22px 38px -18px rgba(18,36,25,.3);z-index:6}.dm[hidden]{display:none}.dm h4{margin:12px 12px 6px;font-size:.78rem;color:#005224;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.mi{display:block;width:100%;text-align:left;background:none;border:0;padding:10px 12px;margin-bottom:3px;border-radius:12px;font-size:.95rem;transition:.15s}.mi:hover,.mi[aria-current="true"]{background:var(--pu2)}
 .sec{margin-top:90px}.sec h3{font-size:1.85rem;font-weight:700;margin-bottom:28px}
 .ph{display:grid;grid-template-columns:160px 1fr 38px;gap:16px;align-items:center;margin:16px 0;font-size:1rem}.ph .t{height:10px;background:var(--pu2);border-radius:5px;overflow:hidden}.ph .t i{display:block;height:100%;background:var(--pu);border-radius:5px}
 ul.n{padding-left:24px;margin:0}ul.n li{margin:14px 0;font-size:1.02rem}
 .link{background:none;border:0;padding:0;color:var(--pu);text-decoration:underline;font-weight:500}
-body{overflow-x:hidden}.band{background:#FAF7F3;margin:120px calc(50% - 50vw) -140px;padding:80px 0 130px}.band-in{max-width:1440px;width:100%;padding:0 32px;margin:0 auto;display:flex;flex-direction:column;align-items:center}.fan-t{text-align:center;font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:800;letter-spacing:-.02em;margin:0 0 24px}.ft{border-top:1.5px solid #E2D7CE;background:var(--bg)}.fi{max-width:1440px;width:92%;margin:0 auto;padding:48px 0 calc(48px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:1fr 1fr;gap:24px 40px;align-items:start}.ft p{margin:0;color:var(--mu);font-size:1rem;line-height:1.65}.ft .a{max-width:28em;color:var(--ink);font-size:1.02rem;font-weight:500}.ft img{height:44px;width:auto;display:block;margin:0;grid-column:1/-1}.ft .l{text-align:left}.ft .r{text-align:right;justify-self:end}@media(max-width:760px){.fi{grid-template-columns:1fr}.ft .r{text-align:left;justify-self:start}}.fan-t em{font-weight:400}
+body{overflow-x:hidden}.band{background:#F6FAF7;margin:120px calc(50% - 50vw) -140px;padding:80px 0 130px}.band-in{max-width:1440px;width:100%;padding:0 32px;margin:0 auto;display:flex;flex-direction:column;align-items:center}.fan-t{text-align:center;font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:800;letter-spacing:-.02em;margin:0 0 24px}.ft{border-top:1.5px solid var(--ln);background:var(--bg)}.fi{max-width:1440px;width:92%;margin:0 auto;padding:48px 0 calc(48px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:1fr 1fr;gap:24px 40px;align-items:start}.ft p{margin:0;color:var(--mu);font-size:1rem;line-height:1.65}.ft .a{max-width:28em;color:var(--ink);font-size:1.02rem;font-weight:500}.ft img{height:44px;width:auto;display:block;margin:0;grid-column:1/-1}.ft .l{text-align:left}.ft .r{text-align:right;justify-self:end}@media(max-width:760px){.fi{grid-template-columns:1fr}.ft .r{text-align:left;justify-self:start}}.fan-t em{font-weight:400}
 .fan{display:flex;justify-content:center;justify-content:safe center;align-items:flex-start;padding:95px 36px 60px;overflow-x:auto;width:100%;scrollbar-width:none}.fan::-webkit-scrollbar{display:none}
-.cd{position:relative;flex:none;width:clamp(190px, 13vw, 215px);min-height:clamp(310px, 21vw, 360px);border:0;text-align:left;color:var(--tc);border-radius:24px;padding:32px 20px 26px;margin:0 -8px;transform:rotate(var(--r)) translateY(var(--y));transition:transform .55s cubic-bezier(.25,1,.5,1),box-shadow .55s ease;box-shadow:0 16px 32px -12px rgba(30,18,54,.18);cursor:pointer;will-change:transform}.cd:first-child{margin-left:0}.cd:last-child{margin-right:0}
-.cd:hover,.cd:focus-visible{transform:rotate(0) translateY(-22px) scale(1.035);z-index:6;box-shadow:0 28px 48px -14px rgba(30,18,54,.3)}
+.cd{position:relative;flex:none;width:clamp(190px, 13vw, 215px);min-height:clamp(310px, 21vw, 360px);border:0;text-align:left;color:var(--tc);border-radius:24px;padding:32px 20px 26px;margin:0 -8px;transform:rotate(var(--r)) translateY(var(--y));transition:transform .55s cubic-bezier(.25,1,.5,1),box-shadow .55s ease;box-shadow:0 16px 32px -12px rgba(18,36,25,.18);cursor:pointer;will-change:transform}.cd:first-child{margin-left:0}.cd:last-child{margin-right:0}
+.cd:hover,.cd:focus-visible{transform:rotate(0) translateY(-22px) scale(1.035);z-index:6;box-shadow:0 28px 48px -14px rgba(18,36,25,.3)}
 .cd .ct{display:block;font-size:clamp(1.55rem, 1.6vw, 1.85rem);font-weight:800;letter-spacing:-.02em;margin:8px 0 14px}.cd .rl{display:block;border-top:3px solid currentColor;margin-bottom:16px;opacity:.85}
 .cd .li{display:block;padding-left:20px;position:relative;font-size:clamp(0.92rem, 0.95vw, 1.02rem);line-height:1.45;margin:0 0 10px;font-weight:500}.cd .li:before{content:"✦";position:absolute;left:0;font-size:.8rem}
-.cd .st{position:absolute;top:-36px;right:14px;width:64px;height:64px;transform:rotate(8deg);filter:drop-shadow(0 4px 8px rgba(30,18,54,.12))}
-.ill{border-radius:20px;overflow:hidden;background:var(--s);margin-bottom:28px;width:100%;max-width:440px;height:clamp(140px,25vw,175px)}.ill svg{display:block;width:100%;height:100%}.hero{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}.hero>div:first-child{display:flex;flex-direction:column;justify-content:center}.hero .ill{margin:0;display:flex;align-items:center;justify-content:center;background:#E8DAD2;box-shadow:0 20px 48px -16px rgba(30,18,54,.14);border-radius:28px;aspect-ratio:1;max-width:660px;max-height:none;width:100%;height:auto;justify-self:center}.hero .ill svg{width:100%;height:100%;display:block}
+.cd .st{position:absolute;top:-36px;right:14px;width:64px;height:64px;transform:rotate(8deg);filter:drop-shadow(0 4px 8px rgba(18,36,25,.12))}
+.ill{border-radius:20px;overflow:hidden;background:var(--s);margin-bottom:28px;width:100%;max-width:440px;height:clamp(140px,25vw,175px)}.ill svg{display:block;width:100%;height:100%}.hero{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}.hero>div:first-child{display:flex;flex-direction:column;justify-content:center}.hero .ill{margin:0;display:flex;align-items:center;justify-content:center;background:var(--card);box-shadow:0 20px 48px -16px rgba(18,36,25,.14);border-radius:28px;aspect-ratio:1;max-width:660px;max-height:none;width:100%;height:auto;justify-self:center}.hero .ill svg{width:100%;height:100%;display:block}
 @media(max-width:1300px){.fan{justify-content:flex-start;padding-left:36px;padding-right:36px}}
 @media(max-width:1000px){.hero{grid-template-columns:1fr;gap:44px}.grid{grid-template-columns:1fr}.feat{grid-template-columns:1fr;gap:20px}}
-@media(max-width:760px){.fan{justify-content:flex-start;padding-left:16px;padding-top:75px}.cd{width:185px;min-height:290px}.hero .ill svg{aspect-ratio:1;height:auto;min-height:0}.stp button span{display:none}.nv{padding:8px}.ph{grid-template-columns:110px 1fr 30px}.wrap{padding-top:40px}}
+@media(max-width:800px){
+  .bar{padding:12px 0;gap:8px}
+  .mast{font-size:clamp(0.92rem, 3.8vw, 1.15rem);white-space:nowrap;flex-shrink:0}
+  .nv{padding:6px 12px;font-size:.86rem}
+  .band{margin:70px calc(50% - 50vw) -80px;padding:50px 0 70px}
+  .band-in{padding:0 16px}
+  .fan-t{font-size:clamp(1.9rem, 6vw, 2.7rem);margin-bottom:14px;text-align:center}
+  .fan{display:flex;flex-direction:column;align-items:center;padding:42px 12px 24px;overflow-x:visible;width:100%;gap:34px}
+  .cd{width:100%;max-width:340px;min-height:auto;margin:0;transform:none!important;border-radius:24px;padding:32px 24px 28px;box-shadow:0 12px 28px -10px rgba(18,36,25,.16)}
+  .cd:hover,.cd:focus-visible{transform:translateY(-4px)!important;box-shadow:0 20px 38px -12px rgba(18,36,25,.24)}
+  .cd .st{top:-26px;right:18px;width:58px;height:58px;transform:rotate(4deg)}
+  .cd .ct{font-size:1.75rem;margin:4px 0 14px}
+  .cd .rl{margin-bottom:16px}
+  .cd .li{font-size:1.02rem;margin:0 0 10px}
+  .hero .ill svg{aspect-ratio:1;height:auto;min-height:0}
+  .stp button span{display:none}
+  .ph{grid-template-columns:110px 1fr 30px}
+  .wrap{padding-top:40px}
+}
+@media(max-width:400px){
+  .bar{gap:4px}
+  .mast{font-size:clamp(0.82rem, 3.4vw, 0.95rem)}
+  .nv{padding:5px 8px;font-size:.8rem}
+}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 .dash-hdr{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
 .dash-hdr h2{font-size:clamp(2.4rem,5.5vw,3.6rem)}
 .dash-acts{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.btn-pdf{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--ln);color:var(--ink);padding:12px 22px;border-radius:999px;font-weight:600;font-size:.95rem;transition:.2s;box-shadow:0 4px 12px rgba(30,18,54,.04)}
+.btn-pdf{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--ln);color:var(--ink);padding:12px 22px;border-radius:999px;font-weight:600;font-size:.95rem;transition:.2s;box-shadow:0 4px 12px rgba(18,36,25,.04)}
 .btn-pdf:hover{background:var(--pu2);border-color:var(--pu);color:var(--pu);transform:translateY(-1px)}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-bottom:44px}
-.kpi{background:#E8DAD2;border-radius:22px;padding:24px 26px;display:flex;flex-direction:column;justify-content:space-between;position:relative;box-shadow:0 10px 24px -10px rgba(30,18,54,.08)}
+.kpi{background:var(--card);border-radius:22px;padding:24px 26px;display:flex;flex-direction:column;justify-content:space-between;position:relative;box-shadow:0 10px 24px -10px rgba(18,36,25,.08)}
 .kpi .lbl{font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
 .kpi .val{font-size:clamp(1.5rem,2.1vw,2.1rem);font-weight:800;color:var(--ink);line-height:1.15;margin-bottom:6px}
 .kpi .subt{font-size:.9rem;color:var(--mu);line-height:1.45}
 .badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:700;width:fit-content}
-.badge.ok{background:#E2F2E9;color:#185736}
-.badge.warn{background:#FFE3ED;color:#C4136B}
-.badge.info{background:#E8F0FE;color:#1A56DB}
+.badge.ok{background:#D8EADE;color:#005224}
+.badge.warn{background:#FFF2E5;border:1px solid #F7CCA0;color:#9A4209}
+.badge.info{background:#E5EDF8;color:#1853B8}
 .map-ctrls{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .mtabs{display:inline-flex;background:#fff;border:1.5px solid var(--ln);border-radius:999px;padding:4px;gap:4px}
 .mtab{background:none;border:0;padding:7px 16px;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--mu);transition:.2s}
@@ -99,31 +155,31 @@ body{overflow-x:hidden}.band{background:#FAF7F3;margin:120px calc(50% - 50vw) -1
 .mtab.on{background:var(--pu);color:#fff}
 .map-hint{font-size:.84rem;color:var(--mu)}
 .lv-mat{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin-top:20px}
-.lv-row{background:#E8DAD2;border-radius:18px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.lv-row{background:var(--card);border-radius:18px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
 .lv-top{display:flex;justify-content:space-between;align-items:center}
 .lv-name{font-weight:700;font-size:1.02rem}
 .lv-roles{display:flex;gap:6px;flex-wrap:wrap}
 .r-dot{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--ln)}
-.r-dot.ok{background:#EBF7F0;border-color:#A3D9B5;color:#1B5E3C}
-.r-dot.gap{background:#FFF0F5;border-color:#F5B7CE;color:#C4136B}
-.r-dot.int{background:#FFF7EC;border-color:#FCD8A8;color:#A85507}
+.r-dot.ok{background:#D8EADE;border-color:#A3D1B2;color:#005224}
+.r-dot.gap{background:#FFF2E5;border-color:#F7CCA0;color:#9A4209}
+.r-dot.int{background:#FEF9E7;border-color:#F5E09A;color:#856208}
 .print-head,.print-map-hdr{display:none}
 @media print{
   @page{margin:10mm 12mm;size:A4 portrait}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  body{background:#fff!important;color:#1E1236!important;font-size:10pt!important;line-height:1.4!important}
+  body{background:#fff!important;color:#122419!important;font-size:10pt!important;line-height:1.4!important}
   header,footer,.dash-acts,.nav,.row,button,.mtabs,.dd,.link,.map-ctrls,.map-hint,.card,#pb,.pb{display:none!important}
   .wrap{max-width:100%!important;width:100%!important;padding:0!important;margin:0!important}
-  .print-head{display:block!important;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #E8DAD2}
-  .print-head h1{font-size:22pt;font-weight:800;margin:0 0 4px;color:#1E1236}
-  .print-head p{font-size:9.5pt;color:#5A4E75;margin:0}
+  .print-head{display:block!important;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #DEEAE2}
+  .print-head h1{font-size:22pt;font-weight:800;margin:0 0 4px;color:#122419}
+  .print-head p{font-size:9.5pt;color:#4D6355;margin:0}
   .kpis{grid-template-columns:repeat(4,1fr)!important;gap:10px!important;margin-bottom:20px!important;page-break-inside:avoid!important;break-inside:avoid!important}
-  .kpi{background:#F6F0EA!important;border:1px solid #E2D7CE!important;padding:14px!important;box-shadow:none!important}
+  .kpi{background:#EAF2EC!important;border:1px solid #CFDFD6!important;padding:14px!important;box-shadow:none!important}
   .kpi .val{font-size:14pt!important}
   .map-page-sec{page-break-before:always!important;break-before:page!important;page-break-after:always!important;break-after:page!important;page-break-inside:avoid!important;break-inside:avoid!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;width:100%!important;margin:0 auto!important;padding:10mm 0!important;box-sizing:border-box!important}
   .print-map-hdr{display:block!important;text-align:center!important;margin-bottom:14px!important}
-  .print-map-hdr h2{font-size:17pt!important;font-weight:800!important;margin:0 0 4px!important;color:#1E1236!important}
-  .print-map-hdr p{font-size:9.5pt!important;color:#5A4E75!important;margin:0!important}
+  .print-map-hdr h2{font-size:17pt!important;font-weight:800!important;margin:0 0 4px!important;color:#122419!important}
+  .print-map-hdr p{font-size:9.5pt!important;color:#4D6355!important;margin:0!important}
   .map-page-sec .grid{display:flex!important;flex-direction:column!important;align-items:center!important;width:100%!important;margin:0 auto!important;gap:0!important}
   .map-page-sec .card,.card#pb,#pb,.card,.pb{display:none!important}
   .map-stage{width:100%!important;max-width:170mm!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;align-items:center!important}
@@ -131,12 +187,12 @@ body{overflow-x:hidden}.band{background:#FAF7F3;margin:120px calc(50% - 50vw) -1
   #ecosvg{width:100%!important;height:auto!important;max-height:165mm!important;display:block!important;margin:0 auto!important}
   .leg{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:8px 18px!important;margin:14px auto 0!important;font-size:8.5pt!important}
   .sec{margin-top:24px!important;page-break-inside:avoid!important;break-inside:avoid!important}
-  .scroll{overflow:visible!important;border:1px solid #E2D7CE!important}
+  .scroll{overflow:visible!important;border:1px solid #CFDFD6!important}
   table{min-width:100%!important;font-size:9pt!important}
-  th{background:#E8DAD2!important}
+  th{background:#DEEAE2!important}
   tr{page-break-inside:avoid!important;break-inside:avoid!important}
   .lv-mat{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;page-break-inside:avoid!important;break-inside:avoid!important}
-  .lv-row{background:#F6F0EA!important;border:1px solid #E2D7CE!important;padding:12px!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .lv-row{background:#EAF2EC!important;border:1px solid #CFDFD6!important;padding:12px!important;page-break-inside:avoid!important;break-inside:avoid!important}
 }
 </style></head><body>
 <header><div class="bar"><button class="mast" data-v="home">Relationship Ecosystem</button>
@@ -169,53 +225,76 @@ const CH=[
 ["Industry expert","Sets the standard in your field","You cite their work, ask for their critique and measure your own against it.","Standing in your field requires knowing who defines it."],
 ["Mentee/protégé","Is being developed by you","You hear your younger self in their question and answer it better than anyone answered you.","Teaching is how you find out what you really know."],
 ["Successor","Is prepared to carry the work","You step back from a task and nothing falls apart. That is the proof.","A vision with no successor is a personal project."]]}];
-const ST=[["Active","Doing this now, with recent evidence"],["Intermittent","Occasional, not consistent"],["Historical","Did this in the past, not now"],["Potential","Could, but not yet established"],["Absent","No identifiable person"]];
+const ST=[["Active","Yes, someone does this now","They have done it recently and reliably."],["Intermittent","Sometimes","They help now and then, but not consistently."],["Historical","They used to","Someone did this in the past but not any more."],["Potential","Not yet, but someone could","They have the capacity but have not been asked."],["Absent","No one","I cannot name anyone for this role."]];
 const SC={Active:4,Intermittent:3,Historical:2,Potential:1,Absent:0};
-const COL={Active:"#E0207F",Intermittent:"#FF9CC9",Historical:"#fff",Potential:"#fff",Absent:"#FFEAF3"};
-const CIR={"Inner circle":"#FF5CA5","Professional":"#FF9CC9","Community":"#FFC6DE","Personal":"#FFE3F0"};
+const COL={Active:"#005224",Intermittent:"#248A4E",Historical:"#fff",Potential:"#fff",Absent:"#E5F0E9"};
+const CIR={"Inner circle":"#005224","Professional":"#207345","Community":"#4B946A","Personal":"#7EB695"};
 const LAST=["This week","This month","1–3 months","Over 3 months"];
-const ALL=CH.flatMap((c,ci)=>c.it.map(i=>({ci,name:i[0],fn:i[1],sc:i[2],why:i[3]})));
+const REACH=["Phone","Email","In person"];
+const ROLES_Q=[
+[0,"Trusted confidant","Who can you tell the unfiltered truth to?"],
+[0,"Spiritual development partner","Who grows your inner life with you?"],
+[0,"Personal support partner","Who shows up for you in everyday life?"],
+[1,"Mentor","Who guides your path from further along?"],
+[1,"Coach","Who helps you improve how you perform?"],
+[1,"Consultant","Who do you bring in for specialist expertise?"],
+[2,"Strategic adviser","Who helps you decide where to focus and play?"],
+[2,"Intellectual peer","Who sharpens your thinking as an equal?"],
+[2,"Accountability partner","Who checks that you do what you said you would?"],
+[3,"Sponsor","Who puts your name forward when you are not in the room?"],
+[3,"Advocate","Who speaks up for the value of your work?"],
+[3,"Connector","Who introduces you to the right people?"],
+[4,"Strategic partner","Who shares your long-term direction and builds toward it with you?"],
+[4,"Professional collaborator","Who do you do the work alongside?"],
+[4,"Investor/resource partner","Who backs you with money, access or resources?"],
+[5,"Industry expert","Whose expertise sets the standard in your field?"],
+[5,"Mentee/protégé","Who are you actively developing?"],
+[5,"Successor","Who is being prepared to carry your work forward?"]
+];
+const ALL=CH.flatMap((c,ci)=>c.it.map((i,idx)=>({ci,name:i[0],fn:i[1],sc:i[2],why:i[3],q:ROLES_Q[ci*3+idx][2]})));
 const A=document.getElementById("app"),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let view="home",ch=0,qi=0,sel=0,psel="";const ans={};
-const val=a=>!!(a&&a.s&&(a.s==="Absent"||(a.name||"").trim().length>1)),done=()=>ALL.filter((_,j)=>val(ans[j])).length;
+let view="home",ch=0,qi=0,step=1,fresh=false,sel=0,psel="";const ans={};
+const rm=()=>typeof matchMedia==="function"&&matchMedia("(prefers-reduced-motion:reduce)").matches;
+const val=a=>!!(a&&a.s&&(a.s==="Absent"||(a.name||"").trim().length>1)),done=()=>ALL.filter((_,j)=>val(ans[j])).length,cnt=done;
+const stepFor=j=>ans[j]&&ans[j].s&&ans[j].s!=="Absent"?2:1,go=j=>{qi=j;step=stepFor(j);assess()};
 const ini=n=>n.trim().split(/\s+/).slice(0,2).map(w=>w[0]).join("").toUpperCase();
-function nav(v){view=v;A.removeAttribute("style");["story","map","results"].forEach(k=>{const el=document.getElementById("n-"+k);if(el)el.setAttribute("aria-current",k===v)});const nr=document.getElementById("n-results");if(nr)nr.style.display=done()>0?"":"none";window.scrollTo(0,0)}
-const PAL=[["#2F6B52","#2F6B52","#7FB69C","#D5E7DD"],["#4B5FC9","#8EA2F5","#B9C5F9","#E1E7FD"],["#C4501F","#E8734A","#F2A07F","#FADCCF"],["#8C2F55","#8C2F55","#C0809A","#EBD2DC"],["#9B4EC2","#C58DE3","#E3BEF5","#F3E3FB"],["#E0207F","#FF5CA5","#FF9CC9","#FFC6DE"]];
+function nav(v,keep){view=v;A.removeAttribute("style");["story","map","results"].forEach(k=>{const el=document.getElementById("n-"+k);if(el)el.setAttribute("aria-current",k===v)});const nr=document.getElementById("n-results");if(nr)nr.style.display=done()>0?"":"none";if(!keep)window.scrollTo(0,0)}
+const PAL=[["#1E753E","#248A4E","#66C48B","#D2EEDC"],["#003D1A","#005224","#3E8D5C","#BFE0CB"],["#96701B","#CCA02E","#EAD07C","#F4E49F"],["#A05A0A","#D88B22","#EAA548","#F5D6AC"],["#B84314","#E8734A","#F29D7D","#F7C6B2"],["#D9453B","#F28B82","#F7ADA7","#FAC4C0"]];
 const setLv=i=>{const q=PAL[i];A.style.cssText=`--pu:${q[0]};--pu2:${q[3]};--pk:${q[3]};--pk2:${q[1]};--s:${q[3]}`};
-const pp=(x,y,s,c,h="#1E1236")=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M-18 0V-28a18 18 0 0 1 36 0V0Z" fill="${c}"/><circle cy="-62" r="14" fill="${h}"/></g>`;
-function ill(i){const [a,b,c,d]=PAL[i]||PAL[5],e="#FFE3F0";let g="";
+const pp=(x,y,s,c,h="#122419")=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M-18 0V-28a18 18 0 0 1 36 0V0Z" fill="${c}"/><circle cy="-62" r="14" fill="${h}"/></g>`;
+function ill(i){const [a,b,c,d]=PAL[i]||PAL[5],e="#D8EADE";let g="";
 if(i===0)g=`<path d="M200 112C165 86 168 50 192 52c6 0 8 5 8 9 0-4 2-9 8-9 24-2 27 34-8 60Z" fill="${a}"/>`+pp(160,200,1.5,b)+pp(240,200,1.5,c);
 else if(i===1)g=`<rect x="90" y="170" width="70" height="30" fill="${d}"/><rect x="160" y="140" width="70" height="60" fill="${c}"/><rect x="230" y="110" width="70" height="90" fill="${b}"/>`+pp(125,170,.9,a)+pp(265,110,1.1,"#fff");
-else if(i===2)g=pp(140,200,1.5,b)+`<rect x="260" y="60" width="8" height="140" fill="#1E1236"/><path d="M268 72h72l14 14-14 14h-72Z" fill="${a}"/><path d="M260 116h-62l-14 14 14 14h62Z" fill="${c}"/>`;
+else if(i===2)g=pp(140,200,1.5,b)+`<rect x="260" y="60" width="8" height="140" fill="#122419"/><path d="M268 72h72l14 14-14 14h-72Z" fill="${a}"/><path d="M260 116h-62l-14 14 14 14h62Z" fill="${c}"/>`;
 else if(i===3)g=`<rect x="250" y="50" width="100" height="150" rx="10" fill="${d}"/><rect x="266" y="66" width="68" height="134" rx="6" fill="#fff"/>`+pp(300,200,1.3,a)+pp(130,200,1.5,b)+`<path d="M165 120H245" stroke="${a}" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>`;
 else if(i===4)g=`<path d="M110 138Q150 60 200 110M200 110Q250 60 290 138" fill="none" stroke="${a}" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/><rect x="170" y="30" width="60" height="40" rx="8" fill="${b}"/><rect x="110" y="60" width="40" height="28" rx="6" fill="${c}"/><rect x="250" y="60" width="40" height="28" rx="6" fill="${c}"/>`+pp(110,200,1.2,c)+pp(200,200,1.5,b)+pp(290,200,1.2,d);
 else if(i===5)g=`<path d="M200 56l9 19 21 3-15 15 4 21-19-10-19 10 4-21-15-15 21-3Z" fill="${a}"/>`+pp(120,200,1.8,b)+pp(280,200,1,c)+`<path d="M170 130Q200 110 240 140" fill="none" stroke="${a}" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>`;
 else{const xs=[60,130,200,270,340],ss=[1.2,1.5,1.8,1.5,1.2],cs=[c,b,a,b,c];g=`<circle cx="200" cy="46" r="24" fill="${a}"/>`+xs.map((x,k)=>`<path d="M200 46L${x} ${200-62*ss[k]}" stroke="${b}" stroke-width="2" stroke-dasharray="4 6"/>`).join("")+xs.map((x,k)=>pp(x,200,ss[k],cs[k])).join("")}
 return `<svg viewBox="0 0 600 240" role="img" aria-label="Illustration of people connecting"><rect y="200" width="600" height="40" fill="${d}"/><g transform="translate(100 0)">${g}</g></svg>`}
-const CDS=[["#2F6B52","#fff",-5,14],["#8EA2F5","#1E1236",2,40],["#E8734A","#1E1236",-2,0],["#8C2F55","#fff",3,26],["#E3BEF5","#1E1236",-3,10],["#FF5CA5","#1E1236",4,36]];
-const K="#1E1236",SG=[`<path d="M28 41C16 33 15 23 21 19.5c3.5-2 6 0 7 3 1-3 3.5-5 7-3 6 3.5 5 13.5-7 21.5Z" fill="#FF5CA5" stroke="${K}" stroke-width="2" stroke-linejoin="round"/>`,
-`<rect x="14" y="29" width="8" height="11" rx="1.5" fill="#FFC6DE" stroke="${K}" stroke-width="2" stroke-linejoin="round"/><rect x="24" y="22" width="8" height="18" rx="1.5" fill="#FF9CC9" stroke="${K}" stroke-width="2" stroke-linejoin="round"/><rect x="34" y="15" width="8" height="25" rx="1.5" fill="#FF5CA5" stroke="${K}" stroke-width="2" stroke-linejoin="round"/>`,
-`<path d="M15 39L41 16 35 41 28 30Z" fill="#FF5CA5" stroke="${K}" stroke-width="2" stroke-linejoin="round"/>`,
-`<rect x="19" y="15" width="18" height="26" rx="3" fill="#FFC6DE" stroke="${K}" stroke-width="2" stroke-linejoin="round"/><circle cx="32" cy="28" r="2" fill="${K}"/>`,
-`<path d="M18 38L28 18L38 38Z" fill="none" stroke="${K}" stroke-width="2" stroke-linejoin="round"/>`+[[18,38],[28,18],[38,38]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#FF5CA5" stroke="${K}" stroke-width="2"/>`).join(""),
-`<g transform="translate(28 28.5) scale(.86) translate(-28 -28)"><path d="M28 12l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1Z" fill="#FF5CA5" stroke="${K}" stroke-width="2" stroke-linejoin="round"/></g>`];
+const CDS=[["#248A4E","#fff",-5,14],["#005224","#fff",2,40],["#F4E49F","#122419",-2,0],["#D88B22","#122419",3,26],["#E8734A","#122419",-3,10],["#F28B82","#122419",4,36]];
+const K="#122419",SG=[`<path d="M28 41C16 33 15 23 21 19.5c3.5-2 6 0 7 3 1-3 3.5-5 7-3 6 3.5 5 13.5-7 21.5Z" fill="#005224" stroke="${K}" stroke-width="2" stroke-linejoin="round"/>`,
+`<rect x="14" y="29" width="8" height="11" rx="1.5" fill="#D3E9DC" stroke="${K}" stroke-width="2" stroke-linejoin="round"/><rect x="24" y="22" width="8" height="18" rx="1.5" fill="#469766" stroke="${K}" stroke-width="2" stroke-linejoin="round"/><rect x="34" y="15" width="8" height="25" rx="1.5" fill="#005224" stroke="${K}" stroke-width="2" stroke-linejoin="round"/>`,
+`<path d="M15 39L41 16 35 41 28 30Z" fill="#005224" stroke="${K}" stroke-width="2" stroke-linejoin="round"/>`,
+`<rect x="19" y="15" width="18" height="26" rx="3" fill="#D3E9DC" stroke="${K}" stroke-width="2" stroke-linejoin="round"/><circle cx="32" cy="28" r="2" fill="${K}"/>`,
+`<path d="M18 38L28 18L38 38Z" fill="none" stroke="${K}" stroke-width="2" stroke-linejoin="round"/>`+[[18,38],[28,18],[38,38]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#005224" stroke="${K}" stroke-width="2"/>`).join(""),
+`<g transform="translate(28 28.5) scale(.86) translate(-28 -28)"><path d="M28 12l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1Z" fill="#005224" stroke="${K}" stroke-width="2" stroke-linejoin="round"/></g>`];
 const card=(c,i)=>{const d=CDS[i];return `<button class="cd" data-ch="${i}" style="background:${d[0]};--tc:${d[1]};--r:${d[2]}deg;--y:${d[3]}px" aria-label="Level ${i+1}: ${c.n}"><svg class="st" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="#fff" stroke="${K}" stroke-width="2"/>${SG[i]}</svg><span class="ct">${c.n}</span><span class="rl"></span>${c.it.map(x=>`<span class="li">${x[0]}</span>`).join("")}</button>`};
 function hero(){const cx=340,cy=340,r=225,
 angs=[-90,-30,30,90,150,210],
 tilts=[-2,18,12,-3,-12,-18],
 imgs=["Friends.jpg","pexels-kampus-5940707.jpg","pexels-silverkblack-36812790.jpg","pexels-helenalopes-4453155.jpg","pexels-olia-danilevich-5313173.jpg","pexels-shkrabaanthony-5466239.jpg"],
 cw=160,ch=190,cr=24;
-let defs=`<defs><filter id="csh" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1E1236" flood-opacity=".16"/></filter>`;
+let defs=`<defs><filter id="csh" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#122419" flood-opacity=".16"/></filter>`;
 for(let i=0;i<6;i++)defs+=`<clipPath id="cp${i}"><rect x="${-cw/2}" y="${-ch/2}" width="${cw}" height="${ch}" rx="${cr}"/></clipPath>`;
 defs+=`</defs>`;
 let lines="",cards="";
 for(let i=0;i<6;i++){
 const rad=angs[i]*Math.PI/180,x=+(cx+r*Math.cos(rad)).toFixed(1),y=+(cy+r*Math.sin(rad)).toFixed(1);
-lines+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(224,32,127,.28)" stroke-width="2" stroke-dasharray="4 6"/>`;
-cards+=`<g transform="translate(${x} ${y}) rotate(${tilts[i]})" filter="url(#csh)"><rect x="${-cw/2-4}" y="${-ch/2-4}" width="${cw+8}" height="${ch+8}" rx="${cr+2}" fill="#fff"/><g clip-path="url(#cp${i})"><image href="${imgs[i]}" xlink:href="${imgs[i]}" x="${-cw/2}" y="${-ch/2}" width="${cw}" height="${ch}" preserveAspectRatio="xMidYMid slice"/></g><rect x="${-cw/2}" y="${-ch/2}" width="${cw}" height="${ch}" rx="${cr}" fill="none" stroke="rgba(30,18,54,.08)" stroke-width="1.5"/></g>`;
+lines+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(0,82,36,.22)" stroke-width="2" stroke-dasharray="4 6"/>`;
+cards+=`<g transform="translate(${x} ${y}) rotate(${tilts[i]})" filter="url(#csh)"><rect x="${-cw/2-4}" y="${-ch/2-4}" width="${cw+8}" height="${ch+8}" rx="${cr+2}" fill="#fff"/><g clip-path="url(#cp${i})"><image href="${imgs[i]}" xlink:href="${imgs[i]}" x="${-cw/2}" y="${-ch/2}" width="${cw}" height="${ch}" preserveAspectRatio="xMidYMid slice"/></g><rect x="${-cw/2}" y="${-ch/2}" width="${cw}" height="${ch}" rx="${cr}" fill="none" stroke="rgba(18,36,25,.08)" stroke-width="1.5"/></g>`;
 }
-const rings=[85,155,225].map(rad=>`<circle cx="${cx}" cy="${cy}" r="${rad}" fill="none" stroke="rgba(224,32,127,.18)" stroke-width="1.5" stroke-dasharray="4 6"/>`).join("");
-const center=`<g transform="translate(340 340)"><circle cx="0" cy="0" r="84" fill="rgba(255,255,255,.55)"/><ellipse cx="0" cy="60" rx="46" ry="11" fill="rgba(30,18,54,.12)"/><g transform="translate(0 60) scale(1.65)"><path d="M-18 0V-28a18 18 0 0 1 36 0V0Z" fill="#E0207F"/><circle cy="-62" r="14" fill="#1E1236"/></g></g>`;
+const rings=[85,155,225].map(rad=>`<circle cx="${cx}" cy="${cy}" r="${rad}" fill="none" stroke="rgba(0,82,36,.18)" stroke-width="1.5" stroke-dasharray="4 6"/>`).join("");
+const center=`<g transform="translate(340 340)"><ellipse cx="0" cy="60" rx="46" ry="11" fill="rgba(18,36,25,.12)"/><g transform="translate(0 60) scale(1.65)"><path d="M-18 0V-28a18 18 0 0 1 36 0V0Z" fill="#005224"/><circle cy="-62" r="14" fill="#122419"/></g></g>`;
 return `<svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Illustration of people connecting around you">${defs}${rings}${lines}${center}${cards}</svg>`}
 function home(){nav("home");A.innerHTML=`<div class="hero"><div><h1>Who is in<br>your <span>corner?</span></h1><p class="sub">Eighteen relationship roles across six levels. Walk through what a fully supported life looks like, then name the real people who fill each role.</p><div class="row"><button class="btn out" data-v="story">Walkthrough storyboard</button><button class="btn" data-v="assess">Take the assessment</button></div>
 </div><div class="ill">${hero()}</div></div><section class="band"><div class="band-in"><h2 class="fan-t">Walk the six levels, <em>one by one:</em></h2><div class="fan">${CH.map(card).join("")}</div></div></section>`}
@@ -228,38 +307,85 @@ A.innerHTML=`<div class="stp">${CH.map((x,i)=>{const isCur=(i===ch),isDone=(i<ch
 </div>
 ${c.it.map(it=>`<div class="feat"><div><h3>${it[0]}</h3><div class="fn">${it[1]}</div></div><div><p class="q1">${it[2]}</p><p class="why"><b>Why it matters.</b> ${it[3]}</p></div></div>`).join("")}
 <div class="nav"><button class="btn alt" data-a="prev">${ch?"Back":"Cover"}</button><button class="btn" data-a="next">${ch<5?"Next level":"See the map"}</button></div></section>`}
-const C=350,R=i=>78+i*48,POS=ALL.map((a,j)=>{const ang=((j%3)*120+a.ci*40+15-90)*Math.PI/180;return[+(C+R(a.ci)*Math.cos(ang)).toFixed(1),+(C+R(a.ci)*Math.sin(ang)).toFixed(1)]});
-function mapSvg(){
-let s='<svg viewBox="0 0 700 700" role="img" aria-label="Ecosystem map: six rings of relationship levels around you" id="msvg">';
-for(let i=5;i>=0;i--)s+=`<circle cx="${C}" cy="${C}" r="${R(i)+24}" fill="${PAL[i][3]}" opacity=".6"/>`;
-for(let i=0;i<6;i++)s+=`<circle cx="${C}" cy="${C}" r="${R(i)}" fill="none" stroke="${PAL[i][1]}" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>`;
-s+=`<line id="mray" x1="${C}" y1="${C}" x2="${POS[sel][0]}" y2="${POS[sel][1]}" stroke="${PAL[ALL[sel].ci][1]}" stroke-width="2.5" stroke-linecap="round"/>`;
-s+=`<circle id="mhalo" cx="${POS[sel][0]}" cy="${POS[sel][1]}" r="28" fill="none" stroke="${PAL[ALL[sel].ci][1]}" stroke-width="2" opacity=".6"/>`;
-s+=`<circle cx="${C}" cy="${C}" r="46" fill="#FFB8D6"/><text x="${C}" y="${C+6}" text-anchor="middle" font-weight="700" font-size="18" fill="var(--ink)">You</text>`;
-ALL.forEach((a,j)=>{const[x,y]=POS[j],st=ans[j]&&ans[j].s,q=PAL[a.ci],on=j===sel;let fill="#fff",stk=q[1],dash="",tc="var(--ink)";
-if(st==="Active"){fill=q[0];stk=q[0];tc="#fff"}else if(st==="Intermittent"){fill=q[2]}else if(st==="Historical")dash='stroke-dasharray="3 3"';else if(st==="Absent"){fill="#F6F1EC";stk="#CFC5BC"}
-s+=`<g class="nd ${on?"on":""}" id="nd-${j}" tabindex="0" role="button" data-n="${j}" aria-label="${a.name}${st?": "+st:""}"><circle cx="${x}" cy="${y}" r="${on?20:16}" fill="${fill}" stroke="${on?"var(--ink)":stk}" stroke-width="${on?3:2.5}" ${dash}/><text x="${x}" y="${y+4.5}" text-anchor="middle" font-size="12" font-weight="700" fill="${tc}">${j+1}</text></g>`});
-return s+"</svg>"}
-function panel(){const a=ALL[sel],r=ans[sel];return `<div class="k">${CH[a.ci].n}</div><h3 style="font-size:1.7rem">${sel+1}. ${a.name}</h3><div class="fn">${a.fn}</div>${r&&r.s?`<p style="margin-top:20px"><b>${r.s}</b>${r.name?" · "+esc(r.name):""}</p>`:`<p class="q1" style="margin-top:20px;font-size:1.1rem">${a.sc}</p><p class="why">${a.why}</p>`}`}
+const ECO_CX = 380, ECO_CY = 380;
+const ECO_R = [96, 146, 196, 246, 296, 346];
+const ECO_ANGS = ALL.map((a, j) => (((j % 3) * 120) + (a.ci * 25) - 80) * Math.PI / 180);
+const ECO_POS = ALL.map((a, j) => [+(ECO_CX + ECO_R[a.ci] * Math.cos(ECO_ANGS[j])).toFixed(1), +(ECO_CY + ECO_R[a.ci] * Math.sin(ECO_ANGS[j])).toFixed(1)]);
+function mapSvg() {
+    let s = '<svg viewBox="0 0 760 760" role="img" aria-label="Ecosystem map: six rings of relationship levels around you" id="msvg" style="width:100%;height:auto;display:block">';
+    for (let i = 5; i >= 0; i--) s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="${ECO_R[i] + 24}" fill="${PAL[i][3]}" opacity=".5"/>`;
+    for (let i = 0; i < 6; i++) s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="${ECO_R[i]}" fill="none" stroke="${PAL[i][1]}" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>`;
+    const selPt = ECO_POS[sel];
+    if (selPt) {
+        s += `<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${selPt[0]}" y2="${selPt[1]}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 4" opacity=".5"/>`;
+        s += `<circle cx="${selPt[0]}" cy="${selPt[1]}" r="28" fill="none" stroke="var(--ink)" stroke-width="2" opacity=".4"/>`;
+    }
+    s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(0,82,36,.28))"/><text x="${ECO_CX}" y="${ECO_CY + 5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
+    ALL.forEach((a, j) => {
+        const [x, y] = ECO_POS[j], ang = ECO_ANGS[j], isSel = (j === sel);
+        const r = ans[j], st = r ? r.s : "";
+        const isFilled = st && st !== "Absent" && r.name && r.name.trim().length > 1;
+        const labelDist = (isSel ? 20 : 17) + 16;
+        const lx = +(x + Math.cos(ang) * labelDist).toFixed(1);
+        const ly = +(y + Math.sin(ang) * labelDist + 4).toFixed(1);
+        s += `<g class="nd ${isSel ? 'on' : ''}" id="nd-${j}" tabindex="0" role="button" data-n="${j}" aria-label="${a.name}">`;
+        if (isSel) s += `<circle cx="${x}" cy="${y}" r="26" fill="none" stroke="var(--ink)" stroke-width="2.5" opacity=".85"/>`;
+        if (isFilled) {
+            let fillCol = "var(--pu)";
+            if (st === "Intermittent") fillCol = "var(--pk2)";
+            else if (st === "Potential") fillCol = "#E89D78";
+            else if (st === "Historical") fillCol = "#C0809A";
+            s += `<circle cx="${x}" cy="${y}" r="${isSel ? 18 : 15}" fill="${fillCol}" stroke="#fff" stroke-width="2"/>`;
+            s += `<text x="${x}" y="${y + 3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">${j + 1}</text>`;
+        } else {
+            s += `<circle cx="${x}" cy="${y}" r="${isSel ? 18 : 15}" fill="#fff" stroke="${PAL[a.ci][0]}" stroke-width="${isSel ? 2.5 : 1.8}"/>`;
+            s += `<text x="${x}" y="${y + 3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="${PAL[a.ci][0]}">${j + 1}</text>`;
+        }
+        s += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="10" font-weight="600" fill="var(--mu)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:3.5px;stroke-linejoin:round">${esc(a.name.split("/")[0].split(" ")[0])}</text>`;
+        s += `</g>`;
+    });
+    return s + "</svg>";
+}
+function people() { const m = {}; ALL.forEach((a, j) => { const r = ans[j]; if (!val(r) || r.s === "Absent") return; const k = r.name.trim().toLowerCase(), p = m[k] = m[k] || { k, name: r.name.trim(), roles: [], best: r.s, circle: "", last: "", contact: "" }; p.roles.push({ role: a.name, s: r.s, ci: a.ci, qi: j }); if (SC[r.s] > SC[p.best]) p.best = r.s; if (!p.circle && r.circle) p.circle = r.circle; if (r.last && (!p.last || LAST.indexOf(r.last) < LAST.indexOf(p.last))) p.last = r.last; if (!p.contact && r.contact) p.contact = r.contact }); return Object.values(m) }
+function panel() {
+    const a = ALL[sel], r = ans[sel], st = r ? r.s : "";
+    const hasPerson = st && st !== "Absent" && r && r.name && r.name.trim().length > 1;
+    const pName = hasPerson ? r.name.trim() : "";
+    return `<div>
+        <div class="k" style="color:var(--pu);font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px">${CH[a.ci].n}</div>
+        <h3 style="font-size:clamp(1.75rem,2.4vw,2.2rem);font-weight:800;color:var(--ink);margin:0 0 8px;line-height:1.15">${sel + 1}. ${a.name}</h3>
+        <div class="fn" style="color:var(--pk2);font-weight:600;font-size:1.05rem;margin:0 0 28px">${a.fn}</div>
+        <div style="font-size:1.15rem;font-weight:700;color:${hasPerson ? 'var(--ink)' : 'var(--mu)'};margin-bottom:34px">
+            ${hasPerson ? `<span class="tag" style="margin:0 10px 0 0;vertical-align:middle">${st}</span><span>${esc(pName)}</span>` : "Absent"}
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+            ${hasPerson ? 
+                `<button class="btn" data-q="${sel}">Edit this role →</button>` : 
+                `<button class="btn" data-q="${sel}">Take the assessment</button>`
+            }
+            <button class="btn alt" data-v="results">My results</button>
+        </div>
+    </div>`;
+}
 const filt=()=>`<div class="dd"><button class="sel" data-dd aria-expanded="false" aria-haspopup="true"><span>${sel+1}. ${ALL[sel].name}</span><span aria-hidden="true">▾</span></button><div class="dm" hidden>${CH.map((c,i)=>`<h4>${c.n}</h4>`+ALL.map((a,j)=>({a,j})).filter(x=>x.a.ci===i).map(x=>`<button class="mi" data-n="${x.j}" aria-current="${x.j===sel}">${x.j+1}. ${x.a.name}</button>`).join("")).join("")}</div></div>`;
-function map(){nav("map");A.innerHTML=`<h2 style="font-size:clamp(2.2rem,6vw,3.6rem)">The ecosystem map</h2><p class="sub" style="margin-bottom:56px">Foundation sits closest to you and Legacy furthest out. Select a role to read its story.</p>
-<div class="grid"><div><div class="mapc" id="mp">${mapSvg()}</div></div><div><div id="fl">${filt()}</div><div id="pn" style="margin-top:36px">${panel()}</div><div class="row" style="margin-top:36px"><button class="btn" data-v="assess">Take the assessment</button>${done()?`<button class="btn alt" data-v="results">My results</button>`:""}</div></div></div>`}
-let manim=null;
-function selNode(j){if(j===sel)return;const old=sel;sel=j;const fl=document.getElementById("fl"),pn=document.getElementById("pn");
-if(fl)fl.innerHTML=filt();
-if(pn){pn.style.opacity="0";pn.style.transform="translateY(4px)";setTimeout(()=>{pn.innerHTML=panel();pn.style.opacity="1";pn.style.transform="translateY(0)"},120)}
-const ray=document.getElementById("mray"),halo=document.getElementById("mhalo"),oNd=document.getElementById(`nd-${old}`),nNd=document.getElementById(`nd-${j}`);
-if(oNd){oNd.classList.remove("on");const c=oNd.querySelector("circle");if(c){c.setAttribute("r","16");c.setAttribute("stroke-width","2.5");const st=ans[old]&&ans[old].s;c.setAttribute("stroke",st==="Active"?PAL[ALL[old].ci][0]:PAL[ALL[old].ci][1])}}
-if(nNd){nNd.classList.add("on");const c=nNd.querySelector("circle");if(c){c.setAttribute("r","20");c.setAttribute("stroke-width","3");c.setAttribute("stroke","var(--ink)")}}
-if(ray&&halo&&POS[old]&&POS[j]){const[x0,y0]=POS[old],[x1,y1]=POS[j],c=PAL[ALL[j].ci][1];
-ray.setAttribute("stroke",c);halo.setAttribute("stroke",c);
-if(manim)cancelAnimationFrame(manim);
-const t0=performance.now(),dur=320;
-function glide(now){const p=Math.min((now-t0)/dur,1),ease=1-Math.pow(1-p,3),cx=+(x0+(x1-x0)*ease).toFixed(1),cy=+(y0+(y1-y0)*ease).toFixed(1);
-ray.setAttribute("x2",cx);ray.setAttribute("y2",cy);halo.setAttribute("cx",cx);halo.setAttribute("cy",cy);
-if(p<1)manim=requestAnimationFrame(glide);else manim=null}
-manim=requestAnimationFrame(glide)}
-else{const mp=document.getElementById("mp");if(mp)mp.innerHTML=mapSvg()}}
+function map(){nav("map");A.innerHTML=`<h2 style="font-size:clamp(2.2rem,6vw,3.6rem)">The ecosystem map</h2><p class="sub" style="margin-bottom:44px">Foundation sits closest to you and Legacy furthest out. Select a role to read its story.</p>
+<div class="grid"><div><div class="mapc" id="mp">${mapSvg()}</div></div><div><div id="fl">${filt()}</div><div id="pn" style="margin-top:28px">${panel()}</div></div></div>`}
+function selNode(j) {
+    if (j === sel) return;
+    sel = j;
+    const fl = document.getElementById("fl"), pn = document.getElementById("pn"), mp = document.getElementById("mp");
+    if (fl) fl.innerHTML = filt();
+    if (pn) {
+        pn.style.opacity = "0";
+        pn.style.transform = "translateY(4px)";
+        setTimeout(() => {
+            pn.innerHTML = panel();
+            pn.style.opacity = "1";
+            pn.style.transform = "translateY(0)";
+        }, 120);
+    }
+    if (mp) mp.innerHTML = mapSvg();
+}
 function note(){const a=ALL[qi],r=ans[qi]||{},s=r.s,nm=(r.name||"").trim(),w=nm.length>1?esc(nm):null,fn=a.fn.charAt(0).toLowerCase()+a.fn.slice(1),ro=a.name.toLowerCase();let t;
 if(!s)t=`${a.sc} Is there a real person in your life who ${fn}? Choose the status that is true today, not the one you hope for.`;
 else if(s==="Active")t=w?`${w} fills the ${ro} role right now. Would ${w} describe the relationship the same way?`:`Who is the first person who comes to mind, and what did they do for you recently?`;
@@ -268,37 +394,114 @@ else if(s==="Historical")t=w?`${w} once filled this role. What changed, and is i
 else if(s==="Potential")t=w?`${w} has the capacity but has not been asked. What is the smallest ask that would test it?`:`Who in your circle could be your ${ro} but has never been invited to?`;
 else t=`An honest gap, and a useful one. Who do you see doing this for others, and who could introduce you?`;
 if(a.ci>0){const p=ALL.map((x,j)=>val(ans[j])&&x.ci===a.ci-1?SC[ans[j].s]:null).filter(v=>v!==null);if(p.length>1&&p.reduce((x,y)=>x+y,0)/p.length<2)t+=` Your ${CH[a.ci-1].n} level is still thin, so this role may be easier once that is stronger.`}return t}
-function assess(){nav("assess");const a=ALL[qi],r=ans[qi]||{},s=r.s,on=s&&s!=="Absent";
-A.innerHTML=`<div class="dots">${ALL.map((x,j)=>{const ci=x.ci,isAns=val(ans[j]),isCur=(j===qi),col=PAL[ci][0];return `<button class="dt ${isAns?"ok":""} ${isCur?"cur":""}" data-q="${j}" aria-label="${x.name}" style="${isAns?`background:${col};border-color:${col};color:#fff`:''}${isCur?`border-color:${col};box-shadow:0 0 0 3px ${PAL[ci][3]};color:${col}`:''}">${j+1}</button>`}).join("")}</div>
-<div class="k">${CH[a.ci].n} · ${qi+1} of 18</div><h2 style="font-size:clamp(2rem,5vw,3.2rem)">${a.name}</h2><p class="sub" id="nt">${note()}</p>
-<div class="opts">${ST.map(x=>`<button class="opt" aria-pressed="${s===x[0]}" data-st="${x[0]}"><b>${x[0]}</b><span>${x[1]}</span></button>`).join("")}</div>
-${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"} <small>A real person; first name is fine</small></label><input type="text" id="nm" data-f="name" value="${esc(r.name||"")}" autocomplete="off">
-<label>Last contact <small>Optional</small></label><div class="chips" style="margin:0">${LAST.map(c=>`<button class="sel" aria-pressed="${r.last===c}" data-la="${c}">${c}</button>`).join("")}</div>
-<label>How do you primarily reach them? <small>Optional</small></label><div class="chips" style="margin:0">${["Phone","Email","In person"].map(c=>`<button class="sel" aria-pressed="${r.contact===c}" data-co="${c}">${c}</button>`).join("")}</div>`:""}
-<div class="msg" id="ms"></div>
-<div class="nav"><button class="btn alt" data-a="aprev">${qi ? "Previous" : "Back"}</button><button class="btn" id="nx" data-a="anext" ${val(r) ? "" : "disabled"}>${qi < 17 ? "Next role" : "See my network"}</button></div>
-<p class="why" style="margin-top:28px">${done()} of 18 complete. <button class="link" data-v="results">View results so far</button></p>`
-        }
-        function hint() { const r = ans[qi] || {}; document.getElementById("ms").textContent = r.s && r.s !== "Absent" && (r.name || "").trim().length < 2 ? "Add a name to continue." : ""; document.getElementById("nx").disabled = !val(r); document.getElementById("nt").innerHTML = note(); document.querySelectorAll(".dt")[qi].className = "dt cur " + (val(r) ? "ok" : "") }
+function assess(keep) {
+    nav("assess", keep);
+    const a = ALL[qi], r = ans[qi] || {}, s = r.s, st = ST.find(x => x[0] === s);
+    setLv(a.ci);
+    const lv = CH.map((c, i) => {
+        const t = ALL.filter(x => x.ci === i),
+              d = ALL.filter((x, j) => x.ci === i && val(ans[j])).length;
+        return `<i><b style="width:${d / t.length * 100}%;background:${PAL[i][1]}"></b></i>`;
+    }).join("");
+    const two = step === 2 && s && s !== "Absent";
+    let body;
+    if (two) {
+        body = `<div class="${fresh ? "rise" : ""}">
+            <p class="chg">You chose <b>${st ? st[1] : s}</b> <button class="lnk" type="button" data-a="change">Change</button></p>
+            <p class="st"><span class="sn">2</span>${s === "Potential" ? "Who could fill this role?" : s === "Historical" ? "Who did this for you?" : "Who is it?"}</p>
+            <input type="text" id="nm" data-f="name" value="${esc(r.name || "")}" placeholder="First name or full name" autocomplete="off" aria-label="Person’s name">
+            <p class="st" style="margin:40px 0 18px;font-size:.95rem;color:var(--mu)">Optional details</p>
+            <label class="dl">When did you last connect?</label>
+            <div class="chips">${LAST.map(c => `<button class="chip" type="button" aria-pressed="${r.last === c}" data-la="${c}">${c}</button>`).join("")}</div>
+            <label class="dl">How do you primarily reach them?</label>
+            <div class="chips">${REACH.map(c => `<button class="chip" type="button" aria-pressed="${r.contact === c}" data-co="${c}">${c}</button>`).join("")}</div>
+        </div>`;
+    } else {
+        body = `<div id="q1">
+            <p class="st"><span class="sn">1</span>How true is this for you today?</p>
+            <div class="opts" role="radiogroup" aria-label="Status">
+                ${ST.map(x => `<button class="opt" type="button" role="radio" aria-checked="${s === x[0]}" data-st="${x[0]}">
+                    <span class="rd"></span>
+                    <div><b>${x[1]}</b><span>${x[2]}</span></div>
+                    <em>${x[0]}</em>
+                </button>`).join("")}
+            </div>
+            ${s === "Absent" ? `<div class="note${fresh ? " rise" : ""}">Noted as a gap. That is useful to know, and it will appear in your next steps.</div>` : ""}
+        </div>`;
+    }
+    const nl = !two && s && s !== "Absent" ? "Continue" : qi < 17 ? "Next role" : "Review answers";
+    A.innerHTML = `
+        <div class="prog" aria-hidden="true">${lv}</div>
+        <div class="meta"><span>Level ${a.ci + 1}: ${CH[a.ci].n}</span><span>Role ${qi + 1} of 18</span></div>
+        <span class="tag">${a.name}</span>
+        <h2 class="q">${a.q}</h2>
+        ${body}
+        <div class="msg" id="ms" role="status"></div>
+        <div class="nav">
+            <button class="btn alt" type="button" data-a="back">Back</button>
+            <span class="sp"></span>
+            ${two ? '<button class="lnk" type="button" data-a="skip">Skip</button>' : ""}
+            <button class="btn" id="nx" type="button" data-a="next">${nl}</button>
+        </div>
+        <p class="why" style="margin-top:28px">${done()} of 18 answered. ${done() ? `<button class="link" type="button" data-v="review">Review answers</button> · <button class="link" type="button" data-v="results">View dashboard</button>` : ""}</p>
+    `;
+    fresh = false;
+    hint();
+}
+function hint() {
+    const r = ans[qi] || {};
+    let m = "", dis;
+    if (step === 1) {
+        dis = !r.s;
+        m = r.s ? "" : "Choose an option to continue.";
+    } else {
+        dis = !val(r);
+        m = dis ? "Add a name to continue." : "";
+    }
+    const ms = document.getElementById("ms");
+    if (ms) ms.textContent = m;
+    const nx = document.getElementById("nx");
+    if (nx) nx.disabled = dis;
+}
+function review() {
+    nav("review");
+    A.innerHTML = `
+        <h1 class="big" style="font-size:clamp(2rem,6vw,3rem);margin-bottom:8px">Review your answers</h1>
+        <p class="lead" style="margin-top:0">${done()} of 18 roles answered. Select Edit to change any of them.</p>
+        <div class="rv">${CH.map((c, i) => `
+            <h3 style="color:${PAL[i][0]}">${c.n}</h3>` +
+            ALL.map((x, j) => ({ x, j })).filter(o => o.x.ci === i).map(o => {
+                const a = ans[o.j];
+                return `<div class="rw">
+                    <div>
+                        <b>${o.x.name}</b>
+                        <small>${val(a) ? `${a.s}${a.s !== "Absent" ? " · " + esc(a.name) : ""}` : `<span class="miss">${a && a.s ? "Needs a name" : "Not answered"}</span>`}</small>
+                    </div>
+                    <button class="lnk" type="button" data-e="${o.j}">Edit</button>
+                </div>`;
+            }).join("")
+        ).join("")}</div>
+        <div class="nav">
+            <button class="btn alt" type="button" data-e="17">Back</button>
+            <span class="sp"></span>
+            <button class="btn" type="button" data-a="results" ${done() ? "" : "disabled"}>See my results</button>
+        </div>
+    `;
+}
         let mapMode = "orbit", selRole = 0;
-        const ECO_CX = 380, ECO_CY = 380;
-        const ECO_R = [96, 146, 196, 246, 296, 346];
-        const ECO_ANGS = ALL.map((a, j) => (((j % 3) * 120) + (a.ci * 25) - 80) * Math.PI / 180);
-        const ECO_POS = ALL.map((a, j) => [+(ECO_CX + ECO_R[a.ci] * Math.cos(ECO_ANGS[j])).toFixed(1), +(ECO_CY + ECO_R[a.ci] * Math.sin(ECO_ANGS[j])).toFixed(1)]);
-        function people() { const m = {}; ALL.forEach((a, j) => { const r = ans[j]; if (!val(r) || r.s === "Absent") return; const k = r.name.trim().toLowerCase(), p = m[k] = m[k] || { k, name: r.name.trim(), roles: [], best: r.s, circle: "", last: "", contact: "" }; p.roles.push({ role: a.name, s: r.s, ci: a.ci, qi: j }); if (SC[r.s] > SC[p.best]) p.best = r.s; if (!p.circle && r.circle) p.circle = r.circle; if (r.last && (!p.last || LAST.indexOf(r.last) < LAST.indexOf(p.last))) p.last = r.last; if (!p.contact && r.contact) p.contact = r.contact }); return Object.values(m) }
         function ecoMapSvg(P, _, mode) {
-            const m = mode || mapMode; let s = '<svg viewBox="-60 -60 880 880" role="img" aria-label="Ecosystem Constellation Map" id="ecosvg" style="width:100%;height:auto;display:block">';
+            const m = mode || mapMode; let s = '<svg viewBox="0 0 760 760" role="img" aria-label="Ecosystem Constellation Map" id="ecosvg" style="width:100%;height:auto;display:block">';
             if (m === "people") {
                 if (!P.length) return s + '<text x="380" y="380" text-anchor="middle" font-size="14" fill="var(--mu)">No people added yet. Complete roles in the assessment to build your network.</text></svg>';
                 const n = P.length, pos = P.map((p, i) => { const ang = (i / n * 2 * Math.PI) - Math.PI / 2; return [+(ECO_CX + 230 * Math.cos(ang)).toFixed(1), +(ECO_CY + 230 * Math.sin(ang)).toFixed(1)] });
                 s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="230" fill="none" stroke="var(--ln)" stroke-width="1.5" stroke-dasharray="4 6"/>`;
                 P.forEach((p, i) => { const isCur = (p.k === psel), isAct = (p.best === "Active"); s += `<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${pos[i][0]}" y2="${pos[i][1]}" stroke="${isCur ? 'var(--pu)' : (isAct ? 'var(--pu)' : 'var(--pk2)')}" stroke-width="${isCur ? 2.5 : 1.5}" stroke-dasharray="${isAct ? 'none' : '4 4'}" opacity="${isCur ? 1 : 0.6}"/>` });
-                s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(224,32,127,.3))"/><text x="${ECO_CX}" y="${ECO_CY + 5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
+                s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(0,82,36,.28))"/><text x="${ECO_CX}" y="${ECO_CY + 5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
                 P.forEach((p, i) => {
                     const [x, y] = pos[i], isCur = (p.k === psel), nr = Math.min(24 + p.roles.length * 3, 38);
                     s += `<g class="nd ${isCur ? 'on' : ''}" tabindex="0" role="button" data-p="${esc(p.k)}" aria-label="${esc(p.name)}">`;
                     if (isCur) s += `<circle cx="${x}" cy="${y}" r="${nr + 7}" fill="none" stroke="var(--pu)" stroke-width="2.5" opacity=".8"/>`;
-                    s += `<circle cx="${x}" cy="${y}" r="${nr}" fill="${CIR[p.circle] || '#FFD9EA'}" stroke="${isCur ? 'var(--pu)' : '#fff'}" stroke-width="${isCur ? 3 : 2}" filter="drop-shadow(0 2px 6px rgba(30,18,54,.12))"/>`;
+                    s += `<circle cx="${x}" cy="${y}" r="${nr}" fill="${CIR[p.circle] || 'var(--pu2)'}" stroke="${isCur ? 'var(--pu)' : '#fff'}" stroke-width="${isCur ? 3 : 2}" filter="drop-shadow(0 2px 6px rgba(18,36,25,.12))"/>`;
                     s += `<text x="${x}" y="${y + 5}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">${esc(ini(p.name))}</text>`;
                     s += `<text x="${x}" y="${y + nr + 18}" text-anchor="middle" font-size="12" font-weight="${isCur ? 700 : 600}" fill="var(--ink)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round">${esc(p.name)}</text>`;
                     s += `<text x="${x}" y="${y + nr + 32}" text-anchor="middle" font-size="10.5" fill="var(--mu)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round">${p.roles.length} ${p.roles.length === 1 ? 'role' : 'roles'}</text></g>`
@@ -317,7 +520,7 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
                 if (st === "Active") s += `<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${x}" y2="${y}" stroke="var(--pu)" stroke-width="1.5" opacity=".4"/>`;
                 else if (st === "Intermittent") s += `<line x1="${ECO_CX}" y1="${ECO_CY}" x2="${x}" y2="${y}" stroke="var(--pk2)" stroke-width="1.2" stroke-dasharray="3 4" opacity=".35"/>`;
             });
-            s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(224,32,127,.3))"/><text x="${ECO_CX}" y="${ECO_CY + 5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
+            s += `<circle cx="${ECO_CX}" cy="${ECO_CY}" r="40" fill="var(--pu)" filter="drop-shadow(0 4px 12px rgba(0,82,36,.28))"/><text x="${ECO_CX}" y="${ECO_CY + 5}" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">You</text>`;
             ALL.forEach((a, j) => {
                 const [x, y] = ECO_POS[j], ang = ECO_ANGS[j], r = ans[j], st = r ? r.s : "Absent", pName = r && r.name ? r.name.trim() : "", isSel = (j === selRole);
                 const isFilled = (st && st !== "Absent" && pName.length > 0);
@@ -333,11 +536,11 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
                     if (st === "Intermittent") { fillCol = "var(--pk2)"; dash = 'stroke-dasharray="3 2"' }
                     else if (st === "Potential") { fillCol = "#E89D78" }
                     else if (st === "Historical") { fillCol = "#C0809A"; dash = 'stroke-dasharray="3 3"' }
-                    s += `<circle cx="${x}" cy="${y}" r="${isSel ? 20 : 17}" fill="${fillCol}" stroke="#fff" stroke-width="2" filter="drop-shadow(0 2px 5px rgba(30,18,54,.15))" ${dash}/>`;
+                    s += `<circle cx="${x}" cy="${y}" r="${isSel ? 20 : 17}" fill="${fillCol}" stroke="#fff" stroke-width="2" filter="drop-shadow(0 2px 5px rgba(18,36,25,.15))" ${dash}/>`;
                     s += `<text x="${x}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">${esc(ini(pName))}</text>`;
                     s += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round">${esc(pName.split(" ")[0])}</text>`;
                 } else {
-                    if (m === "gaps") s += `<circle cx="${x}" cy="${y}" r="23" fill="rgba(224,32,127,.12)" stroke="var(--pu)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+                    if (m === "gaps") s += `<circle cx="${x}" cy="${y}" r="23" fill="rgba(0,82,36,.12)" stroke="var(--pu)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
                     s += `<circle cx="${x}" cy="${y}" r="${isSel ? 18 : 15}" fill="#FFFDFB" stroke="var(--pu)" stroke-width="${isSel ? 2.5 : 1.6}" stroke-dasharray="3 3"/>`;
                     s += `<text x="${x}" y="${y + 3.5}" text-anchor="middle" font-size="10" font-weight="700" fill="var(--pu)">${j + 1}</text>`;
                     s += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="10" font-weight="600" fill="var(--mu)" style="paint-order:stroke fill;stroke:var(--bg);stroke-width:3.5px;stroke-linejoin:round">${esc(a.name.split("/")[0].split(" ")[0])}</text>`;
@@ -349,15 +552,20 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
         function dossier(P, sR, pKey) {
             if (sR >= 0 && sR < ALL.length) {
                 const a = ALL[sR], r = ans[sR], st = r ? r.s : "Absent";
-                if (st === "Absent" || !st) { return `<div class="pb"><div class="tag" style="background:#FFE6EE;color:#C4136B">🚨 CRITICAL ECOSYSTEM GAP</div><div class="k" style="margin-top:14px">Level ${a.ci + 1}: ${CH[a.ci].n} · Role ${sR + 1} of 18</div><h3 style="font-size:1.85rem">${a.name}</h3><div class="fn" style="margin-bottom:16px">${a.fn}</div><p class="q1" style="font-size:1.02rem;line-height:1.5;margin:16px 0">${a.sc}</p><dl style="margin-top:20px"><div><dt>Why this relationship matters</dt><dd>${a.why}</dd></div><div><dt>Immediate action to fill this gap</dt><dd>Identify 1–2 people in your extended circle who embody this strength. Ask for a brief conversation or ask a trusted peer for an introduction.</dd></div></dl><div style="margin-top:26px"><button class="btn" style="width:100%" data-q="${sR}">Name someone for this role →</button></div></div>` }
-                else {
-                    const p = P.find(x => x.k === r.name.trim().toLowerCase()) || { name: r.name, roles: [{ role: a.name, s: st }], circle: r.circle, last: r.last, contact: r.contact };
-                    return `<div class="pb"><div class="av" style="background:${CIR[r.circle] || '#FFD9EA'}">${esc(ini(r.name))}</div><h3>${esc(r.name)}</h3><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0 16px"><span class="tag" style="margin-top:0">${st}</span>${r.circle ? `<span class="rc" style="margin:0">${r.circle}</span>` : ''}</div><div style="padding:14px;background:#fff;border-radius:16px;border:1.5px solid var(--ln);margin-bottom:18px"><div class="k" style="margin:0 0 4px;font-size:.8rem">Role ${sR + 1} · Level ${a.ci + 1}: ${CH[a.ci].n}</div><div style="font-weight:700;font-size:1.1rem">${a.name}</div><div class="fn" style="font-size:.86rem;color:var(--pu);margin:2px 0 6px">${a.fn}</div><p class="why" style="font-size:.88rem;margin:0">${a.why}</p></div><dl><div><dt>All roles held in your ecosystem</dt><dd>${p.roles.map(x => `<span class="rc" style="cursor:pointer" data-rn="${ALL.findIndex(y => y.name === x.role)}">${x.role} · ${x.s}</span>`).join("")}</dd></div><div><dt>Last contact</dt><dd>${r.last || "Not recorded"}</dd></div><div><dt>Primary communication</dt><dd>${r.contact || "Not recorded"}</dd></div></dl><div style="margin-top:22px"><button class="btn out" style="width:100%;padding:10px" data-q="${sR}">Edit this role →</button></div></div>`
+                const hasPerson = st && st !== "Absent" && r && r.name && r.name.trim().length > 1;
+                if (!hasPerson) {
+                    return `<div class="pb"><div class="tag" style="background:#FFF2E5;border:1px solid #F7CCA0;color:#9A4209;margin-top:0">🚨 CRITICAL ECOSYSTEM GAP</div><div class="k" style="margin-top:14px">Level ${a.ci + 1}: ${CH[a.ci].n} · Role ${sR + 1} of 18</div><h3 style="font-size:1.85rem">${a.name}</h3><div class="fn" style="margin-bottom:16px">${a.fn}</div><p class="q1" style="font-size:1.02rem;line-height:1.5;margin:16px 0">${a.sc}</p><dl style="margin-top:20px"><div><dt>Why this relationship matters</dt><dd>${a.why}</dd></div><div><dt>Immediate action to fill this gap</dt><dd>Identify 1–2 people in your extended circle who embody this strength. Ask for a brief conversation or ask a trusted peer for an introduction.</dd></div></dl><div style="margin-top:26px"><button class="btn" style="width:100%" data-q="${sR}">Name someone for this role →</button></div></div>`;
+                } else {
+                    return `<div class="pb"><div class="k" style="margin-top:0">Level ${a.ci + 1}: ${CH[a.ci].n} · Role ${sR + 1} of 18</div><h3 style="font-size:1.85rem">${a.name}</h3><div class="fn" style="margin-bottom:14px">${a.fn}</div><div style="display:flex;align-items:center;gap:10px;margin:14px 0 18px"><span class="tag" style="margin:0">${st}</span><span style="font-size:1.25rem;font-weight:700;color:var(--ink)">${esc(r.name.trim())}</span></div><p class="q1" style="font-size:1.02rem;line-height:1.5;margin:16px 0">${a.sc}</p><dl style="margin-top:16px"><div><dt>Why this relationship matters</dt><dd>${a.why}</dd></div></dl><div style="margin-top:26px"><button class="btn" style="width:100%" data-q="${sR}">Edit this role →</button></div></div>`;
                 }
             }
             const p = P.find(x => x.k === pKey);
-            if (p) { return `<div class="pb"><div class="av" style="background:${CIR[p.circle] || '#FFD9EA'}">${esc(ini(p.name))}</div><h3>${esc(p.name)}</h3>${p.circle ? `<span class="tag">${p.circle}</span>` : ''}<dl><div><dt>Roles in your life</dt><dd>${p.roles.map(r => `<span class="rc">${r.role} · ${r.s}</span>`).join("")}</dd></div><div><dt>Last contact</dt><dd>${p.last || "Not added"}</dd></div><div><dt>Primarily reached by</dt><dd>${p.contact ? esc(p.contact) : "Not added"}</dd></div></dl></div>` }
-            return `<p class="why">Select any role or person on the constellation map to view their dossier.</p>`
+            if (p) {
+                const roleObj = p.roles[0];
+                const rIdx = roleObj ? roleObj.qi : ALL.findIndex(y => y.name === (roleObj ? roleObj.role : ""));
+                if (rIdx >= 0) return dossier(P, rIdx, null);
+            }
+            return `<p class="why">Select any role or person on the constellation map to view details.</p>`;
         }
         function selResRole(j) { selRole = j; const r = ans[j]; if (r && r.s && r.s !== "Absent" && r.name) { psel = r.name.trim().toLowerCase() } const mp = document.getElementById("mp"), pb = document.getElementById("pb"); if (mp) mp.innerHTML = ecoMapSvg(people(), null, mapMode); if (pb) pb.innerHTML = dossier(people(), selRole, psel); document.querySelectorAll("tr[data-p]").forEach(row => row.classList.toggle("on", row.dataset.p === psel)) }
         function selP(k) { psel = k; const P = people(), rIdx = ALL.findIndex((a, j) => ans[j] && ans[j].s && ans[j].s !== "Absent" && ans[j].name && ans[j].name.trim().toLowerCase() === k); if (rIdx !== -1) selRole = rIdx; const mp = document.getElementById("mp"), pb = document.getElementById("pb"); if (mp) mp.innerHTML = ecoMapSvg(P, null, mapMode); if (pb) pb.innerHTML = dossier(P, selRole, psel); document.querySelectorAll("tr[data-p]").forEach(r => r.classList.toggle("on", r.dataset.p === k)) }
@@ -371,7 +579,7 @@ ${on?`<label for="nm">${s==="Potential"?"Who could fill this role?":"Who is it?"
             const topPerson = P.slice().sort((a, b) => b.roles.length - a.roles.length)[0];
             A.innerHTML = `<div class="print-head"><h1>Relationship Ecosystem Diagnostic Report</h1><p>Executive Dashboard &amp; Network Map · Generated on ${new Date().toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}</p></div>
 <div class="dash-hdr"><div><h2>Ecosystem Dashboard</h2><p class="sub">${P.length} ${P.length === 1 ? "person" : "people"} mapped across ${n} of 18 roles. Immediate overview of your active anchors and critical gaps.</p></div>
-<div class="dash-acts"><button class="btn-pdf" data-act="pdf" title="Print or save as PDF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</button><button class="btn alt" data-v="assess">Edit answers</button></div></div>
+<div class="dash-acts"><button class="btn-pdf" data-act="pdf" title="Print or save as PDF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</button><button class="btn alt" data-v="review">Review / Edit answers</button></div></div>
 <div class="kpis">
 <div class="kpi"><div class="lbl">Current Grounding</div><div class="val">${phase < 0 ? "Laying Foundation" : `Level ${phase + 1}: ${CH[phase].n}`}</div><div class="subt">${phase < 0 ? "Initial network setup" : CH[phase].sd}</div>${phase >= 0 ? '<span class="badge ok">✓ Active Grounding</span>' : '<span class="badge warn">In Progress</span>'}</div>
 <div class="kpi"><div class="lbl">Growth Edge</div><div class="val">${edge === -1 ? "Fully Anchored" : `Level ${edge + 1}: ${CH[edge].n}`}</div><div class="subt">${edge === -1 ? "All 6 levels supported" : CH[edge].sd}</div>${edge === -1 ? '<span class="badge ok">Ecosystem Mastery</span>' : '<span class="badge info">Next Priority</span>'}</div>
@@ -395,8 +603,8 @@ ${CH.map((c, i) => {
 </div></div>
 <div class="sec"><h3>People Directory</h3><div class="scroll"><table><thead><tr><th>Person</th><th>Roles</th><th>Circle</th><th>Last contact</th></tr></thead><tbody>${P.map(p => `<tr data-p="${esc(p.k)}" class="${p.k === psel ? "on" : ""}"><td><b>${esc(p.name)}</b></td><td>${p.roles.map(r => r.role).join(", ")}</td><td>${p.circle || "–"}</td><td>${p.last || "–"}</td></tr>`).join("") || '<tr><td colspan="4">No people yet.</td></tr>'}</tbody></table></div></div>
 <div class="sec"><h3>Ecosystem Summary</h3><div class="scroll"><table><thead><tr><th>Relationship</th><th>Person</th>${ST.map(s => `<th class="c">${s[0]}</th>`).join("")}</tr></thead><tbody>${ALL.map((a, j) => `<tr data-rn="${j}" style="cursor:pointer" class="${j === selRole ? 'on' : ''}"><td>${a.name}</td><td>${V[j] && V[j].person ? esc(V[j].person) : "–"}</td>${ST.map(s => `<td class="x">${V[j] && V[j].s === s[0] ? "✓" : ""}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>
-<div class="row" style="margin-top:48px"><button class="btn-pdf" data-act="pdf"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download as PDF</button><button class="btn alt" data-v="story">Replay the storyboard</button><button class="btn" data-v="assess">Edit my answers</button></div>`}
-        const VW = { home, story, map, assess, results };
+<div class="row" style="margin-top:48px"><button class="btn-pdf" data-act="pdf"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download as PDF</button><button class="btn alt" data-v="story">Replay the storyboard</button><button class="btn" data-v="review">Review / Edit answers</button></div>`}
+        const VW = { home, story, map, assess: () => { step = stepFor(qi); assess(); }, review, results };
         document.addEventListener("click", e => {
             const t = e.target.closest("button,.nd,tr[data-p],tr[data-rn],.r-dot[data-rn],.rc[data-rn]"); if (!t) return; const d = t.dataset;
             if (d.act === "pdf") { window.print(); return }
@@ -407,12 +615,83 @@ ${CH.map((c, i) => {
             if (d.ch !== undefined) { ch = +d.ch; story(); return }
             if (d.dd !== undefined) { const m = document.querySelector(".dm"); m.hidden = !m.hidden; t.setAttribute("aria-expanded", !m.hidden); return }
             if (d.n !== undefined) { selNode(+d.n); return }
-            if (d.q !== undefined) { qi = +d.q; assess(); return }
-            if (d.st) { ans[qi] = Object.assign(ans[qi] || {}, { s: d.st }); assess(); return }
-            if (d.ci) { ans[qi].circle = d.ci; assess(); return }
-            if (d.la) { ans[qi].last = d.la; assess(); return }
-            if (d.co) { ans[qi].contact = d.co; assess(); return }
-            const a = d.a; if (a === "prev") { ch ? (ch--, story()) : home() } else if (a === "next") { ch < 5 ? (ch++, story()) : map() } else if (a === "aprev") { qi ? (qi--, assess()) : home() } else if (a === "anext") { qi < 17 ? (qi++, assess()) : results() }
+            if (d.q !== undefined) { qi = +d.q; step = stepFor(qi); assess(); return }
+            if (d.e !== undefined) { go(+d.e); return }
+            if (d.st) {
+                const o = ans[qi] && ans[qi].s;
+                ans[qi] = Object.assign(ans[qi] || {}, { s: d.st });
+                if (d.st === "Absent") {
+                    fresh = o !== "Absent";
+                    step = 1;
+                    assess(true);
+                    return;
+                }
+                const q1 = document.getElementById("q1");
+                if (q1) q1.classList.add("q-out");
+                setTimeout(() => {
+                    step = 2;
+                    fresh = true;
+                    assess(true);
+                }, rm() ? 0 : 230);
+                return;
+            }
+            if (d.ci !== undefined) {
+                ans[qi] = ans[qi] || {};
+                ans[qi].circle = ans[qi].circle === d.ci ? "" : d.ci;
+                assess(true);
+                return;
+            }
+            if (d.la !== undefined) {
+                ans[qi] = ans[qi] || {};
+                ans[qi].last = ans[qi].last === d.la ? "" : d.la;
+                assess(true);
+                return;
+            }
+            if (d.co !== undefined) {
+                ans[qi] = ans[qi] || {};
+                ans[qi].contact = ans[qi].contact === d.co ? "" : d.co;
+                assess(true);
+                return;
+            }
+            const a = d.a;
+            if (a === "start") {
+                go(0);
+            } else if (a === "change") {
+                step = 1;
+                assess(true);
+            } else if (a === "skip") {
+                qi < 17 ? go(qi + 1) : review();
+            } else if (a === "next" || a === "anext") {
+                if (view === "story") {
+                    ch < 5 ? (ch++, story()) : map();
+                } else {
+                    const r = ans[qi] || {};
+                    if (step === 1 && r.s && r.s !== "Absent" && !val(r)) {
+                        step = 2;
+                        fresh = true;
+                        assess(true);
+                    } else {
+                        qi < 17 ? go(qi + 1) : review();
+                    }
+                }
+            } else if (a === "back" || a === "prev" || a === "aprev") {
+                if (view === "story") {
+                    ch ? (ch--, story()) : home();
+                } else if (view === "assess") {
+                    if (step === 2) {
+                        step = 1;
+                        assess(true);
+                    } else {
+                        qi ? go(qi - 1) : home();
+                    }
+                } else {
+                    home();
+                }
+            } else if (a === "review") {
+                review();
+            } else if (a === "results") {
+                results();
+            }
         });
         const cl = () => { const m = document.querySelector(".dm"); if (m) { m.hidden = true; const b = document.querySelector("[data-dd]"); b && b.setAttribute("aria-expanded", "false") } };
         document.addEventListener("click", e => { if (!e.target.closest(".dd")) cl() });
